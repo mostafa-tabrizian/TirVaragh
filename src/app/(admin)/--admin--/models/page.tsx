@@ -68,7 +68,7 @@ const AdminCategories = async () => {
          <>
             <Breadcrumbs aria-label='breadcrumb'>
                <Link className='text-gray-400' href='/'>
-                  فروشگاه
+                  تیرورق
                </Link>
                <Link className='text-gray-400' href='/--admin--'>
                   ادمین

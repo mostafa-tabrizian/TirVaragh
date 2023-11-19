@@ -15,13 +15,12 @@ const Blog = () => {
 
          <div className='mt-5 grid grid-cols-2 gap-3'>
             <div className='relative'>
-               <div className='relative h-28 w-full'>
+               <div className='relative h-28 w-full object-cover'>
                   <Image
                      className='rounded-bl-xl rounded-tr-xl'
                      fill
                      src='/blogPost2.jpg'
                      alt='پست بلاگ'
-                     objectFit='cover'
                   />
                </div>
                <div className=' absolute bottom-0 left-0 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent px-3'>
@@ -34,13 +33,12 @@ const Blog = () => {
                </div>
             </div>
             <div className='relative'>
-               <div className='relative h-28 w-full'>
+               <div className='relative h-28 w-full object-cover'>
                   <Image
                      className='rounded-bl-xl rounded-tr-xl'
                      fill
                      src='/blogPost2.jpg'
                      alt='پست بلاگ'
-                     objectFit='cover'
                   />
                </div>
                <div className=' absolute bottom-0 left-0 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent px-3'>
@@ -53,13 +51,12 @@ const Blog = () => {
                </div>
             </div>
             <div className='relative'>
-               <div className='relative h-28 w-full'>
+               <div className='relative h-28 w-full object-cover'>
                   <Image
                      className='rounded-bl-xl rounded-tr-xl'
                      fill
                      src='/blogPost2.jpg'
                      alt='پست بلاگ'
-                     objectFit='cover'
                   />
                </div>
                <div className=' absolute bottom-0 left-0 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent px-3'>

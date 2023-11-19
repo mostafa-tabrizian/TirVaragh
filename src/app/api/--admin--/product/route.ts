@@ -5,115 +5,94 @@ import Product from '@/models/product'
 
 export async function POST(request: Request) {
    const {
-      barcode,
-      name,
-      slug,
-      description,
-      category,
-      brand,
-      model,
-      price,
-      discount,
-      detail,
       active,
+      title,
+      category,
+      price,
+      length,
+      width,
+      thickness,
       inStock,
    }: {
-      barcode: string
-      name: string
-      slug: string
-      description: string
-      category: object
-      brand: object
-      model: object
-      price: number
-      discount: number
-      detail: string
       active: boolean
+      title: string
+      category: string
+      price: number
+      length: number
+      width: number
+      thickness: number
       inStock: boolean
    } = await request.json()
 
    try {
       await dbConnect()
       const product = await Product.create({
-         barcode,
-         name,
-         slug: slug.trim().toLowerCase(),
-         description,
+         active,
+         title,
          category,
-         brand,
-         model,
-         price,
-         discount,
-         detail: JSON.parse(detail),
-         active: active,
+         price: [{
+            value: price,
+            submittedAt: new Date()
+         }],
+         length,
+         width,
+         thickness,
          inStock,
       })
 
       return NextResponse.json(product)
    } catch (error) {
-      // @ts-ignore
-      if (error.code == 11000) {
-         return NextResponse.json({ message: 'notUnique' })
-      } else {
-         return NextResponse.json({ status: 500, message: error })
-      }
+      return NextResponse.json({ status: 500, message: error })
    }
 }
 
 export async function PATCH(request: Request) {
    const {
       _id,
-      name,
-      description,
-      category,
-      brand,
-      model,
-      price,
-      discount,
-      detail,
       active,
+      title,
+      category,
+      price,
+      length,
+      width,
+      thickness,
       inStock,
    }: {
-      _id: string
-      name: string
-      description: string
-      category: object
-      brand: object
-      model: object
-      price: number
-      discount: number
-      detail: string
+      _id: string,
       active: boolean
+      title: string
+      category: string
+      price: number
+      length: number
+      width: number
+      thickness: number
       inStock: boolean
    } = await request.json()
 
    try {
       await dbConnect()
-      const product = await Product.findOneAndUpdate(
+      const product = await Product.findOne(
+         { _id },
          {
-            _id: _id,
-         },
-         {
-            name,
-            description,
+            active,
+            title,
             category,
-            brand,
-            model,
             price,
-            discount,
-            detail: JSON.parse(detail),
-            active: active,
-            inStock,
+            length,
+            width,
+            thickness,
+            inStock
          },
       )
 
+      product.price.push({
+         value: price,
+         submittedAt: new Date()
+      })
+      product.save()
+
       return NextResponse.json(product)
    } catch (error) {
-      // @ts-ignore
-      if (error.code == 11000) {
-         return NextResponse.json({ message: 'notUnique' })
-      } else {
-         return NextResponse.json({ status: 500, message: error })
-      }
+      return NextResponse.json({ status: 500, message: error })
    }
 }

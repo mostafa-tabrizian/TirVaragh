@@ -112,67 +112,62 @@ async function Home() {
 
          <div className='relative h-48 w-full'>
             <Image
-               className=''
+               className='object-cover'
                fill
                priority
                src='/hero.jpg'
                alt='قیمت لحظه ای ورق تمام کارخانه ها'
-               objectFit='cover'
             />
          </div>
 
-         <div className='my-6 space-y-8 px-3 md:mx-auto md:px-0'>
+         {/* <div className='my-6 space-y-8 px-3 md:mx-auto md:px-0'>
             <div className='grid grid-cols-2 gap-x-3 md:grid-cols-4'>
                <Link aria-label='دسته بندی کابل' id='category' href='#'>
                   <Image
-                     className='rounded-xl'
+                     className='rounded-xl object-contain'
                      src={
                         'https://tabrizian.storage.iran.liara.space/tirvaragh/category/cable.webp'
                      }
                      alt='slide1'
                      width={460}
                      height={260}
-                     objectFit='contain'
                   />
                </Link>
                <Link aria-label='دسته بندی فیبر نوری' id='category' href='#'>
                   <Image
-                     className='rounded-xl'
+                     className='rounded-xl object-contain'
                      src={
                         'https://tabrizian.storage.iran.liara.space/tirvaragh/category/fiberoptic.webp'
                      }
                      alt='slide1'
                      width={460}
                      height={260}
-                     objectFit='contain'
                   />
                </Link>
                <Link aria-label='دسته بندی روتر' id='category' href='#'>
                   <Image
-                     className='rounded-xl'
+                     className='rounded-xl object-contain'
                      src={
                         'https://tabrizian.storage.iran.liara.space/tirvaragh/category/router.webp'
                      }
                      alt='slide1'
                      width={460}
                      height={260}
-                     objectFit='contain'
                   />
                </Link>
                <Link aria-label='دسته بندی سویتج' id='category' href='#'>
                   <Image
-                     className='rounded-xl'
+                     className='rounded-xl object-contain'
                      src={
                         'https://tabrizian.storage.iran.liara.space/tirvaragh/category/switch.webp'
                      }
                      alt='slide1'
                      width={460}
                      height={260}
-                     objectFit='contain'
                   />
                </Link>
             </div>
-         </div>
+         </div> */}
 
          <PriceTables />
 

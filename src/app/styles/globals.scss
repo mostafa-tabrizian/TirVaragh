@@ -49,6 +49,13 @@ body {
    user-select: none;
 }
 
+div {
+   font-size: 1rem;
+   font-weight: bold;
+   font-family: IRANYekanRegular, sans-serif;
+   color: rgb(43, 45, 83);
+}
+
 a {
    text-decoration: none;
    font-size: 1rem;
@@ -232,5 +239,45 @@ strong {
    &-body {
       font-size: 1rem;
       font-family: IRANYekanRegular, sans-serif;
+   }
+}
+
+.ql-editor {
+   &.ql-blank::before {
+      color: #345467 !important;
+      font-size: 1rem !important;
+   }
+
+   p,
+   strong,
+   em,
+   li,
+   a {
+      font-family: Yekan;
+   }
+
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6 {
+      font-family: yekanExtraBold;
+   }
+
+   code {
+      padding: 0.4rem;
+      background-color: rgb(24 28 60) !important;
+      border-radius: 7px;
+   }
+
+   a {
+      text-decoration: wavy underline rgb(115, 132, 255) !important;
+      text-underline-offset: 2px;
+      transition: all 0.1s ease-in-out;
+
+      &:hover {
+         color: rgb(115, 132, 255) !important;
+      }
    }
 }

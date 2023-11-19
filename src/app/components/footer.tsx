@@ -17,7 +17,6 @@ const Footer = () => {
                         width={150}
                         height={150}
                         quality={100}
-                        objectFit='contain'
                      />
                   </Link>
 

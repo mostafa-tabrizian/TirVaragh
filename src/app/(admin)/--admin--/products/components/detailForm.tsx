@@ -1,55 +1,27 @@
 'use client'
 
-import { useEffect, useState, memo } from 'react'
+import { memo } from 'react'
 import { Formik, Form } from 'formik'
 import { toast } from 'react-toastify'
 
 import { IProduct } from '@/models/product'
-import { ICategory } from '@/models/category'
-import { IBrand } from '@/models/brand'
-import { IModel } from '@/models/model'
 
 import { Switch } from '@mui/material'
-import TextField from '@mui/material/TextField'
 import CircularProgress from '@mui/material/CircularProgress'
-import Autocomplete from '@mui/material/Autocomplete'
 
-import ImageInput from './imageInput'
-import { ProductEditForm } from '@/formik/schema/validation'
+import { ProductForm } from '@/formik/schema/validation'
 
 const DetailForm = memo(
-   ({
-      addingNewProduct,
-      product,
-      categories,
-      brands,
-      models,
-   }: {
-      addingNewProduct: boolean
-      product: IProduct
-      categories: ICategory[]
-      brands: IBrand[]
-      models: IModel[]
-   }) => {
-      const [selectedCategoryId, selectCategoryId] = useState(
-         // @ts-ignore
-         addingNewProduct ? null : product.category[0]._id,
-      )
-      const [categoryModels, setCategoryModels] = useState([])
-
+   ({ addingNewProduct, product }: { addingNewProduct: boolean; product: IProduct }) => {
       const handleSubmit = async (
          values: {
-            barcode: string
-            name: string
-            slug: string
-            description: string
-            category: object
-            brand: object
-            model: object
-            price: number
-            discount: number
-            detail: object
             active: boolean
+            title: string
+            category: string
+            price: number
+            length: number
+            width: number
+            thickness: number
             inStock: boolean
          },
          { resetForm }: { resetForm: () => void },
@@ -70,8 +42,6 @@ const DetailForm = memo(
             const resData = await res.json()
 
             if (!res.ok) throw new Error()
-            else if (resData.message == 'notUnique')
-               return toast.warning('بارکد یا اسلاگ از قبل ثبت شده است')
             else if (resData.status == 500) {
                console.error(resData.message)
                return toast.error('خطا در برقراری ارتباط')
@@ -85,308 +55,188 @@ const DetailForm = memo(
          }
       }
 
-      useEffect(() => {
-         return () => {
-            setCategoryModels([])
-         }
-      }, [])
-
-      useEffect(() => {
-         const matchedCategoryModels: IModel[] = []
-
-         models.map((model) => {
-            if (model.category == selectedCategoryId) {
-               matchedCategoryModels.push(model)
-            }
-         })
-
-         // @ts-ignore
-         setCategoryModels(matchedCategoryModels)
-      }, [selectedCategoryId, models])
-
       return (
          <Formik
             initialValues={{
-               barcode: addingNewProduct ? '' : product.barcode,
-               name: addingNewProduct ? '' : product.name,
-               slug: addingNewProduct ? '' : product.slug,
-               description: addingNewProduct ? '' : product.description,
-               // @ts-ignore
-               category: addingNewProduct ? categories[0] : product.category[0],
-               // @ts-ignore
-               brand: addingNewProduct ? brands[0] : product.brand[0],
-               // @ts-ignore
-               model: addingNewProduct ? models[0] : product.model[0],
-               price: addingNewProduct ? 0 : product.price,
-               discount: addingNewProduct ? 0 : product.discount,
-               // @ts-ignore
-               detail: addingNewProduct
-                  ? JSON.stringify({ عنوان: 'ارزش', عنوان۲: 'ارزش۲' })
-                  : JSON.stringify(product.detail),
                active: addingNewProduct ? true : product.active,
+               title: addingNewProduct ? '' : product.title,
+               category: addingNewProduct ? '' : product.category,
+               price: addingNewProduct ? 0 : product.price[product.price.length - 1].value,
+               length: addingNewProduct ? 0 : product.length,
+               width: addingNewProduct ? 0 : product.width,
+               thickness: addingNewProduct ? 0 : product.thickness,
                inStock: addingNewProduct ? true : product.inStock,
             }}
-            validationSchema={ProductEditForm}
+            validationSchema={ProductForm}
             onSubmit={handleSubmit}
          >
             {({ values, setFieldValue, isSubmitting, errors, touched }) => (
-               <Form className='grid grid-cols-3 gap-5 mt-6 '>
-                  <div className='col-span-1'>
-                     {addingNewProduct ? (
-                        ''
-                     ) : (
-                        <ImageInput
-                           product={JSON.parse(
-                              JSON.stringify({
-                                 _id: product._id,
-                                 thumbnail: product.thumbnail,
-                                 images: product.images,
-                              }),
-                           )}
-                        />
-                     )}
-                  </div>
-                  <div className='space-y-5 col-span-2'>
-                     <div className='text-right space-y-1'>
-                        <label htmlFor='barcode'>
-                           <span className='text-slate-400'>کد محصول</span>
-                        </label>
-                        <input
-                           name='barcode'
-                           onChange={(e) =>
-                              addingNewProduct && setFieldValue('barcode', e.target.value)
-                           }
-                           value={values.barcode}
-                           className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                           type='text'
-                           readOnly={addingNewProduct ? false : true}
-                        />
-                     </div>
-
-                     {errors.barcode && touched.barcode ? (
-                        <p className='text-sm text-red-500'>{errors.barcode}</p>
-                     ) : (
-                        ''
-                     )}
-
-                     <div className='text-right space-y-1'>
-                        <label htmlFor='name'>
-                           <span className='text-slate-400'>عنوان محصول</span>
-                        </label>
-                        <input
-                           name='name'
-                           onChange={(e) => setFieldValue('name', e.target.value)}
-                           value={values.name}
-                           className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                           type='text'
-                        />
-                     </div>
-
-                     {errors.name && touched.name ? (
-                        <p className='text-sm text-red-500'>{errors.name}</p>
-                     ) : (
-                        ''
-                     )}
-
-                     <div className='text-right space-y-1'>
-                        <label htmlFor='slug'>
-                           <span className='text-slate-400'>اسلاگ محصول</span>
-                        </label>
-                        <input
-                           name='slug'
-                           onChange={(e) =>
-                              addingNewProduct && setFieldValue('slug', e.target.value)
-                           }
-                           value={values.slug}
-                           className='mr-3 w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                           type='text'
-                           readOnly={addingNewProduct ? false : true}
-                        />
-                     </div>
-
-                     {errors.slug && touched.slug ? (
-                        <p className='text-sm text-red-500'>{errors.slug}</p>
-                     ) : (
-                        ''
-                     )}
-
-                     <div className='text-right space-y-1'>
-                        <label htmlFor='slug'>
-                           <span className='text-slate-400'>توضیحات</span>
-                        </label>
-                        <textarea
-                           name='description'
-                           onChange={(e) => setFieldValue('description', e.target.value)}
-                           rows={8}
-                           value={values.description}
-                           className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                        />
-                        <span className='text-slate-500 text-xs'>
-                           تعداد کلمات توضیحات:{' '}
-                           {(values.description.split(' ').length - 1).toLocaleString('fa')}
-                        </span>
-                     </div>
-
-                     <div className=' border border-green-600/50 p-2 rounded-lg text-right'>
-                        <span className='text-xs text-green-600/70'>
-                           ترجیحا تعداد کلمات محصول می‌بایست ما بین ۵۰ تا ۳۰۰ کلمه باشد. کیفیت متن
-                           دارای جزئیات و تعداد کلمات بیشتر، در عملکرد فروشگاه در گوگل تاثیر بسیار
-                           مثبتی میگذارد
-                        </span>
-                     </div>
-
-                     {errors.description && touched.description ? (
-                        <p className='text-sm text-red-500'>{errors.description}</p>
-                     ) : (
-                        ''
-                     )}
-
-                     <Autocomplete
-                        className='rtl'
-                        id='category'
-                        value={values.category as unknown as ICategory}
-                        options={categories}
-                        isOptionEqualToValue={(option, value) =>
-                           option === value || option._id === value._id
-                        }
-                        getOptionLabel={(option: ICategory) => option.name}
-                        onChange={(_e, value) => {
-                           if (value) {
-                              selectCategoryId(value._id)
-                              setFieldValue('category', value)
-                           }
-                        }}
-                        renderInput={(params) => <TextField {...params} label='دسته بندی' />}
-                        sx={{ width: '100%' }}
+               <Form className='mt-6 space-y-5'>
+                  <div className='space-y-1 text-right'>
+                     <label htmlFor='title'>
+                        <span className='text-slate-600'>عنوان محصول</span>
+                     </label>
+                     <input
+                        name='title'
+                        onChange={(e) => setFieldValue('title', e.target.value)}
+                        value={values.title}
+                        className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
+                        type='text'
                      />
+                     <p className='text-xs font-normal text-slate-400'>
+                        برای سئوی بهتر لطفا عنوان کامل را وارد کنید. برای مثال:{' '}
+                        <span className='font-bold text-slate-400'>
+                           ورق روغنی ۴ میل ابعاد ۲۰۰۰x۱۰۰۰
+                        </span>
+                     </p>
+                  </div>
+
+                  {errors.title && touched.title ? (
+                     <p className='text-sm text-red-500'>{errors.title}</p>
+                  ) : (
+                     ''
+                  )}
+
+                  <div>
+                     <div className='space-y-1 text-right'>
+                        <label htmlFor='category'>
+                           <span className='text-slate-600'>دسته بندی</span>
+                        </label>
+                        <select
+                           disabled={isSubmitting}
+                           className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
+                           value={values.category}
+                           onChange={(e) => {
+                              setFieldValue('category', e.target.value)
+                           }}
+                        >
+                           <option value='' defaultChecked>
+                              --
+                           </option>
+                           <option value='ورق سیاه'>ورق سیاه</option>
+                           <option value='ورق روغنی'>ورق روغنی</option>
+                           <option value='ورق گالوانیزه'>ورق گالوانیزه</option>
+                           <option value='ورق اسپیره درجه دو'>ورق اسپیره درجه دو</option>
+                        </select>
+                     </div>
 
                      {errors.category && touched.category ? (
-                        // @ts-ignore
                         <p className='text-sm text-red-500'>{errors.category}</p>
                      ) : (
                         ''
                      )}
+                  </div>
 
-                     <Autocomplete
-                        className='rtl'
-                        id='brand'
-                        value={values.brand as unknown as IBrand}
-                        options={brands}
-                        isOptionEqualToValue={(option, value) =>
-                           option === value || option._id === value._id
-                        }
-                        getOptionLabel={(option: IBrand) => option.name}
-                        onChange={(_e, value) => value && setFieldValue('brand', value)}
-                        renderInput={(params) => <TextField {...params} label='برند' />}
-                        sx={{ width: '100%' }}
-                     />
+                  <div className='grid grid-cols-2 gap-5'>
+                     <div>
+                        <div className='space-y-1 text-right'>
+                           <label htmlFor='price'>
+                              <span className='text-slate-600'>قیمت به تومان</span>
+                           </label>
+                           <input
+                              name='price'
+                              onChange={(e) => setFieldValue('price', e.target.value)}
+                              value={values.price}
+                              className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
+                              type='number'
+                           />
+                           <p className='text-xs font-normal text-slate-400'>
+                              {/* @ts-ignore */}
+                              {parseInt(values.price).toLocaleString('fa')} تومان
+                           </p>
+                        </div>
 
-                     {errors.brand && touched.brand ? (
-                        // @ts-ignore
-                        <p className='text-sm text-red-500'>{errors.brand}</p>
-                     ) : (
-                        ''
-                     )}
-
-                     <Autocomplete
-                        className='rtl'
-                        id='model'
-                        value={values.model as unknown as IModel}
-                        options={categoryModels}
-                        isOptionEqualToValue={(option, value) =>
-                           option === value || option._id === value._id
-                        }
-                        getOptionLabel={(option: IModel) => option.name}
-                        onChange={(_e, value) => value && setFieldValue('model', value)}
-                        renderInput={(params) => <TextField {...params} label='مدل' />}
-                        sx={{ width: '100%' }}
-                     />
-
-                     {errors.model && touched.model ? (
-                        // @ts-ignore
-                        <p className='text-sm text-red-500'>{errors.model}</p>
-                     ) : (
-                        ''
-                     )}
-
-                     <div className='text-right space-y-1'>
-                        <label htmlFor='price'>
-                           <span className='text-slate-400'>قیمت به تومان</span>
-                        </label>
-                        <input
-                           name='price'
-                           onChange={(e) => setFieldValue('price', e.target.value)}
-                           value={values.price}
-                           className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                           type='number'
-                        />
+                        {errors.price && touched.price ? (
+                           <p className='text-sm text-red-500'>{errors.price}</p>
+                        ) : (
+                           ''
+                        )}
                      </div>
 
-                     {errors.price && touched.price ? (
-                        <p className='text-sm text-red-500'>{errors.price}</p>
-                     ) : (
-                        ''
-                     )}
+                     <div>
+                        <div className='space-y-1 text-right'>
+                           <label htmlFor='thickness'>
+                              <span className='text-slate-600'>ضخامت به میلی متر</span>
+                           </label>
+                           <input
+                              name='thickness'
+                              onChange={(e) => setFieldValue('thickness', e.target.value)}
+                              value={values.thickness}
+                              className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
+                              type='number'
+                           />
+                        </div>
 
-                     <div className='text-right space-y-1'>
-                        <label htmlFor='discount'>
-                           <span className='text-slate-400'>تخفیف به تومان</span>
-                        </label>
-                        <input
-                           name='discount'
-                           onChange={(e) => setFieldValue('discount', e.target.value)}
-                           value={values.discount}
-                           className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                           type='number'
-                        />
+                        {errors.thickness && touched.thickness ? (
+                           <p className='text-sm text-red-500'>{errors.thickness}</p>
+                        ) : (
+                           ''
+                        )}
                      </div>
 
-                     {errors.discount && touched.discount ? (
-                        <p className='text-sm text-red-500'>{errors.discount}</p>
-                     ) : (
-                        ''
-                     )}
+                     <div>
+                        <div className='space-y-1 text-right'>
+                           <label htmlFor='length'>
+                              <span className='text-slate-600'>طول به میلی متر</span>
+                           </label>
+                           <input
+                              name='length'
+                              onChange={(e) => setFieldValue('length', e.target.value)}
+                              value={values.length}
+                              className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
+                              type='number'
+                           />
+                        </div>
 
-                     <div className='text-right space-y-1'>
-                        <label htmlFor='detail'>
-                           <span className='text-slate-400'>جزئیات با فرمت آبجکت</span>
-                        </label>
-                        <textarea
-                           name='detail'
-                           onChange={(e) => setFieldValue('detail', e.target.value)}
-                           rows={8}
-                           // @ts-ignore
-                           value={values.detail}
-                           className='mr-3 rtl w-full text-base tracking-widest bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                        />
+                        {errors.length && touched.length ? (
+                           <p className='text-sm text-red-500'>{errors.length}</p>
+                        ) : (
+                           ''
+                        )}
                      </div>
 
-                     {errors.detail && touched.detail ? (
-                        // @ts-ignore
-                        <p className='text-sm text-red-500'>{errors.detail}</p>
-                     ) : (
-                        ''
-                     )}
+                     <div>
+                        <div className='space-y-1 text-right'>
+                           <label htmlFor='width'>
+                              <span className='text-slate-600'>عرض به میلی متر</span>
+                           </label>
+                           <input
+                              name='width'
+                              onChange={(e) => setFieldValue('width', e.target.value)}
+                              value={values.width}
+                              className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
+                              type='number'
+                           />
+                        </div>
 
-                     <div className='flex items-center gap-5 rtl'>
-                        <span className='text-slate-400'>محصول نمایش داده شود</span>
-
-                        <Switch
-                           checked={values.active}
-                           name='active'
-                           color='success'
-                           onChange={() => setFieldValue('active', !values.active)}
-                        />
+                        {errors.width && touched.width ? (
+                           <p className='text-sm text-red-500'>{errors.width}</p>
+                        ) : (
+                           ''
+                        )}
                      </div>
 
-                     {!addingNewProduct && (
-                        <span className='text-rose-400 flex justify-end !my-0 text-[.65rem] text-right'>
-                           .محصولات قابل حذف نمی‌باشند. تنها میتوان آنها را مخفی کرد
-                        </span>
-                     )}
+                     <div>
+                        <div className='flex items-center gap-5'>
+                           <span className='text-slate-600'>محصول نمایش داده شود</span>
 
-                     <div className='flex items-center gap-5 rtl'>
-                        <span className='text-slate-400'>محصول موجود است</span>
+                           <Switch
+                              checked={values.active}
+                              name='active'
+                              color='success'
+                              onChange={() => setFieldValue('active', !values.active)}
+                           />
+                        </div>
+
+                        {!addingNewProduct && (
+                           <span className='!my-0 flex justify-end text-right text-[.65rem] text-rose-400'>
+                              میتوانید به جای حذف محصول آن را مخفی کنید
+                           </span>
+                        )}
+                     </div>
+
+                     <div className='flex items-center gap-5'>
+                        <span className='text-slate-600'>محصول موجود است</span>
 
                         <Switch
                            checked={values.inStock}
@@ -395,15 +245,15 @@ const DetailForm = memo(
                            onChange={() => setFieldValue('inStock', !values.inStock)}
                         />
                      </div>
-
-                     <button
-                        type='submit'
-                        disabled={isSubmitting}
-                        className='border-2 border-green-600 w-full rounded-lg'
-                     >
-                        {isSubmitting ? <CircularProgress color='success' size={25} /> : 'ذخیره'}
-                     </button>
                   </div>
+
+                  <button
+                     type='submit'
+                     disabled={isSubmitting}
+                     className='w-full rounded-lg border-2 border-green-600'
+                  >
+                     {isSubmitting ? <CircularProgress color='success' size={25} /> : 'ذخیره'}
+                  </button>
                </Form>
             )}
          </Formik>

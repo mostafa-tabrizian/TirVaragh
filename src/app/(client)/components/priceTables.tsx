@@ -1,4 +1,21 @@
+'use client'
+
+import { IProduct } from '@/models/product'
+import useSWR from 'swr'
+
 const PriceTables = () => {
+   // @ts-ignore
+   const fetcher = (...args) => fetch(...args).then((res) => res.json())
+
+   const {
+      data: products,
+      isLoading,
+      error,
+   }: { data: [IProduct]; isLoading: boolean; error: unknown } = useSWR(
+      '/api/client/products',
+      fetcher,
+   )
+
    return (
       <div className='mx-4 md:mx-auto'>
          <div>
@@ -105,7 +122,7 @@ const PriceTables = () => {
                      </div>
                   </div>
                </div>
-               <div className='rounded-xl bg-white mt-3'>
+               <div className='mt-3 rounded-xl bg-white'>
                   <table className='w-full border-separate px-2'>
                      <tr className=''>
                         <th className='yekan p-2 font-bold'>
@@ -118,50 +135,109 @@ const PriceTables = () => {
                         <th className='yekan p-2 font-bold'>نمودار</th>
                      </tr>
 
-                     <tr>
-                        <td className='yekan p-2 font-bold'>ورق گالوانیزه ۰.۷ عرض ۱۲۵۰ اصفهان</td>
-                        <td className='yekan p-2 text-center font-bold'>۲۸,۰۰۰</td>
-                        <td className='yekan m-auto p-2 text-center font-bold'>
-                           <div className='flex items-center gap-x-1 text-red-500'>
-                              ۴۰۰
-                              <svg
-                                 className='h-6 w-6'
-                                 width='24'
-                                 height='24'
-                                 viewBox='0 0 24 24'
-                                 strokeWidth='2'
-                                 stroke='currentColor'
-                                 fill='none'
-                                 strokeLinecap='round'
-                                 strokeLinejoin='round'
-                              >
-                                 {' '}
-                                 <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                                 <path d='M18 15l-6-6l-6 6h12' transform='rotate(180 12 12)' />
-                              </svg>
-                           </div>
-                        </td>
-                        <td className=''>
-                           <svg
-                              className='mx-auto h-6 w-6 text-black'
-                              width='24'
-                              height='24'
-                              viewBox='0 0 24 24'
-                              strokeWidth='2'
-                              stroke='currentColor'
-                              fill='none'
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                           >
-                              {' '}
-                              <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                              <line x1='4' y1='19' x2='20' y2='19' />{' '}
-                              <polyline points='4 15 8 9 12 11 16 6 20 10' />
-                           </svg>
-                        </td>
-                     </tr>
+                     {isLoading ? (
+                        <h4>loading</h4>
+                     ) : (
+                        <>
+                           {products.map((product, idx) => {
+                              const price = product.price[product.price.length - 1]
+                              const previousPrice = product.price[product.price.length - 2]
+                              let fluctuation
 
-                     <tr className='bg-rose-100/50'>
+                              if (previousPrice) {
+                                 fluctuation = price.value - previousPrice.value
+                              }
+
+                              return (
+                                 <tr key={idx}>
+                                    <td className='yekan p-2 font-bold'>{product.title}</td>
+                                    <td className='yekan p-2 text-center font-bold'>
+                                       {/* @ts-ignore */}
+                                       {parseInt(price.value).toLocaleString('fa')}
+                                    </td>
+                                    <td className='yekan m-auto p-2 text-center font-bold'>
+                                       {fluctuation && fluctuation > 0 ? (
+                                          <div className='flex items-center gap-x-1 text-green-600'>
+                                             {/* @ts-ignore */}
+                                             {parseInt(fluctuation).toLocaleString('fa')}
+                                             <svg
+                                                className='h-6 w-6'
+                                                width='24'
+                                                height='24'
+                                                viewBox='0 0 24 24'
+                                                strokeWidth='2'
+                                                stroke='currentColor'
+                                                fill='none'
+                                                strokeLinecap='round'
+                                                strokeLinejoin='round'
+                                             >
+                                                {' '}
+                                                <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                                                <path d='M18 15l-6-6l-6 6h12' />
+                                             </svg>
+                                          </div>
+                                       ) : (
+                                          ''
+                                       )}
+
+                                       {fluctuation && fluctuation < 0 ? (
+                                          <div className='flex items-center gap-x-1 text-red-500'>
+                                             {/* @ts-ignore */}
+                                             {parseInt(fluctuation).toLocaleString('fa')}
+                                             <svg
+                                                className='h-6 w-6'
+                                                width='24'
+                                                height='24'
+                                                viewBox='0 0 24 24'
+                                                strokeWidth='2'
+                                                stroke='currentColor'
+                                                fill='none'
+                                                strokeLinecap='round'
+                                                strokeLinejoin='round'
+                                             >
+                                                {' '}
+                                                <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                                                <path
+                                                   d='M18 15l-6-6l-6 6h12'
+                                                   transform='rotate(180 12 12)'
+                                                />
+                                             </svg>
+                                          </div>
+                                       ) : (
+                                          ''
+                                       )}
+
+                                       {fluctuation && fluctuation == 0 ? (
+                                          <span className='h-5 w-6 text-slate-600'>---</span>
+                                       ) : (
+                                          ''
+                                       )}
+                                    </td>
+                                    <td className=''>
+                                       <svg
+                                          className='mx-auto h-6 w-6 text-black'
+                                          width='24'
+                                          height='24'
+                                          viewBox='0 0 24 24'
+                                          strokeWidth='2'
+                                          stroke='currentColor'
+                                          fill='none'
+                                          strokeLinecap='round'
+                                          strokeLinejoin='round'
+                                       >
+                                          {' '}
+                                          <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                                          <line x1='4' y1='19' x2='20' y2='19' />{' '}
+                                          <polyline points='4 15 8 9 12 11 16 6 20 10' />
+                                       </svg>
+                                    </td>
+                                 </tr>
+                              )
+                           })}
+                        </>
+                     )}
+
+                     {/* <tr className='bg-rose-100/50'>
                         <td className='yekan p-2 font-bold'>ورق گالوانیزه ۰.۷ عرض ۱۲۵۰ اصفهان</td>
                         <td className='yekan p-2 text-center font-bold'>۲۸,۰۰۰</td>
                         <td className='yekan m-auto p-2 text-center font-bold'>
@@ -228,7 +304,7 @@ const PriceTables = () => {
                               <polyline points='4 15 8 9 12 11 16 6 20 10' />
                            </svg>
                         </td>
-                     </tr>
+                     </tr> */}
                   </table>
                </div>
             </div>

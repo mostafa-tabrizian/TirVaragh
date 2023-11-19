@@ -5,11 +5,10 @@ const About = () => {
       <div className='mx-4 mt-14 md:mx-auto'>
          <div className='relative h-48 w-full'>
             <Image
-               className='rounded-2xl'
+               className='rounded-2xl object-cover'
                fill
                src='/aboutHero.jpg'
                alt='درباره شرکت تیرورق'
-               objectFit='cover'
             />
          </div>
 

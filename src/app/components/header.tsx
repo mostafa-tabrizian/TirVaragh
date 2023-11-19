@@ -27,7 +27,6 @@ const Header = memo(
                         width={80}
                         height={80}
                         quality={100}
-                        objectFit='contain'
                         loading='lazy'
                      />
                   </Link>
