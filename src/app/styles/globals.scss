@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// :root {
+//    --foreground-rgb: #eff4ff;
+//    --background-start-rgb: 0, 0, 0;
+//    --background-end-rgb: 0, 0, 0;
+// }
+
+// @media (prefers-color-scheme: dark) {
+//    :root {
+//       --foreground-rgb: black;
+//       --background-start-rgb: 214, 219, 220;
+//       --background-end-rgb: 255, 255, 255;
+//    }
+// }
+
+@font-face {
+   font-family: 'IRANYekanRegular';
+   font-display: swap;
+   src:
+      url('/font/IRANYekanRegular.woff2') format('woff2'),
+      url('/font/IRANYekanRegular.woff') format('woff');
+}
+
+@font-face {
+   font-family: 'IRANYekanExtraBold';
+   font-display: swap;
+   src:
+      url('/font/IRANYekanExtraBold.woff2') format('woff2'),
+      url('/font/IRANYekanExtraBold.woff') format('woff');
+}
+
+* {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+}
+
+html {
+   min-height: 100vh;
+   scroll-behavior: smooth;
+}
+
+body {
+   color: rgb(var(--foreground-rgb));
+   background: #f4f5f7;
+   user-select: none;
+}
+
+a {
+   text-decoration: none;
+   font-size: 1rem;
+   font-family: IRANYekanRegular, sans-serif;
+   color: rgb(43, 45, 83);
+}
+
+h1 {
+   font-size: 1.4rem;
+   font-family: IRANYekanExtraBold, sans-serif;
+   color: rgb(43, 45, 83);
+}
+
+h2 {
+   font-size: 1.1rem;
+   font-weight: bold;
+   font-family: IRANYekanExtraBold, sans-serif;
+   color: rgb(43, 45, 83);
+}
+
+h3 {
+   font-size: 1rem;
+   font-weight: bold;
+   font-family: IRANYekanRegular, sans-serif;
+   color: rgb(43, 45, 83);
+}
+
+h4 {
+   font-size: 1rem;
+   font-family: IRANYekanRegular, sans-serif;
+   color: rgb(43, 45, 83);
+}
+
+h5 {
+   font-size: 1rem;
+   letter-spacing: -1px;
+   font-family: IRANYekanRegular, sans-serif;
+   color: rgb(43, 45, 83);
+}
+
+button {
+   font-size: 1rem;
+   letter-spacing: -1px;
+   font-family: IRANYekanRegular, sans-serif;
+   padding: 0.5rem 0.1rem;
+   color: rgb(43, 45, 83);
+}
+
+p {
+   font-size: 1rem;
+   font-family: IRANYekanRegular, sans-serif;
+   color: rgb(43, 45, 83);
+}
+
+li {
+   font-size: 1rem;
+   font-family: IRANYekanRegular, sans-serif;
+   color: rgb(43, 45, 83);
+}
+
+input,
+textarea {
+   font-size: 1rem;
+   font-family: IRANYekanRegular, sans-serif;
+   background: #f3f4f6;
+   color: rgb(43, 45, 83);
+
+   &::placeholder {
+      color: rgb(179, 188, 200);
+   }
+}
+
+span {
+   font-family: IRANYekanRegular, sans-serif;
+   font-size: 0.8rem;
+   color: rgb(43, 45, 83);
+}
+
+label {
+   font-family: IRANYekanRegular, sans-serif;
+   font-size: 1rem;
+}
+
+hr {
+   border: solid 1px rgb(224, 224, 224);
+   margin: 1rem 0;
+}
+
+h6 {
+   font-size: 0.8rem;
+   font-family: IRANYekanRegular, sans-serif;
+   color: gray;
+}
+
+strong {
+   font-family: IRANYekanRegular, sans-serif;
+   font-weight: 600;
+}
+
+.rtl {
+   direction: rtl;
+}
+
+.ltr {
+   direction: ltr;
+}
+
+.yekan {
+   font-family: IRANYekanRegular, sans-serif;
+}
+
+.yekanExtraBold {
+   font-family: IRANYekanExtraBold, IRANYekanRegular, sans-serif;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.styled-scrollbars {
+   /* Foreground, Background */
+   scrollbar-color: #60a5fa transparent;
+
+   &::-webkit-scrollbar {
+      width: 3px; /* Mostly for vertical scrollbars */
+      height: 3px; /* Mostly for horizontal scrollbars */
+   }
+
+   &::-webkit-scrollbar-thumb {
+      /* Foreground */
+      background: #60a5fa;
+   }
+
+   &::-webkit-scrollbar-track {
+      /* Background */
+      background: transparent;
+   }
+}
+
+.toman {
+   &_card {
+      display: flex;
+
+      &:before {
+         content: url('/toman_card.svg');
+         display: block;
+         margin-right: 0.2rem;
+         font-family: IRANYekanRegular, sans-serif;
+      }
+   }
+
+   &_course {
+      display: flex;
+
+      &:before {
+         content: url('/toman.svg');
+         display: block;
+         margin-right: 0.2rem;
+         font-family: IRANYekanRegular, sans-serif;
+      }
+   }
+}
+
+.invalidInput {
+   border: 2px solid red;
+}
+
+.animate-spin-slower {
+   animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+   from {
+      transform: rotate(0deg);
+   }
+   to {
+      transform: rotate(360deg);
+   }
+}
+
+.Toastify__toast {
+   border-radius: 15px !important;
+
+   &-body {
+      font-size: 1rem;
+      font-family: IRANYekanRegular, sans-serif;
+   }
+}
