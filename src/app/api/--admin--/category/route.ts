@@ -3,8 +3,18 @@ import { NextResponse } from 'next/server'
 import dbConnect from '@/lib/dbConnect'
 import Category from '@/models/category'
 
-// export async function POST(req: Request) {
-// }
+export async function POST(req: Request) {
+   try {
+      const { name } = await req.json()
+      await dbConnect()
+
+      const factory = await Category.create({ name })
+
+      return NextResponse.json(factory)
+   } catch (error) {
+      return NextResponse.json({ status: 500, message: error })
+   }
+}
 
 export async function PATCH(req: Request) {
    const { _id, name } = await req.json()
@@ -17,12 +27,7 @@ export async function PATCH(req: Request) {
          category,
       })
    } catch (error) {
-      // @ts-ignore
-      if (error.code == 11000) {
-         return NextResponse.json({ message: 'notUnique' })
-      } else {
-         return NextResponse.json({ status: 500, message: error })
-      }
+      return NextResponse.json({ status: 500, message: error })
    }
 }
 

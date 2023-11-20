@@ -7,7 +7,7 @@ import { CategoryValidation } from '@/formik/schema/validation'
 const NameEdit = ({
    params,
 }: {
-   params: { _doc: { _id: string; name: string; slug: string } }
+   params: { _doc: { _id: string; name: string } }
 }) => {
    const name = params._doc.name.charAt(0).toUpperCase() + params._doc.name.slice(1)
 

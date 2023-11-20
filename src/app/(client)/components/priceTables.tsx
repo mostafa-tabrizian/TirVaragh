@@ -4,8 +4,17 @@ import { IFactory } from '@/models/factory'
 import { IProduct } from '@/models/product'
 import useSWR from 'swr'
 import Image from 'next/image'
+import { useState } from 'react'
+import { ICategory } from '@/models/category'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
 
 const PriceTables = () => {
+   const [category, setCategory] = useState('')
+   const [factory, setFactory] = useState('')
+   const [sort, setSort] = useState('')
+
    // @ts-ignore
    const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
@@ -17,7 +26,17 @@ const PriceTables = () => {
       data: IProduct[]
       isLoading: boolean
       error: unknown
-   } = useSWR('/api/client/products', fetcher)
+   } = useSWR(`/api/client/products?category=${category}`, fetcher)
+
+   const {
+      data: categories,
+      isLoading: isLoadingCategories,
+      error: errorCategories,
+   }: {
+      data: ICategory[]
+      isLoading: boolean
+      error: unknown
+   } = useSWR('/api/client/categories', fetcher)
 
    const {
       data: factories,
@@ -40,40 +59,74 @@ const PriceTables = () => {
                <h2 className='yekanExtraBold mt-2 text-4xl'>جدول قیمت ورق</h2>
             </div>
          </div>
-         <div className='mt-11 grid grid-cols-2 gap-3'>
-            <div className='flex items-center justify-between rounded-lg bg-white px-4 py-2'>
-               <span className='text-base'>مرتب سازی</span>
-               <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='16'
-                  height='10'
-                  viewBox='0 0 14 8'
-                  fill='none'
-               >
-                  <path
-                     d='M1 1L7.20296 7.5L13.4059 1'
-                     stroke='#061730'
-                     strokeLinecap='round'
-                     strokeLinejoin='round'
-                  />
-               </svg>
+         <div className='mt-11 grid grid-cols-3 gap-3'>
+            <div className='rounded-xl bg-white'>
+               <FormControl fullWidth>
+                  <Select
+                     labelId='demo-simple-select-label'
+                     id='demo-simple-select'
+                     value={sort}
+                     displayEmpty
+                     onChange={(e) => setSort(e.target.value)}
+                  >
+                     <MenuItem value=''>
+                        <span className='text-base text-slate-500'>مرتب سازی</span>
+                     </MenuItem>
+                     <MenuItem value='cheapest'>ارزان ترین</MenuItem>
+                  </Select>
+               </FormControl>
             </div>
-            <div className='flex items-center justify-between rounded-lg bg-white px-4 py-2'>
-               <span className='text-base'>انتخاب کارخانه</span>
-               <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='16'
-                  height='10'
-                  viewBox='0 0 14 8'
-                  fill='none'
-               >
-                  <path
-                     d='M1 1L7.20296 7.5L13.4059 1'
-                     stroke='#061730'
-                     strokeLinecap='round'
-                     strokeLinejoin='round'
-                  />
-               </svg>
+            <div className='rounded-xl bg-white'>
+               {isLoadingFactories ? (
+                  'loading'
+               ) : (
+                  <FormControl fullWidth>
+                     <Select
+                        labelId='demo-simple-select-label'
+                        id='demo-simple-select'
+                        value={category}
+                        displayEmpty
+                        onChange={(e) => setCategory(e.target.value)}
+                     >
+                        <MenuItem value=''>
+                           <span className='text-base text-slate-500'>دسته بندی</span>
+                        </MenuItem>
+                        {categories?.map((category, idx) => {
+                           return (
+                              <MenuItem key={idx} value={category._id}>
+                                 {category.name}
+                              </MenuItem>
+                           )
+                        })}
+                     </Select>
+                  </FormControl>
+               )}
+            </div>
+            <div className='rounded-xl bg-white'>
+               {isLoadingFactories ? (
+                  'loading'
+               ) : (
+                  <FormControl fullWidth>
+                     <Select
+                        labelId='demo-simple-select-label'
+                        id='demo-simple-select'
+                        value={factory}
+                        displayEmpty
+                        onChange={(e) => setFactory(e.target.value)}
+                     >
+                        <MenuItem value=''>
+                           <span className='text-base text-slate-500'>کارخانه</span>
+                        </MenuItem>
+                        {factories?.map((factory, idx) => {
+                           return (
+                              <MenuItem key={idx} value={factory._id}>
+                                 {factory.name}
+                              </MenuItem>
+                           )
+                        })}
+                     </Select>
+                  </FormControl>
+               )}
             </div>
          </div>
 
@@ -81,7 +134,7 @@ const PriceTables = () => {
             <h4>loading</h4>
          ) : (
             <>
-               {factories.map((factory, idx) => {
+               {factories?.map((factory, idx) => {
                   return (
                      <div key={idx} className='mt-3'>
                         <div>
@@ -150,7 +203,7 @@ const PriceTables = () => {
                                     <th className='yekan p-2 font-bold'>نمودار</th>
                                  </tr>
 
-                                 {products.map((product, idx) => {
+                                 {products?.map((product, idx) => {
                                     if (product.factory !== factory._id) return
 
                                     const price = product.price[product.price.length - 1]

@@ -4,10 +4,10 @@ import { toast } from 'react-toastify'
 import { Formik, Form } from 'formik'
 import { CategoryValidation } from '@/formik/schema/validation'
 
-const NameAndSlug = ({
+const NameEdit = ({
    params,
 }: {
-   params: { _doc: { _id: string; name: string; slug: string } }
+   params: { _doc: { _id: string; name: string } }
 }) => {
    const name = params._doc.name.charAt(0).toUpperCase() + params._doc.name.slice(1)
 
@@ -76,4 +76,4 @@ const NameAndSlug = ({
    )
 }
 
-export default NameAndSlug
+export default NameEdit
