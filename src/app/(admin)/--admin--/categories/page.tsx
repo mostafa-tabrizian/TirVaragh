@@ -48,7 +48,7 @@ const AdminCategories = async () => {
                <Link className='text-gray-400' href='/--admin--'>
                   ادمین
                </Link>
-               <h5 className='fondnt-semibold'>دسته بندی ها</h5>
+               <h5 className='font-semibold'>دسته بندی ها</h5>
             </Breadcrumbs>
 
             <CategoryNewInput />

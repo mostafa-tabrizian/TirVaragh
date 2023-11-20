@@ -21,7 +21,7 @@ const Footer = () => {
                   </Link>
 
                   <div className='mb-5'>
-                     <span className='text-blue-600 yekanExtraBold text-2xl'>گروه مهندسی تیرورق</span>
+                     <span className='text-red-600 yekanExtraBold text-2xl'>گروه مهندسی تیرورق</span>
                   </div>
 
                   <div className='flex justify-around mb-5 items-center'>
@@ -35,7 +35,7 @@ const Footer = () => {
                               target='_blank'
                            >
                               <svg
-                                 className='h-6 w-6 hover:text-blue-600 transition'
+                                 className='h-6 w-6 hover:text-red-600 transition'
                                  viewBox='0 0 24 24'
                                  fill='none'
                                  stroke='currentColor'
@@ -61,7 +61,7 @@ const Footer = () => {
                                  strokeWidth='0'
                                  role='img'
                                  viewBox='0 0 24 24'
-                                 className='w-6 h-6 hover:text-blue-600 transition'
+                                 className='w-6 h-6 hover:text-red-600 transition'
                                  height='1em'
                                  width='1em'
                                  xmlns='http://www.w3.org/2000/svg'
@@ -80,7 +80,7 @@ const Footer = () => {
                               target='_blank'
                            >
                               <svg
-                                 className='w-6 h-6 hover:text-blue-600 transition'
+                                 className='w-6 h-6 hover:text-red-600 transition'
                                  width='24'
                                  height='24'
                                  viewBox='0 0 24 24'
@@ -104,7 +104,7 @@ const Footer = () => {
                               className='flex items-center'
                            >
                               <svg
-                                 className='w-6 h-6 hover:text-blue-600 transition'
+                                 className='w-6 h-6 hover:text-red-600 transition'
                                  viewBox='0 0 24 24'
                                  fill='none'
                                  stroke='currentColor'
@@ -129,7 +129,7 @@ const Footer = () => {
                      </p>
 
                      {/* <iframe
-                        className='w-full border-3 border-blue-300 rounded-lg'
+                        className='w-full border-3 border-red-300 rounded-lg'
                         src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.0863620420655!2d50.849071699999996!3d34.627257799999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f93bbdb1b3fd48b%3A0x14fde53739892525!2z2YXYrNiq2YXYuSDYqtis2KfYsduMINmB2LHYr9mI2LM!5e0!3m2!1sen!2s!4v1695068764877!5m2!1sen!2s'
                         width='300'
                         height='350'
@@ -151,7 +151,7 @@ const Footer = () => {
                            aria-label='ایتا'
                            id='eitaa'
                            rel='noreferrer'
-                           className='text-blue-600 text-sm font-semibold'
+                           className='text-red-600 text-sm font-semibold'
                            href='https://eitaa.com/TirVaragh'
                            target='_blank'
                         >
@@ -162,7 +162,7 @@ const Footer = () => {
                            aria-label='اینستاگرام'
                            id='instagram'
                            rel='noreferrer'
-                           className='text-blue-600 text-sm font-semibold'
+                           className='text-red-600 text-sm font-semibold'
                            href='https://www.instagram.com/TirVaragh'
                            target='_blank'
                         >
@@ -173,7 +173,7 @@ const Footer = () => {
                            aria-label='تلگرام'
                            id='telegram'
                            rel='noreferrer'
-                           className='text-blue-600 text-sm font-semibold'
+                           className='text-red-600 text-sm font-semibold'
                            href='https://t.me/TirVaragh'
                            target='_blank'
                         >
@@ -184,7 +184,7 @@ const Footer = () => {
                            aria-label='تماس تلفنی'
                            id='phone_call'
                            rel='noreferrer'
-                           className='text-blue-600 text-sm font-semibold tracking-widest'
+                           className='text-red-600 text-sm font-semibold tracking-widest'
                            href='tel:+989128530920'
                         >
                            09128530920{' '}
@@ -194,7 +194,7 @@ const Footer = () => {
                            aria-label='تماس تلفنی'
                            id='phone_call'
                            rel='noreferrer'
-                           className='text-blue-600 text-sm font-semibold tracking-widest'
+                           className='text-red-600 text-sm font-semibold tracking-widest'
                            href='tel:+989109960802'
                         >
                            09109960802{' '}
@@ -205,12 +205,12 @@ const Footer = () => {
                </div>
             </div>
             {/* <div className='col-span-5 md:col-span-1 rtl'>
-               <h4 className='text-xl yekanExtraBold mb-4 text-blue-600'>دسترسی سریع</h4>
+               <h4 className='text-xl yekanExtraBold mb-4 text-red-600'>دسترسی سریع</h4>
                <nav>
                   <ul className='text-sm'>
                      <li className='list-disc py-2 list-inside'>
                         <a
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
+                           className='py-2 transition-all duration-300 text-slate-500 hover:text-red-500'
                            href='#'
                         >
                            قوانین و مقررات

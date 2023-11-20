@@ -55,7 +55,7 @@ const AdminFactories = async () => {
                <Link className='text-gray-400' href='/--admin--'>
                   ادمین
                </Link>
-               <h5 className='fondnt-semibold'>کارخانه ها</h5>
+               <h5 className='font-semibold'>کارخانه ها</h5>
             </Breadcrumbs>
 
             <FactoryNewInput />

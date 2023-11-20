@@ -32,7 +32,7 @@ const AdminProducts = async () => {
             </Breadcrumbs>
 
             <Link href='/--admin--/products/new'>
-               <button className='bg-blue-400 rounded-full p-3 fixed bottom-24 right-5'>
+               <button className='bg-red-400 rounded-full p-3 fixed bottom-24 right-5'>
                   <svg
                      className='h-6 w-6 text-white'
                      fill='none'

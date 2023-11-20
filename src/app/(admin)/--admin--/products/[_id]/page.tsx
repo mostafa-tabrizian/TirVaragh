@@ -53,9 +53,9 @@ const ProductPage = async ({ params: { _id } }: { params: { _id: string } }) => 
 
                      <div className='mx-auto max-w-xl'>
                         <Link href='/--admin--/products/new'>
-                           <button className='fixed bottom-10 right-5 z-10 rounded-full border-2 border-blue-500 bg-white p-3'>
+                           <button className='fixed bottom-10 right-5 z-10 rounded-full border-2 border-red-500 bg-white p-3'>
                               <svg
-                                 className='h-6 w-6 text-blue-500'
+                                 className='h-6 w-6 text-red-500'
                                  fill='none'
                                  viewBox='0 0 24 24'
                                  stroke='currentColor'
