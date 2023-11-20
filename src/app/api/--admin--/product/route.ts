@@ -8,6 +8,7 @@ export async function POST(request: Request) {
       active,
       title,
       category,
+      factory,
       price,
       length,
       width,
@@ -17,6 +18,7 @@ export async function POST(request: Request) {
       active: boolean
       title: string
       category: string
+      factory: string
       price: number
       length: number
       width: number
@@ -30,6 +32,7 @@ export async function POST(request: Request) {
          active,
          title,
          category,
+         factory,
          price: [{
             value: price,
             submittedAt: new Date()
@@ -52,6 +55,7 @@ export async function PATCH(request: Request) {
       active,
       title,
       category,
+      factory
       price,
       length,
       width,
@@ -62,6 +66,7 @@ export async function PATCH(request: Request) {
       active: boolean
       title: string
       category: string
+      factory: string
       price: number
       length: number
       width: number
@@ -71,13 +76,13 @@ export async function PATCH(request: Request) {
 
    try {
       await dbConnect()
-      const product = await Product.findOne(
+      const product = await Product.findOneAndUpdate(
          { _id },
          {
             active,
             title,
             category,
-            price,
+            factory,
             length,
             width,
             thickness,
@@ -85,11 +90,18 @@ export async function PATCH(request: Request) {
          },
       )
 
-      product.price.push({
-         value: price,
-         submittedAt: new Date()
-      })
-      product.save()
+      const currentPrice = product.price[product.price.length - 1]
+
+      if (currentPrice !== price) {
+         product.price.push({
+            value: price,
+            submittedAt: new Date()
+
+         })
+
+         product.save()
+      }
+
 
       return NextResponse.json(product)
    } catch (error) {

@@ -20,14 +20,14 @@ const DeleteButton = ({
       const payload = { _id }
 
       try {
-         const res = await fetch('/api/--admin--/brand', {
+         const res = await fetch('/api/--admin--/category', {
             method: 'DELETE',
             body: JSON.stringify(payload),
          })
 
          if (!res.ok) throw new Error()
 
-         toast.success('برند با موفقیت حذف گردید')
+         toast.success('دسته بندی با موفقیت حذف گردید')
          router.refresh()
       } catch (err) {
          toast.error('در ثبت تغییرات خطایی رخ داد. لطفا مجدد تلاش کنید.')

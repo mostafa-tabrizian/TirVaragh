@@ -4,24 +4,21 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { Formik, Form } from 'formik'
 import CircularProgress from '@mui/material/CircularProgress'
-import { NameSlugValidation } from '@/formik/schema/validation'
+import { CategoryValidation } from '@/formik/schema/validation'
 
-const ModelNewInput = () => {
+const CategoryNewInput = () => {
    const router = useRouter()
 
    const handleSubmit = async (
-      { name, slug }: { name: string; slug: string },
+      { name }: { name: string },
       { resetForm }: { resetForm: () => void },
    ) => {
-      toast.info('در حال ثبت مدل جدید...')
+      toast.info('در حال ثبت دسته بندی جدید...')
 
-      const payload = {
-         name: name.trim(),
-         slug: slug.trim().toLowerCase(),
-      }
+      const payload = { name: name.trim() }
 
       try {
-         const res = await fetch('/api/--admin--/model', {
+         const res = await fetch('/api/--admin--/category', {
             method: 'POST',
             body: JSON.stringify(payload),
          })
@@ -29,18 +26,16 @@ const ModelNewInput = () => {
          const resData = await res.json()
 
          if (!res.ok) throw new Error()
-         else if (resData.message == 'notUnique')
-            return toast.warning('این برند از قبل ثبت شده است')
          else if (resData.status == 500) {
             console.error(resData.message)
             return toast.error('خطا در برقراری ارتباط')
          }
 
-         toast.success('مدل با موفقیت ثبت گردید')
+         toast.success('دسته بندی با موفقیت ثبت گردید')
          resetForm()
          return router.refresh()
       } catch (err) {
-         toast.warning('در ثبت مدل خطایی رخ داد')
+         toast.warning('در ثبت دسته بندی خطایی رخ داد')
          return console.error(err)
       }
    }
@@ -49,53 +44,31 @@ const ModelNewInput = () => {
       <Formik
          initialValues={{
             name: '',
-            slug: '',
          }}
-         validationSchema={NameSlugValidation}
+         validationSchema={CategoryValidation}
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched }) => (
-            <Form className='flex justify-center rtl items-start space-x-3 space-x-reverse w-full'>
+            <Form className='rtl flex w-full items-start justify-center space-x-3 space-x-reverse'>
                <div>
-                  <div className='text-right mr-3 space-y-1'>
+                  <div className='mr-3 space-y-1 text-right'>
                      <input
                         placeholder='نام'
                         name='name'
                         onChange={(e) => setFieldValue('name', e.target.value)}
                         value={values.name}
-                        className='rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                        className='rtl w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
                         type='text'
                      />
 
                      {errors.name && touched.name ? (
-                        <p className='text-sm text-red-500 text-right'>{errors.name}</p>
+                        <p className='text-right text-sm text-red-500'>{errors.name}</p>
                      ) : (
                         ''
                      )}
                   </div>
                </div>
-               <div>
-                  <div className='text-right mr-3 space-y-1'>
-                     <input
-                        placeholder='اسلاگ'
-                        name='slug'
-                        onChange={(e) => setFieldValue('slug', e.target.value)}
-                        value={values.slug}
-                        className='mr-3 rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                        type='text'
-                     />
 
-                     <p className='text-[.6rem] text-yellow-500 text-right'>
-                        اسلاگ غیر قابل تغییر خواهد بود
-                     </p>
-
-                     {errors.slug && touched.slug ? (
-                        <p className='text-sm text-red-500 text-right'>{errors.slug}</p>
-                     ) : (
-                        ''
-                     )}
-                  </div>
-               </div>
                <button type='submit'>
                   {isSubmitting ? (
                      <CircularProgress color='success' size={25} />
@@ -124,4 +97,4 @@ const ModelNewInput = () => {
    )
 }
 
-export default ModelNewInput
+export default CategoryNewInput

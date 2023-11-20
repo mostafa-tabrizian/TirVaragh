@@ -10,14 +10,27 @@ import { Switch } from '@mui/material'
 import CircularProgress from '@mui/material/CircularProgress'
 
 import { ProductForm } from '@/formik/schema/validation'
+import { ICategory } from '@/models/category'
+import { IFactory } from '@/models/factory'
 
 const DetailForm = memo(
-   ({ addingNewProduct, product }: { addingNewProduct: boolean; product: IProduct }) => {
+   ({
+      addingNewProduct,
+      product,
+      categories,
+      factories
+   }: {
+      addingNewProduct: boolean
+      product: IProduct
+      categories: ICategory[]
+      factories: IFactory[]
+   }) => {
       const handleSubmit = async (
          values: {
             active: boolean
             title: string
             category: string
+            factory: string
             price: number
             length: number
             width: number
@@ -61,6 +74,7 @@ const DetailForm = memo(
                active: addingNewProduct ? true : product.active,
                title: addingNewProduct ? '' : product.title,
                category: addingNewProduct ? '' : product.category,
+               factory: addingNewProduct ? '' : product.factory,
                price: addingNewProduct ? 0 : product.price[product.price.length - 1].value,
                length: addingNewProduct ? 0 : product.length,
                width: addingNewProduct ? 0 : product.width,
@@ -113,15 +127,51 @@ const DetailForm = memo(
                            <option value='' defaultChecked>
                               --
                            </option>
-                           <option value='ورق سیاه'>ورق سیاه</option>
-                           <option value='ورق روغنی'>ورق روغنی</option>
-                           <option value='ورق گالوانیزه'>ورق گالوانیزه</option>
-                           <option value='ورق اسپیره درجه دو'>ورق اسپیره درجه دو</option>
+                           {categories.map((category, idx) => {
+                              return (
+                                 <option key={idx} value={category._id}>
+                                    {category.name}
+                                 </option>
+                              )
+                           })}
                         </select>
                      </div>
 
                      {errors.category && touched.category ? (
                         <p className='text-sm text-red-500'>{errors.category}</p>
+                     ) : (
+                        ''
+                     )}
+                  </div>
+
+                  <div>
+                     <div className='space-y-1 text-right'>
+                        <label htmlFor='factory'>
+                           <span className='text-slate-600'>کارخانه</span>
+                        </label>
+                        <select
+                           disabled={isSubmitting}
+                           className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
+                           value={values.factory}
+                           onChange={(e) => {
+                              setFieldValue('factory', e.target.value)
+                           }}
+                        >
+                           <option value='' defaultChecked>
+                              --
+                           </option>
+                           {factories.map((factory, idx) => {
+                              return (
+                                 <option key={idx} value={factory._id}>
+                                    {factory.name}
+                                 </option>
+                              )
+                           })}
+                        </select>
+                     </div>
+
+                     {errors.factory && touched.factory ? (
+                        <p className='text-sm text-red-500'>{errors.factory}</p>
                      ) : (
                         ''
                      )}

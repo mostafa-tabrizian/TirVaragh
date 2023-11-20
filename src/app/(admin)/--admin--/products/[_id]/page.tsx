@@ -4,11 +4,21 @@ import dbConnect from '@/lib/dbConnect'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Product from '@/models/product'
 import DetailProduct from '../components/detailForm'
+import Category from '@/models/category'
+import Factory from '@/models/factory'
 
 const fetchData = async (_id: string) => {
    await dbConnect()
 
-   return Product.findOne({ _id })
+   let product
+
+   if (_id !== 'new') {
+      product = await Product.findOne({ _id })
+   }
+   const categories = await Category.find()
+   const factories = await Factory.find()
+
+   return { product, categories, factories }
 }
 
 export const metadata = {
@@ -19,12 +29,7 @@ const ProductPage = async ({ params: { _id } }: { params: { _id: string } }) => 
    const addingNewProduct = _id === 'new'
 
    try {
-      let product
-
-      if (!addingNewProduct) {
-         const productsData = await fetchData(_id)
-         product = productsData
-      }
+      const { product, categories, factories } = await fetchData(_id)
 
       return (
          <div className='relative mx-6 my-16'>
@@ -42,7 +47,7 @@ const ProductPage = async ({ params: { _id } }: { params: { _id: string } }) => 
                            محصولات
                         </Link>
                         <h5 className='font-semibold'>
-                           {addingNewProduct ? 'افزودن محصول جدید' : product._id}
+                           {addingNewProduct ? 'افزودن محصول جدید' : String(product?._id)}
                         </h5>
                      </Breadcrumbs>
 
@@ -68,6 +73,8 @@ const ProductPage = async ({ params: { _id } }: { params: { _id: string } }) => 
                         <DetailProduct
                            addingNewProduct={addingNewProduct}
                            product={addingNewProduct ? null : JSON.parse(JSON.stringify(product))}
+                           categories={JSON.parse(JSON.stringify(categories))}
+                           factories={JSON.parse(JSON.stringify(factories))}
                         />
                      </div>
                   </>

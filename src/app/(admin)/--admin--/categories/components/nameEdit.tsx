@@ -2,7 +2,7 @@
 
 import { toast } from 'react-toastify'
 import { Formik, Form } from 'formik'
-import { NameSlugValidation } from '@/formik/schema/validation'
+import { CategoryValidation } from '@/formik/schema/validation'
 
 const NameAndSlug = ({
    params,
@@ -10,7 +10,6 @@ const NameAndSlug = ({
    params: { _doc: { _id: string; name: string; slug: string } }
 }) => {
    const name = params._doc.name.charAt(0).toUpperCase() + params._doc.name.slice(1)
-   const slug = params._doc.slug.charAt(0).toUpperCase() + params._doc.slug.slice(1)
 
    const handleSubmit = async ({ name }: { name: string }) => {
       toast.info('در حال ثبت تغییرات...')
@@ -21,7 +20,7 @@ const NameAndSlug = ({
       }
 
       try {
-         const res = await fetch('/api/--admin--/brand', {
+         const res = await fetch('/api/--admin--/category', {
             method: 'PATCH',
             body: JSON.stringify(payload),
          })
@@ -29,40 +28,35 @@ const NameAndSlug = ({
          const resData = await res.json()
 
          if (!res.ok) throw new Error()
-         else if (resData.message == 'notUnique')
-            return toast.warning('این برند از قبل ثبت شده است')
          else if (resData.status == 500) {
             console.error(resData.message)
             return toast.error('خطا در برقراری ارتباط')
          }
 
-         return toast.success('نام برند با موفقیت تغییر گردید')
+         return toast.success('نام دسته بندی با موفقیت تغییر یافت')
       } catch (err) {
-         toast.error('در تغییر نام برند خطایی رخ داد')
+         toast.error('در تغییر نام دسته بندی خطایی رخ داد')
          return console.error(err)
       }
    }
 
    return (
       <Formik
-         initialValues={{
-            name,
-            slug,
-         }}
-         validationSchema={NameSlugValidation}
+         initialValues={{ name }}
+         validationSchema={CategoryValidation}
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched, submitForm }) => (
-            <Form className='grid grid-cols-4 col-span-4 rtl items-start w-full'>
-               <div className='col-span-2'>
-                  <div className='text-right space-y-1 ml-2'>
+            <Form className='rtl col-span-4 w-full items-start'>
+               <div className=''>
+                  <div className='ml-2 space-y-1 text-right'>
                      <input
                         disabled={isSubmitting}
                         placeholder='نام'
                         name='name'
                         onChange={(e) => setFieldValue('name', e.target.value)}
                         value={values.name}
-                        className='w-full text-sm bg-transparent'
+                        className='w-full bg-transparent text-sm'
                         type='text'
                         onKeyDown={(e) => {
                            if (e.key == 'Enter') submitForm()
@@ -71,20 +65,10 @@ const NameAndSlug = ({
                   </div>
 
                   {errors.name && touched.name ? (
-                     <p className='text-sm text-red-500 text-right'>{errors.name}</p>
+                     <p className='text-right text-sm text-red-500'>{errors.name}</p>
                   ) : (
                      ''
                   )}
-               </div>
-               <div className='col-span-2'>
-                  <div className='text-right space-y-1'>
-                     <input
-                        name='slug'
-                        value={slug}
-                        className='w-full text-sm bg-transparent'
-                        readOnly
-                     />
-                  </div>
                </div>
             </Form>
          )}

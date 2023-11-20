@@ -48,6 +48,56 @@ const AdminPanel = async () => {
                   </Link>
                </div>
 
+               <div className='rounded-lg bg-white px-2 py-2 transition-all hover:border-blue-600 hover:shadow-lg hover:shadow-blue-100'>
+                  <Link href='/--admin--/factories'>
+                     <div className='flex items-center space-x-3'>
+                        <svg
+                           className='ml-3 h-7 w-7'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                        >
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <rect x='4' y='4' width='6' height='6' rx='1' />{' '}
+                           <rect x='14' y='4' width='6' height='6' rx='1' />{' '}
+                           <rect x='4' y='14' width='6' height='6' rx='1' />{' '}
+                           <rect x='14' y='14' width='6' height='6' rx='1' />
+                        </svg>
+                        <span className='text-base text-black'>دسته بندی ها</span>
+                     </div>
+                  </Link>
+               </div>
+
+               <div className='rounded-lg bg-white px-2 py-2 transition-all hover:border-blue-600 hover:shadow-lg hover:shadow-blue-100'>
+                  <Link href='/--admin--/factories'>
+                     <div className='flex items-center space-x-3'>
+                        <svg
+                           className='h-8 w-8 ml-3'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                        >
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <path d='M3 21v-13l9-4l9 4v13' /> <path d='M13 13h4v8h-10v-6h6' />{' '}
+                           <path d='M13 21v-9a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v3' />
+                        </svg>
+                        <span className='text-base text-black'>کارخانه ها</span>
+                     </div>
+                  </Link>
+               </div>
+
                <LogoutButton />
             </div>
          </>

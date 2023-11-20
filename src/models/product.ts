@@ -5,6 +5,7 @@ export interface IProduct {
    _id: string
    title: string
    category: string
+   factory: string
    price: [{
       value: number
       submittedAt: Date
@@ -24,6 +25,7 @@ const ProductSchema = new mongoose.Schema({
    },
    title: String,
    category: String,
+   factory: String,
    price: [],
    length: Number,
    width: Number,
