@@ -49,7 +49,7 @@ const AdminPanel = async () => {
                </div>
 
                <div className='rounded-lg bg-white px-2 py-2 transition-all hover:border-red-600 hover:shadow-lg hover:shadow-red-100'>
-                  <Link href='/--admin--/factories'>
+                  <Link href='/--admin--/categories'>
                      <div className='flex items-center space-x-3'>
                         <svg
                            className='ml-3 h-7 w-7'

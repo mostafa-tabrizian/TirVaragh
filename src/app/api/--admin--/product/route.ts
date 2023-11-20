@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 
 import dbConnect from '@/lib/dbConnect'
 import Product from '@/models/product'
+import Factory from '@/models/factory'
 
 export async function POST(request: Request) {
    const {
@@ -43,6 +44,11 @@ export async function POST(request: Request) {
          inStock,
       })
 
+      await Factory.findOneAndUpdate(
+         { _id: factory },
+         { updatedAt: new Date() }
+      )
+
       return NextResponse.json(product)
    } catch (error) {
       return NextResponse.json({ status: 500, message: error })
@@ -55,7 +61,7 @@ export async function PATCH(request: Request) {
       active,
       title,
       category,
-      factory
+      factory,
       price,
       length,
       width,
@@ -101,6 +107,11 @@ export async function PATCH(request: Request) {
 
          product.save()
       }
+
+      await Factory.findOneAndUpdate(
+         { _id: factory },
+         { updatedAt: new Date() }
+      )
 
 
       return NextResponse.json(product)
