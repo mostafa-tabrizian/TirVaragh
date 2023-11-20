@@ -33,7 +33,7 @@ const ImageDelete = ({ imageKey, factoryId }: { imageKey: string; factoryId: str
          return await removeFromDb()
       } catch (error) {
          toast.error(
-            'در آپلود تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
+            'در حذف تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
          )
          return console.error(error)
       } finally {

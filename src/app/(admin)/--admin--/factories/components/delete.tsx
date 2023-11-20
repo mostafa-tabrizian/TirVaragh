@@ -4,33 +4,55 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import CircularProgress from '@mui/material/CircularProgress'
+import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
 const DeleteButton = ({
-   params: { _id, ableToDelete },
+   params: { _id, imageKey, ableToDelete },
 }: {
-   params: { _id: string; ableToDelete: boolean }
+   params: { _id: string; imageKey: string; ableToDelete: boolean }
 }) => {
    const [loading, setLoading] = useState(false)
 
    const router = useRouter()
 
+   const handleDelete = async () => {
+      setLoading(true)
+
+      try {
+         const fileUploadResult = await deleteFromS3Bucket(imageKey, 'factories')
+         if (!fileUploadResult) throw new Error('file upload to s3')
+         return fileUploadResult
+      } catch (error) {
+         toast.error(
+            'در حذف تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
+         )
+         console.error(error)
+         return false
+      } finally {
+         setLoading(false)
+      }
+   }
+
    const deleteHandler = async () => {
       setLoading(true)
+
+      const deleteRes = await handleDelete()
+      if (!deleteRes) return
 
       const payload = { _id }
 
       try {
-         const res = await fetch('/api/--admin--/category', {
+         const res = await fetch('/api/--admin--/factory', {
             method: 'DELETE',
             body: JSON.stringify(payload),
          })
 
          if (!res.ok) throw new Error()
 
-         toast.success('دسته بندی با موفقیت حذف گردید')
+         toast.success('کارخانه با موفقیت حذف گردید')
          router.refresh()
       } catch (err) {
-         toast.error('در ثبت تغییرات خطایی رخ داد. لطفا مجدد تلاش کنید.')
+         toast.error('در حذف کارخانه خطایی رخ داد. لطفا مجدد تلاش کنید.')
          console.error(err)
       } finally {
          setLoading(false)
@@ -42,7 +64,7 @@ const DeleteButton = ({
          {ableToDelete ? (
             <>
                {loading ? (
-                  <div className='flex justify-end my-1'>
+                  <div className='my-1 flex justify-end'>
                      <CircularProgress color='error' size={20} />
                   </div>
                ) : (

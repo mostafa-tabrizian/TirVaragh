@@ -99,6 +99,7 @@ const AdminFactories = async () => {
                                  params={JSON.parse(
                                     JSON.stringify({
                                        _id: factory._id,
+                                       imageKey: factory.logo,
                                        ableToDelete: productsLength ? false : true,
                                     }),
                                  )}
