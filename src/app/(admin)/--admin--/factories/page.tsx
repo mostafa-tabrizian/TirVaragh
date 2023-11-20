@@ -12,6 +12,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs'
 import dbConnect from '@/lib/dbConnect'
 import Image from 'next/image'
 import ImageDelete from './components/imageDelete'
+import ImageInput from './components/imageInput'
 
 export const metadata = {
    title: 'تیرورق | پنل ادمین | کارخانه ها',
@@ -90,7 +91,7 @@ const AdminFactories = async () => {
                                     />
                                  </div>
                               ) : (
-                                 '+'
+                                 <ImageInput factoryId={String(factory._id)} />
                               )}
                               <NameEdit params={JSON.parse(JSON.stringify({ ...factory }))} />
                               <p>{productsLength}</p>
