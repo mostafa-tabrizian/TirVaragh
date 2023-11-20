@@ -69,6 +69,7 @@ const CategoryNewInput = () => {
 
          toast.success('دسته بندی با موفقیت ثبت گردید')
          resetForm()
+         setImageToUpload(null)
          return router.refresh()
       } catch (err) {
          toast.warning('در ثبت دسته بندی خطایی رخ داد')

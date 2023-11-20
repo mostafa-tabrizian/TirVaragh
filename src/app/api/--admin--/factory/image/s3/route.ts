@@ -37,10 +37,16 @@ export async function DELETE(req: Request) {
 
    const Key = `/tir-varagh/${folder}/${imageKey}`
 
+   console.log('Key', Key);
+
+
    const params = {
       Bucket: process.env.LIARA_BUCKET_NAME,
       Key,
    }
+   
+   console.log('params', params);
+   
 
    const resDelete = await s3Client.send(new DeleteObjectCommand(params))
 

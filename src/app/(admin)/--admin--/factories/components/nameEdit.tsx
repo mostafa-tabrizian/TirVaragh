@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import { Formik, Form } from 'formik'
 import { CategoryValidation } from '@/formik/schema/validation'
 
-const NameAndSlug = ({
+const NameEdit = ({
    params,
 }: {
    params: { _doc: { _id: string; name: string; slug: string } }
@@ -20,7 +20,7 @@ const NameAndSlug = ({
       }
 
       try {
-         const res = await fetch('/api/--admin--/category', {
+         const res = await fetch('/api/--admin--/factory', {
             method: 'PATCH',
             body: JSON.stringify(payload),
          })
@@ -76,4 +76,4 @@ const NameAndSlug = ({
    )
 }
 
-export default NameAndSlug
+export default NameEdit

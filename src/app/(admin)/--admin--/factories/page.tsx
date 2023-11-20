@@ -11,6 +11,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 import dbConnect from '@/lib/dbConnect'
 import Image from 'next/image'
+import ImageDelete from './components/imageDelete'
 
 export const metadata = {
    title: 'تیرورق | پنل ادمین | کارخانه ها',
@@ -74,13 +75,23 @@ const AdminFactories = async () => {
                               key={factory._id}
                               className='grid grid-cols-6 items-center justify-between rounded-lg bg-white p-2 text-center'
                            >
-                              <Image
-                                 src={`https://tabrizian.storage.iran.liara.space/tir-varagh/factories/${factory.logo}`}
-                                 alt={factory.name}
-                                 width={49}
-                                 height={49}
-                                 className='object-cover'
-                              />
+                              {factory.logo ? (
+                                 <div className='relative'>
+                                    <Image
+                                       src={`https://tabrizian.storage.iran.liara.space/tir-varagh/factories/${factory.logo}`}
+                                       alt={factory.name}
+                                       width={49}
+                                       height={49}
+                                       className='object-cover'
+                                    />
+                                    <ImageDelete
+                                       imageKey={factory.logo}
+                                       factoryId={String(factory._id)}
+                                    />
+                                 </div>
+                              ) : (
+                                 '+'
+                              )}
                               <NameEdit params={JSON.parse(JSON.stringify({ ...factory }))} />
                               <p>{productsLength}</p>
                               <DeleteButton

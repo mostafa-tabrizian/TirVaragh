@@ -8,33 +8,25 @@ import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 import CircularProgress from '@mui/material/CircularProgress'
 import Dialog from '@mui/material/Dialog'
 
-const ImageDelete = ({
-   type,
-   image,
-   factory,
-}: {
-   type: string
-   image: string
-   factory: string
-}) => {
+const ImageDelete = ({ imageKey, factoryId }: { imageKey: string; factoryId: string }) => {
    const [loading, setLoading] = useState(false)
    const [confirmation, setConfirmation] = useState(false)
 
    const handleDelete = async () => {
       setConfirmation(false)
 
-      if (!image) {
+      if (!imageKey) {
          return toast.warning('در حذف تصویر خطایی رخ داده است!')
       }
 
-      if (!factory) {
-         return toast.error('در تعیین محصول خطایی رخ داده است!')
+      if (!factoryId) {
+         return toast.error('در تعیین کارخانه خطایی رخ داده است!')
       }
 
       setLoading(true)
 
       try {
-         const fileUploadResult = await deleteFromS3Bucket(image, 'factorys')
+         const fileUploadResult = await deleteFromS3Bucket(imageKey, 'factories')
 
          if (!fileUploadResult) throw new Error('file upload to s3')
 
@@ -51,9 +43,7 @@ const ImageDelete = ({
 
    const removeFromDb = async () => {
       const payload = {
-         type,
-         key: image,
-         _id: factory,
+         _id: factoryId,
       }
 
       try {
@@ -73,15 +63,15 @@ const ImageDelete = ({
 
    return (
       <>
-         <div className='flex items-center justify-end space-x-3 absolute -left-5 top-0'>
+         <div className='absolute right-2 top-0 flex w-10 items-center justify-end space-x-3 rounded-full bg-red-500/50 opacity-0 transition-opacity hover:opacity-100'>
             {loading ? (
                <div className='py-2'>
                   <CircularProgress color='success' size={15} />
                </div>
             ) : (
-               <button type='button' onClick={() => setConfirmation(true)}>
+               <button type='button' className='mx-auto' onClick={() => setConfirmation(true)}>
                   <svg
-                     className='h-4 w-4 text-slate-400'
+                     className='h-6 w-6 text-white'
                      width='24'
                      height='24'
                      viewBox='0 0 24 24'
@@ -100,9 +90,9 @@ const ImageDelete = ({
          </div>
 
          <Dialog onClose={() => setConfirmation(false)} open={confirmation}>
-            <div className='p-5 text-center space-y-5'>
+            <div className='space-y-5 p-5 text-center'>
                <svg
-                  className='h-16 w-16 mx-auto text-rose-500'
+                  className='mx-auto h-16 w-16 text-rose-500'
                   viewBox='0 0 24 24'
                   fill='none'
                   stroke='currentColor'
@@ -118,16 +108,16 @@ const ImageDelete = ({
                <span className='font-semibold'>
                   .پس از حذف هیچ راه بازگرداندی وجود ندارد <br /> آیا از حذف کردن خود مطمئن هستید؟
                </span>
-               <div className='flex space-x-5 justify-around'>
+               <div className='flex justify-around space-x-5'>
                   <button
                      onClick={() => setConfirmation(false)}
-                     className='w-full py-1 rounded bg-slate-300'
+                     className='w-full rounded bg-slate-300 py-1'
                   >
                      لغو
                   </button>
                   <button
                      onClick={handleDelete}
-                     className='w-full py-1 rounded bg-rose-500 text-white'
+                     className='w-full rounded bg-rose-500 py-1 text-white'
                   >
                      حذف
                   </button>
