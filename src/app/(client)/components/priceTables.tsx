@@ -4,14 +4,14 @@ import { IFactory } from '@/models/factory'
 import { IProduct } from '@/models/product'
 import useSWR from 'swr'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ICategory } from '@/models/category'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 
 const PriceTables = () => {
-   const [category, setCategory] = useState('655a4dc33996e920800f1521') // ورق سیاه
+   const [category, setCategory] = useState('')
    const [factoryFilter, setFactoryFilter] = useState('')
    const [sort, setSort] = useState('')
 
@@ -47,6 +47,60 @@ const PriceTables = () => {
       isLoading: boolean
       error: unknown
    } = useSWR('/api/client/factories', fetcher)
+
+   const [sortedProducts, setSortedProducts] = useState<IProduct[] | []>([])
+
+   const fluctuationCalc = (
+      a: { price: [{ value: number }] },
+      b: { price: [{ value: number }] },
+   ) => {
+      const priceA = a.price[a.price.length - 1]
+      const priceB = b.price[b.price.length - 1]
+      const previousPriceA = a.price[a.price.length - 2]
+      const previousPriceB = b.price[b.price.length - 2]
+
+      let fluctuationA = 0
+      let fluctuationB = 0
+
+      if (previousPriceA) fluctuationA = priceA.value - previousPriceA.value
+      if (previousPriceB) fluctuationB = priceB.value - previousPriceB.value
+
+      return { fluctuationA, fluctuationB }
+   }
+
+   useEffect(() => {
+      let sorted: IProduct[]
+
+      switch (sort) {
+         case 'mostExpensive':
+            sorted = [...products].sort(
+               (a, b) => b.price[b.price.length - 1].value - a.price[a.price.length - 1].value,
+            )
+            break
+         case 'cheapest':
+            sorted = [...products].sort(
+               (a, b) => a.price[a.price.length - 1].value - b.price[b.price.length - 1].value,
+            )
+            break
+         case 'mostVolatile':
+            sorted = [...products].sort((a, b) => {
+               const { fluctuationA, fluctuationB } = fluctuationCalc(a, b)
+               return fluctuationB - fluctuationA
+            })
+            break
+         case 'leastVolatile':
+            sorted = [...products].sort((a, b) => {
+               const { fluctuationA, fluctuationB } = fluctuationCalc(a, b)
+               return fluctuationA - fluctuationB
+            })
+            break
+         default:
+            sorted = products
+            break
+      }
+
+      setSortedProducts(sorted)
+   }, [products, sort])
 
    return (
       <>
@@ -115,6 +169,9 @@ const PriceTables = () => {
                            <span className='text-base text-slate-500'>مرتب سازی</span>
                         </MenuItem>
                         <MenuItem value='cheapest'>ارزان ترین</MenuItem>
+                        <MenuItem value='mostExpensive'>گران ترین</MenuItem>
+                        <MenuItem value='mostVolatile'>پر نوسان ترین</MenuItem>
+                        <MenuItem value='leastVolatile'>کم نوسان ترین</MenuItem>
                      </Select>
                   </FormControl>
                </div>
@@ -176,7 +233,7 @@ const PriceTables = () => {
                <h4>loading</h4>
             ) : (
                <>
-                  {!products.length ? (
+                  {!sortedProducts?.length ? (
                      <div className='mt-5 w-full text-center'>
                         <span className='text-slate-600'>محصولی با این دسته بندی یافت نشد</span>
                      </div>
@@ -244,7 +301,9 @@ const PriceTables = () => {
                                           </div>
                                        </div>
                                     </div>
-                                    {products.find((product) => product.factory == factory._id) ? (
+                                    {sortedProducts.find(
+                                       (product) => product.factory == factory._id,
+                                    ) ? (
                                        <div className='mt-3 rounded-xl bg-white'>
                                           <table className='w-full border-separate px-2'>
                                              <tr className=''>
@@ -261,7 +320,7 @@ const PriceTables = () => {
                                                 <th className='yekan p-2 font-bold'>نمودار</th>
                                              </tr>
 
-                                             {products?.map((product, idx) => {
+                                             {sortedProducts?.map((product, idx) => {
                                                 if (product.factory !== factory._id) return
 
                                                 const price =

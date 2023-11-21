@@ -96,7 +96,7 @@ export async function PATCH(request: Request) {
          },
       )
 
-      const currentPrice = product.price[product.price.length - 1]
+      const currentPrice = product.price[product.price.length - 1].value
 
       if (currentPrice !== price) {
          product.price.push({
