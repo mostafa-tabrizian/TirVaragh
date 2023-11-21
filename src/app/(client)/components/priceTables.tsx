@@ -73,26 +73,34 @@ const PriceTables = () => {
 
       switch (sort) {
          case 'mostExpensive':
-            sorted = [...products].sort(
-               (a, b) => b.price[b.price.length - 1].value - a.price[a.price.length - 1].value,
-            )
+            sorted =
+               products &&
+               [...products].sort(
+                  (a, b) => b.price[b.price.length - 1].value - a.price[a.price.length - 1].value,
+               )
             break
          case 'cheapest':
-            sorted = [...products].sort(
-               (a, b) => a.price[a.price.length - 1].value - b.price[b.price.length - 1].value,
-            )
+            sorted =
+               products &&
+               [...products].sort(
+                  (a, b) => a.price[a.price.length - 1].value - b.price[b.price.length - 1].value,
+               )
             break
          case 'mostVolatile':
-            sorted = [...products].sort((a, b) => {
-               const { fluctuationA, fluctuationB } = fluctuationCalc(a, b)
-               return fluctuationB - fluctuationA
-            })
+            sorted =
+               products &&
+               [...products].sort((a, b) => {
+                  const { fluctuationA, fluctuationB } = fluctuationCalc(a, b)
+                  return fluctuationB - fluctuationA
+               })
             break
          case 'leastVolatile':
-            sorted = [...products].sort((a, b) => {
-               const { fluctuationA, fluctuationB } = fluctuationCalc(a, b)
-               return fluctuationA - fluctuationB
-            })
+            sorted =
+               products &&
+               [...products].sort((a, b) => {
+                  const { fluctuationA, fluctuationB } = fluctuationCalc(a, b)
+                  return fluctuationA - fluctuationB
+               })
             break
          default:
             sorted = products
