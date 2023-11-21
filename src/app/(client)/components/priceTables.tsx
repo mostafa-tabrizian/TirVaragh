@@ -49,6 +49,7 @@ const PriceTables = () => {
    } = useSWR('/api/client/factories', fetcher)
 
    const [sortedProducts, setSortedProducts] = useState<IProduct[] | []>([])
+   const [productDetail, setProductDetail] = useState('')
 
    const fluctuationCalc = (
       a: { price: [{ value: number }] },
@@ -342,108 +343,155 @@ const PriceTables = () => {
                                                 }
 
                                                 return (
-                                                   <tr key={idx}>
-                                                      <td className='yekan p-2 font-bold'>
-                                                         {product.title}
-                                                      </td>
-                                                      <td className='yekan p-2 text-center font-bold'>
-                                                         {/* @ts-ignore */}
-                                                         {parseInt(price.value).toLocaleString(
-                                                            'fa',
-                                                         )}
-                                                      </td>
-                                                      <td className='yekan m-auto p-2 text-center font-bold'>
-                                                         {fluctuation && fluctuation > 0 ? (
-                                                            <div className='flex items-center gap-x-1 text-green-600'>
-                                                               {parseInt(
-                                                                  // @ts-ignore
-                                                                  fluctuation,
-                                                               ).toLocaleString('fa')}
-                                                               <svg
-                                                                  className='h-6 w-6'
-                                                                  width='24'
-                                                                  height='24'
-                                                                  viewBox='0 0 24 24'
-                                                                  strokeWidth='2'
-                                                                  stroke='currentColor'
-                                                                  fill='none'
-                                                                  strokeLinecap='round'
-                                                                  strokeLinejoin='round'
-                                                               >
-                                                                  {' '}
-                                                                  <path
-                                                                     stroke='none'
-                                                                     d='M0 0h24v24H0z'
-                                                                  />{' '}
-                                                                  <path d='M18 15l-6-6l-6 6h12' />
-                                                               </svg>
-                                                            </div>
-                                                         ) : (
-                                                            ''
-                                                         )}
+                                                   <div
+                                                      key={idx}
+                                                      onClick={() =>
+                                                         setProductDetail((prev) =>
+                                                            prev == product._id ? '' : product._id,
+                                                         )
+                                                      }
+                                                      className='table-row-group align-middle'
+                                                   >
+                                                      <tr
+                                                         style={{
+                                                            background:
+                                                               idx % 2 == 0
+                                                                  ? 'rgba(255, 232, 232, 0.38)'
+                                                                  : 'none',
+                                                         }}
+                                                         className=''
+                                                      >
+                                                         <td className='yekan p-2 font-bold'>
+                                                            {product.title}
+                                                         </td>
+                                                         <td className='yekan p-2 text-center font-bold'>
+                                                            {/* @ts-ignore */}
+                                                            {parseInt(price.value).toLocaleString(
+                                                               'fa',
+                                                            )}
+                                                         </td>
+                                                         <td className='yekan m-auto p-2 text-center font-bold'>
+                                                            {fluctuation && fluctuation > 0 ? (
+                                                               <div className='flex items-center gap-x-1 text-green-600'>
+                                                                  {parseInt(
+                                                                     // @ts-ignore
+                                                                     fluctuation,
+                                                                  ).toLocaleString('fa')}
+                                                                  <svg
+                                                                     className='h-6 w-6'
+                                                                     width='24'
+                                                                     height='24'
+                                                                     viewBox='0 0 24 24'
+                                                                     strokeWidth='2'
+                                                                     stroke='currentColor'
+                                                                     fill='none'
+                                                                     strokeLinecap='round'
+                                                                     strokeLinejoin='round'
+                                                                  >
+                                                                     {' '}
+                                                                     <path
+                                                                        stroke='none'
+                                                                        d='M0 0h24v24H0z'
+                                                                     />{' '}
+                                                                     <path d='M18 15l-6-6l-6 6h12' />
+                                                                  </svg>
+                                                               </div>
+                                                            ) : (
+                                                               ''
+                                                            )}
 
-                                                         {fluctuation && fluctuation < 0 ? (
-                                                            <div className='flex items-center gap-x-1 text-red-500'>
-                                                               {parseInt(
-                                                                  // @ts-ignore
-                                                                  fluctuation,
-                                                               ).toLocaleString('fa')}
-                                                               <svg
-                                                                  className='h-6 w-6'
-                                                                  width='24'
-                                                                  height='24'
-                                                                  viewBox='0 0 24 24'
-                                                                  strokeWidth='2'
-                                                                  stroke='currentColor'
-                                                                  fill='none'
-                                                                  strokeLinecap='round'
-                                                                  strokeLinejoin='round'
-                                                               >
-                                                                  {' '}
-                                                                  <path
-                                                                     stroke='none'
-                                                                     d='M0 0h24v24H0z'
-                                                                  />{' '}
-                                                                  <path
-                                                                     d='M18 15l-6-6l-6 6h12'
-                                                                     transform='rotate(180 12 12)'
-                                                                  />
-                                                               </svg>
-                                                            </div>
-                                                         ) : (
-                                                            ''
-                                                         )}
+                                                            {fluctuation && fluctuation < 0 ? (
+                                                               <div className='flex items-center gap-x-1 text-red-500'>
+                                                                  {parseInt(
+                                                                     // @ts-ignore
+                                                                     fluctuation,
+                                                                  ).toLocaleString('fa')}
+                                                                  <svg
+                                                                     className='h-6 w-6'
+                                                                     width='24'
+                                                                     height='24'
+                                                                     viewBox='0 0 24 24'
+                                                                     strokeWidth='2'
+                                                                     stroke='currentColor'
+                                                                     fill='none'
+                                                                     strokeLinecap='round'
+                                                                     strokeLinejoin='round'
+                                                                  >
+                                                                     {' '}
+                                                                     <path
+                                                                        stroke='none'
+                                                                        d='M0 0h24v24H0z'
+                                                                     />{' '}
+                                                                     <path
+                                                                        d='M18 15l-6-6l-6 6h12'
+                                                                        transform='rotate(180 12 12)'
+                                                                     />
+                                                                  </svg>
+                                                               </div>
+                                                            ) : (
+                                                               ''
+                                                            )}
 
-                                                         {!fluctuation ? (
-                                                            <span className='h-5 w-6 text-slate-600'>
-                                                               ---
-                                                            </span>
-                                                         ) : (
-                                                            ''
-                                                         )}
-                                                      </td>
-                                                      <td className=''>
-                                                         <svg
-                                                            className='mx-auto h-6 w-6 text-black'
-                                                            width='24'
-                                                            height='24'
-                                                            viewBox='0 0 24 24'
-                                                            strokeWidth='2'
-                                                            stroke='currentColor'
-                                                            fill='none'
-                                                            strokeLinecap='round'
-                                                            strokeLinejoin='round'
-                                                         >
-                                                            {' '}
-                                                            <path
-                                                               stroke='none'
-                                                               d='M0 0h24v24H0z'
-                                                            />{' '}
-                                                            <line x1='4' y1='19' x2='20' y2='19' />{' '}
-                                                            <polyline points='4 15 8 9 12 11 16 6 20 10' />
-                                                         </svg>
-                                                      </td>
-                                                   </tr>
+                                                            {!fluctuation ? (
+                                                               <span className='h-5 w-6 text-slate-600'>
+                                                                  ---
+                                                               </span>
+                                                            ) : (
+                                                               ''
+                                                            )}
+                                                         </td>
+                                                         <td className=''>
+                                                            <svg
+                                                               className='mx-auto h-6 w-6 text-black'
+                                                               width='24'
+                                                               height='24'
+                                                               viewBox='0 0 24 24'
+                                                               strokeWidth='2'
+                                                               stroke='currentColor'
+                                                               fill='none'
+                                                               strokeLinecap='round'
+                                                               strokeLinejoin='round'
+                                                            >
+                                                               {' '}
+                                                               <path
+                                                                  stroke='none'
+                                                                  d='M0 0h24v24H0z'
+                                                               />{' '}
+                                                               <line
+                                                                  x1='4'
+                                                                  y1='19'
+                                                                  x2='20'
+                                                                  y2='19'
+                                                               />{' '}
+                                                               <polyline points='4 15 8 9 12 11 16 6 20 10' />
+                                                            </svg>
+                                                         </td>
+                                                      </tr>
+                                                      {productDetail == product._id ? (
+                                                         <div className='pr-4 border-r-2 right-2 relative table-cell'>
+                                                            <p className='text-sm font-normal text-slate-500'>
+                                                               ضخامت:{' '}
+                                                               <span className='font-bold text-slate-500'>
+                                                                  {product.thickness}
+                                                               </span>{' '}
+                                                               میلی متر
+                                                            </p>
+                                                            <p className='text-sm font-normal text-slate-500'>
+                                                               ابعاد:{' '}
+                                                               <span className='font-bold text-slate-500'>
+                                                                  {product.width}
+                                                               </span>
+                                                               x
+                                                               <span className='font-bold text-slate-500'>
+                                                                  {product.length}
+                                                               </span>{' '}
+                                                               میلی متر
+                                                            </p>
+                                                         </div>
+                                                      ) : (
+                                                         ''
+                                                      )}
+                                                   </div>
                                                 )
                                              })}
                                           </table>
