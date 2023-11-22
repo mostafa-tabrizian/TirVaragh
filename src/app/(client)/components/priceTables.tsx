@@ -9,6 +9,7 @@ import { ICategory } from '@/models/category'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
+import Chart from './chart'
 
 const PriceTables = () => {
    const [category, setCategory] = useState('')
@@ -27,6 +28,8 @@ const PriceTables = () => {
       isLoading: boolean
       error: unknown
    } = useSWR(`/api/client/products?category=${category}`, fetcher)
+
+   const [chartData, setChartData] = useState<IProduct | null>(null)
 
    const {
       data: categories,
@@ -113,6 +116,38 @@ const PriceTables = () => {
 
    return (
       <>
+         <div
+            style={{
+               opacity: chartData ? '100%' : '0%',
+               zIndex: chartData ? '10' : '-10',
+            }}
+            className='fixed left-0 top-0 h-full w-full bg-gray-800/60 backdrop-blur-sm transition-opacity duration-300'
+         >
+            <div className='relative top-1/2 h-1/2 w-full -translate-y-1/2 bg-slate-100'>
+               <div className='w-full text-end'>
+                  <button className='p-3' onClick={() => setChartData(null)}>
+                     <svg
+                        className='h-8 w-8 text-black'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
+                     >
+                        <path
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                           strokeWidth='2'
+                           d='M6 18L18 6M6 6l12 12'
+                        />
+                     </svg>
+                  </button>
+               </div>
+               <span className='block text-center text-base font-semibold'>
+                  نمودار قیمت {chartData?.title}
+               </span>
+               <Chart data={chartData?.price || null} />
+            </div>
+         </div>
+
          <div className='my-6 px-3 md:mx-auto md:px-0'>
             <div className='grid grid-cols-2 gap-x-3 md:grid-cols-4'>
                <button onClick={() => setCategory('655a4dc33996e920800f1521')}>
@@ -440,7 +475,10 @@ const PriceTables = () => {
                                                                ''
                                                             )}
                                                          </td>
-                                                         <td className=''>
+                                                         <td
+                                                            onClick={() => setChartData(product)}
+                                                            className=''
+                                                         >
                                                             <svg
                                                                className='mx-auto h-6 w-6 text-black'
                                                                width='24'
@@ -468,7 +506,7 @@ const PriceTables = () => {
                                                          </td>
                                                       </tr>
                                                       {productDetail == product._id ? (
-                                                         <div className='pr-4 border-r-2 right-2 relative table-cell'>
+                                                         <div className='relative right-2 table-cell border-r-2 pr-4'>
                                                             <p className='text-sm font-normal text-slate-500'>
                                                                ضخامت:{' '}
                                                                <span className='font-bold text-slate-500'>

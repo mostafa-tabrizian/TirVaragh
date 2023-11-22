@@ -155,6 +155,10 @@ strong {
    font-weight: 600;
 }
 
+tspan {
+   font-size: 0.8rem !important;
+}
+
 .rtl {
    direction: rtl;
 }
@@ -280,4 +284,9 @@ strong {
          color: rgb(115, 132, 255) !important;
       }
    }
+}
+
+.recharts-surface, .recharts-wrapper {
+   width: 100% !important;
+   height: 100% !important;
 }
