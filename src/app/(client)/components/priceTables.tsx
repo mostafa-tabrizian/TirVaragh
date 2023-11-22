@@ -1,15 +1,16 @@
 'use client'
 
+import { ICategory } from '@/models/category'
 import { IFactory } from '@/models/factory'
 import { IProduct } from '@/models/product'
-import useSWR from 'swr'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import { ICategory } from '@/models/category'
-import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
-import Chart from './chart'
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import useSWR from 'swr'
+const MenuItem = dynamic(() => import('@mui/material/MenuItem'))
+const Chart = dynamic(() => import('./chart'))
 
 const PriceTables = () => {
    const [category, setCategory] = useState('')
@@ -300,8 +301,8 @@ const PriceTables = () => {
                                        <div>
                                           <h3 className='text-red-900'>
                                              قیمت{' '}
-                                             {categories.find((cat) => cat._id == category)?.name ||
-                                                'ورق های'}{' '}
+                                             {categories?.find((cat) => cat._id == category)
+                                                ?.name || 'ورق های'}{' '}
                                              {factory.name}
                                           </h3>
                                           <div className='mt-1 flex items-center gap-1'>
@@ -345,7 +346,7 @@ const PriceTables = () => {
                                           </div>
                                        </div>
                                     </div>
-                                    {sortedProducts.find(
+                                    {sortedProducts?.find(
                                        (product) => product.factory == factory._id,
                                     ) ? (
                                        <div className='mt-3 rounded-xl bg-white'>

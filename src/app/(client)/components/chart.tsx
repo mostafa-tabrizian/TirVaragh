@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts'
+import { AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts'
 
 const Chart = ({ data }: { data: { submittedAt: Date; value: number }[] | null }) => {
    const [range, setRange] = useState(1)
@@ -45,6 +45,7 @@ const Chart = ({ data }: { data: { submittedAt: Date; value: number }[] | null }
             </defs>
             <XAxis dataKey='تاریخ' />
             <YAxis />
+            <CartesianGrid strokeDasharray='4' vertical={false} />
             <Area
                type='monotone'
                dataKey='قیمت'
