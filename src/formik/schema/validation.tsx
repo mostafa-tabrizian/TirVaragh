@@ -12,7 +12,13 @@ export const ProductForm = yup.object().shape({
 })
 
 export const CategoryValidation = yup.object().shape({
-   name: yup
+   name: yup.string().required('عنوان را وارد کنید'),
+})
+
+export const comment = yup.object().shape({
+   username: yup
       .string()
-      .required('عنوان را وارد کنید')
+      .min(3, 'حداقل باید ۳ کارکتر باشد')
+      .required('لطفا نام و نام خانوادگیتون رو وارد کنید'),
+   body: yup.string().min(3, 'حداقل باید ۳ کارکتر باشد').required('لطفا دیدگاهتون رو وارد کنید'),
 })

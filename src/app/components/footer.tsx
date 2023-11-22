@@ -3,16 +3,14 @@ import Image from 'next/image'
 
 const Footer = () => {
    return (
-      <footer className='py-3 md:py-8 text-slate-600 rtl mt-10 border-t-2 border-t-gray-200 bg-gray-200 px-4 rounded-t-3xl'>
-         <div className='grid gap-10 max-w-screen-lg grid-cols-5 grid-row-2 container mx-auto'>
+      <footer className='rtl mt-10 rounded-t-3xl border-t-2 border-t-gray-200 bg-gray-200 px-4 py-3 text-slate-600 md:py-8'>
+         <div className='grid-row-2 container mx-auto grid max-w-screen-lg grid-cols-5 gap-10'>
             <div className='col-span-5 flex flex-col justify-start'>
                <div className='text-center'>
                   <Link aria-label='صفحه اصلی' href='/' className='flex justify-center'>
                      <Image
                         className='object-contain'
-                        src={
-                           'https://tabrizian.storage.iran.liara.space/tirvaragh/logo/logo-footer.jpg'
-                        }
+                        src='/logo.jpg'
                         alt='لوگو تیرورق'
                         width={150}
                         height={150}
@@ -21,11 +19,13 @@ const Footer = () => {
                   </Link>
 
                   <div className='mb-5'>
-                     <span className='text-red-600 yekanExtraBold text-2xl'>گروه مهندسی تیرورق</span>
+                     <span className='yekanExtraBold text-2xl text-red-600'>
+                        گروه مهندسی تیرورق
+                     </span>
                   </div>
 
-                  <div className='flex justify-around mb-5 items-center'>
-                     <ul className='flex gap-3 items-center'>
+                  <div className='mb-5 flex items-center justify-around'>
+                     <ul className='flex items-center gap-3'>
                         <li className='block'>
                            <a
                               aria-label='ایتا'
@@ -35,7 +35,7 @@ const Footer = () => {
                               target='_blank'
                            >
                               <svg
-                                 className='h-6 w-6 hover:text-red-600 transition'
+                                 className='h-6 w-6 transition hover:text-red-600'
                                  viewBox='0 0 24 24'
                                  fill='none'
                                  stroke='currentColor'
@@ -61,7 +61,7 @@ const Footer = () => {
                                  strokeWidth='0'
                                  role='img'
                                  viewBox='0 0 24 24'
-                                 className='w-6 h-6 hover:text-red-600 transition'
+                                 className='h-6 w-6 transition hover:text-red-600'
                                  height='1em'
                                  width='1em'
                                  xmlns='http://www.w3.org/2000/svg'
@@ -80,7 +80,7 @@ const Footer = () => {
                               target='_blank'
                            >
                               <svg
-                                 className='w-6 h-6 hover:text-red-600 transition'
+                                 className='h-6 w-6 transition hover:text-red-600'
                                  width='24'
                                  height='24'
                                  viewBox='0 0 24 24'
@@ -104,7 +104,7 @@ const Footer = () => {
                               className='flex items-center'
                            >
                               <svg
-                                 className='w-6 h-6 hover:text-red-600 transition'
+                                 className='h-6 w-6 transition hover:text-red-600'
                                  viewBox='0 0 24 24'
                                  fill='none'
                                  stroke='currentColor'
@@ -119,11 +119,11 @@ const Footer = () => {
                         </li>
                      </ul>
                   </div>
-                  <h4 className='text-slate-500 font-bold yekan text-sm mb-6 text-center'>
+                  <h4 className='yekan1 mb-6 text-center text-sm font-bold text-slate-500'>
                      حفاظت، امنیت، نظارت، ارتباطات
                   </h4>
                   <div id='about-us' className='space-y-5'>
-                     <p className='text-slate-500 text-sm leading-7 md:text-center text-justify'>
+                     <p className='text-justify text-sm leading-7 text-slate-500 md:text-center'>
                         <strong>آدرس: </strong> قم بلوار امام رضا مجتمع تجاری مسکونی فردوس طبقه اول
                         پلاک ۲۲۹
                      </p>
@@ -138,20 +138,20 @@ const Footer = () => {
                         referrerPolicy='no-referrer-when-downgrade'
                      ></iframe> */}
 
-                     <p className='text-slate-500 text-sm leading-7 text-justify'>
-                        ما در تیرورق به حفاظت از شما و محیط‌هایتان متعهدیم. با ارائه ابزارهای پیشرفته
-                        دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، ما
-                        به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح جدیدی
-                        برسانید. ما در تلاشیم تا با ارائه راه‌حل‌هایی نوآورانه و اطمینان‌بخش، زندگی
-                        و کسب و کار شما را تقویت کنیم. به ما بپیوندید و با ما در جهت ساختن یک آینده
-                        امن‌تر و بهتر همکاری کنید. <br />
+                     <p className='text-justify text-sm leading-7 text-slate-500'>
+                        ما در تیرورق به حفاظت از شما و محیط‌هایتان متعهدیم. با ارائه ابزارهای
+                        پیشرفته دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات
+                        شبکه، ما به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح
+                        جدیدی برسانید. ما در تلاشیم تا با ارائه راه‌حل‌هایی نوآورانه و اطمینان‌بخش،
+                        زندگی و کسب و کار شما را تقویت کنیم. به ما بپیوندید و با ما در جهت ساختن یک
+                        آینده امن‌تر و بهتر همکاری کنید. <br />
                         <br />
                         در{' '}
                         <a
                            aria-label='ایتا'
                            id='eitaa'
                            rel='noreferrer'
-                           className='text-red-600 text-sm font-semibold'
+                           className='text-sm font-semibold text-red-600'
                            href='https://eitaa.com/TirVaragh'
                            target='_blank'
                         >
@@ -162,7 +162,7 @@ const Footer = () => {
                            aria-label='اینستاگرام'
                            id='instagram'
                            rel='noreferrer'
-                           className='text-red-600 text-sm font-semibold'
+                           className='text-sm font-semibold text-red-600'
                            href='https://www.instagram.com/TirVaragh'
                            target='_blank'
                         >
@@ -173,7 +173,7 @@ const Footer = () => {
                            aria-label='تلگرام'
                            id='telegram'
                            rel='noreferrer'
-                           className='text-red-600 text-sm font-semibold'
+                           className='text-sm font-semibold text-red-600'
                            href='https://t.me/TirVaragh'
                            target='_blank'
                         >
@@ -184,7 +184,7 @@ const Footer = () => {
                            aria-label='تماس تلفنی'
                            id='phone_call'
                            rel='noreferrer'
-                           className='text-red-600 text-sm font-semibold tracking-widest'
+                           className='text-sm font-semibold tracking-widest text-red-600'
                            href='tel:+989128530920'
                         >
                            09128530920{' '}
@@ -194,7 +194,7 @@ const Footer = () => {
                            aria-label='تماس تلفنی'
                            id='phone_call'
                            rel='noreferrer'
-                           className='text-red-600 text-sm font-semibold tracking-widest'
+                           className='text-sm font-semibold tracking-widest text-red-600'
                            href='tel:+989109960802'
                         >
                            09109960802{' '}
@@ -220,7 +220,7 @@ const Footer = () => {
                </nav>
             </div> */}
             <div className='col-span-5'>
-               <p className='text-center text-slate-400 text-xs'>
+               <p className='text-center text-xs text-slate-700'>
                   © تمامی حقوق برای تیرورق محفوظ است
                </p>
             </div>

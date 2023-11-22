@@ -78,7 +78,7 @@ const FactoryImageInput = ({ factoryId }: { factoryId: string }) => {
          className='h-10 w-16 rounded-lg border-2 border-slate-200 bg-slate-100 text-sm'
       >
          <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-            <span className='text-slate-400'>+</span>
+            <span className='text-slate-700'>+</span>
             <input
                hidden
                accept='image/*'

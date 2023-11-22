@@ -1,4 +1,3 @@
-
 import Link from 'next/link'
 import Image from 'next/image'
 import LinksForDesktop from './headerLinksforDesktop'
@@ -15,11 +14,10 @@ const Header = () => {
                >
                   <Image
                      className='object-contain'
-                     src={'https://tabrizian.storage.iran.liara.space/tirvaragh/logo/logo.jpg'}
+                     src='/logo.jpg'
                      alt='لوگو تیرورق'
                      width={80}
                      height={80}
-                     quality={100}
                      loading='lazy'
                   />
                </Link>

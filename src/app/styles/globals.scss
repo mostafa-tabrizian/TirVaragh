@@ -163,7 +163,7 @@ strong {
    direction: ltr;
 }
 
-.yekan {
+.yekan1 {
    font-family: IRANYekanRegular, sans-serif;
 }
 
@@ -242,51 +242,11 @@ strong {
    }
 }
 
-.ql-editor {
-   &.ql-blank::before {
-      color: #345467 !important;
-      font-size: 1rem !important;
-   }
-
-   p,
-   strong,
-   em,
-   li,
-   a {
-      font-family: Yekan;
-   }
-
-   h1,
-   h2,
-   h3,
-   h4,
-   h5,
-   h6 {
-      font-family: yekanExtraBold;
-   }
-
-   code {
-      padding: 0.4rem;
-      background-color: rgb(24 28 60) !important;
-      border-radius: 7px;
-   }
-
-   a {
-      text-decoration: wavy underline rgb(115, 132, 255) !important;
-      text-underline-offset: 2px;
-      transition: all 0.1s ease-in-out;
-
-      &:hover {
-         color: rgb(115, 132, 255) !important;
-      }
-   }
-}
-
-.recharts-surface, .recharts-wrapper {
+.recharts-surface,
+.recharts-wrapper {
    width: 100% !important;
    height: 100% !important;
 }
-
 
 tspan {
    font-size: 0.6rem !important;

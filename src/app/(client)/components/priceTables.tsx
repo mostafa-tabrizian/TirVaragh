@@ -352,17 +352,17 @@ const PriceTables = () => {
                                        <div className='mt-3 rounded-xl bg-white'>
                                           <table className='w-full border-separate px-2'>
                                              <tr className=''>
-                                                <th className='yekan p-2 font-bold'>
+                                                <th className='yekan1 p-2 font-bold'>
                                                    عنوان{' '}
                                                    <span className='text-xs'>
                                                       (برای جزئیات بیشتر کلیک کنید)
                                                    </span>
                                                 </th>
-                                                <th className='yekan p-2 font-bold'>
+                                                <th className='yekan1 p-2 font-bold'>
                                                    قیمت <span className='text-xs'>(تومان)</span>
                                                 </th>
-                                                <th className='yekan p-2 font-bold'>نوسان</th>
-                                                <th className='yekan p-2 font-bold'>نمودار</th>
+                                                <th className='yekan1 p-2 font-bold'>نوسان</th>
+                                                <th className='yekan1 p-2 font-bold'>نمودار</th>
                                              </tr>
 
                                              {sortedProducts?.map((product, idx) => {
@@ -397,16 +397,16 @@ const PriceTables = () => {
                                                          }}
                                                          className=''
                                                       >
-                                                         <td className='yekan p-2 font-bold'>
+                                                         <td className='yekan1 p-2 font-bold'>
                                                             {product.title}
                                                          </td>
-                                                         <td className='yekan p-2 text-center font-bold'>
+                                                         <td className='yekan1 p-2 text-center font-bold'>
                                                             {/* @ts-ignore */}
                                                             {parseInt(price.value).toLocaleString(
                                                                'fa',
                                                             )}
                                                          </td>
-                                                         <td className='yekan m-auto p-2 text-center font-bold'>
+                                                         <td className='yekan1 m-auto p-2 text-center font-bold'>
                                                             {fluctuation && fluctuation > 0 ? (
                                                                <div className='flex items-center gap-x-1 text-green-600'>
                                                                   {parseInt(

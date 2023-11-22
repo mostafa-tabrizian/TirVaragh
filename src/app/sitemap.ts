@@ -1,35 +1,28 @@
-import Product from '@/models/product'
-import Category from '@/models/category'
 import dbConnect from '@/lib/dbConnect'
-import hyphen from '@/lib/hyphen'
+import Blog from '@/models/blog'
 
 const URL = 'https://tirvaragh.com'
 
 async function getAllPages() {
    await dbConnect()
-   const productsData = await Product.find()
-   const categoriesData = await Category.find()
+   const blogData = await Blog.find()
 
-   return { productsData, categoriesData }
+   return { blogData }
 }
 
 export default async function sitemap() {
-   const { productsData, categoriesData } = await getAllPages()
+   const { blogData } = await getAllPages()
 
-   const products = productsData.map(({ slug, updatedAt }) => ({
-      url: `${URL}/product/${hyphen(slug)}`,
-      lastModified: updatedAt,
+   const blogs = blogData.map(({ slug, modifiedAt }) => ({
+      url: `${URL}/blog/${slug}`,
+      lastModified: modifiedAt,
    }))
 
-   const categories = categoriesData.map(({ name, slug, updatedAt }) => ({
-      url: `${URL}/search/${hyphen(slug)}?type=category&amp;name=${name}`,
-      lastModified: updatedAt,
-   }))
 
    const routes = [''].map((route) => ({
       url: `${URL}${route}`,
       lastModified: new Date().toISOString(),
    }))
 
-   return [...routes, ...products, ...categories]
+   return [...routes, ...blogs]
 }

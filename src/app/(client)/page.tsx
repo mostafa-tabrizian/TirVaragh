@@ -1,26 +1,13 @@
-import Link from 'next/link'
 import Image from 'next/image'
-
-import dbConnect from '@/lib/dbConnect'
 // import limiter from '@/lib/limiter'
-import Product from '@/models/product'
+import Blog from '@/models/blog'
 
 import Script from 'next/script'
 import PriceTables from './components/priceTables'
 import About from './components/about'
-import Blog from './components/blog'
+import BlogComponent from './components/blog'
 import Factories from './components/factories'
-
-const getCategories = async () => {
-   dbConnect()
-   const cctv = await Product.find({
-      category: '64fcaf60a459b97a56a24291',
-   }).exec()
-
-   return {
-      cctv,
-   }
-}
+import dbConnect from '@/lib/dbConnect'
 
 export const metadata = {
    title: 'تیرورق | ""',
@@ -85,6 +72,13 @@ const corporationJsonLd = {
 // export const revalidate = 1 * 24 * 60 * 60
 export const revalidate = 0
 
+const fetchData = async () => {
+   await dbConnect()
+   const blogs = await Blog.find({ active: true }).sort({ createdAt: -1 })
+
+   return { blogs }
+}
+
 async function Home() {
    // const remaining = await limiter.removeTokens(2)
 
@@ -96,6 +90,8 @@ async function Home() {
    //       </h1>
    //    )
    // }
+
+   const { blogs } = await fetchData()
 
    return (
       <>
@@ -124,7 +120,7 @@ async function Home() {
 
          <About />
 
-         <Blog />
+         {blogs.length ? <BlogComponent blogs={JSON.parse(JSON.stringify(blogs))} /> : ''}
 
          <Factories />
       </>

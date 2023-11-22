@@ -97,9 +97,9 @@ const DetailForm = memo(
                         className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
                         type='text'
                      />
-                     <p className='text-xs font-normal text-slate-400'>
+                     <p className='text-xs font-normal text-slate-700'>
                         برای سئوی بهتر لطفا عنوان کامل را وارد کنید. برای مثال:{' '}
-                        <span className='font-bold text-slate-400'>
+                        <span className='font-bold text-slate-700'>
                            ورق روغنی ۴ میل ابعاد ۲۰۰۰x۱۰۰۰
                         </span>
                      </p>
@@ -190,7 +190,7 @@ const DetailForm = memo(
                               className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
                               type='number'
                            />
-                           <p className='text-xs font-normal text-slate-400'>
+                           <p className='text-xs font-normal text-slate-700'>
                               {/* @ts-ignore */}
                               {parseInt(values.price).toLocaleString('fa')} تومان
                            </p>
