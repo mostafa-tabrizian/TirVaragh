@@ -1,4 +1,7 @@
-const Factories = () => {
+import { IFactory } from '@/models/factory'
+import Image from 'next/image'
+
+const Factories = ({ factories }: { factories: IFactory[] }) => {
    return (
       <div className='mx-4 mt-14 md:mx-auto md:mt-24'>
          <div>
@@ -8,6 +11,20 @@ const Factories = () => {
             </div>
             <div>
                <h2 className='yekanExtraBold mt-2 text-3xl'>کارخانجات ورق</h2>
+               <div className='flex items-center justify-center gap-3 mt-7 flex-wrap'>
+                  {factories.map((factory) => {
+                     return (
+                        <div key={factory._id} className='relative aspect-video h-20'>
+                           <Image
+                              src={`https://tabrizian.storage.iran.liara.space/tir-varagh/factories/${factory.logo}`}
+                              alt={factory.name}
+                              fill
+                              className='object-contain mix-blend-multiply'
+                           />
+                        </div>
+                     )
+                  })}
+               </div>
             </div>
          </div>
       </div>

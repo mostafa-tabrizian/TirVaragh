@@ -46,7 +46,7 @@ const ImageDelete = ({ imageKey, factoryId }: { imageKey: string; factoryId: str
       }
 
       try {
-         const res = await fetch('/api/--admin--/factory/image/db', {
+         const res = await fetch('/api/--admin--/image/db', {
             method: 'DELETE',
             body: JSON.stringify(payload),
          })

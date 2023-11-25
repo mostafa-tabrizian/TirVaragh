@@ -1,6 +1,7 @@
 import Image from 'next/image'
 // import limiter from '@/lib/limiter'
 import Blog from '@/models/blog'
+import Factory from '@/models/factory'
 
 import Script from 'next/script'
 import PriceTables from './components/priceTables'
@@ -115,8 +116,9 @@ export const revalidate = 1 * 24 * 60 * 60
 const fetchData = async () => {
    await dbConnect()
    const blogs = await Blog.find({ active: true }).sort({ createdAt: -1 })
+   const factories = await Factory.find().sort({ createdAt: -1 })
 
-   return { blogs }
+   return { blogs, factories }
 }
 
 async function Home() {
@@ -131,7 +133,7 @@ async function Home() {
    //    )
    // }
 
-   const { blogs } = await fetchData()
+   const { blogs, factories } = await fetchData()
 
    return (
       <>
@@ -146,7 +148,7 @@ async function Home() {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(corporationJsonLd) }}
          />
 
-         <div className='relative mx-auto mt-10 aspect-[16/8] w-[80%] md:rounded-xl'>
+         <div className='relative mx-auto aspect-[16/8] w-[80%] md:rounded-xl'>
             <Image
                className='object-cover md:rounded-xl'
                fill
@@ -162,7 +164,7 @@ async function Home() {
 
          {blogs.length ? <BlogComponent blogs={JSON.parse(JSON.stringify(blogs))} /> : ''}
 
-         <Factories />
+         <Factories factories={JSON.parse(JSON.stringify(factories))} />
       </>
    )
 }

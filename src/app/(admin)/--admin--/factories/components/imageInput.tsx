@@ -4,24 +4,46 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
-import imageUploadHandler from '@/lib/imageUploadHandler'
 import Button from '@mui/material/Button'
+import axios from 'axios'
 
 const FactoryImageInput = ({ factoryId }: { factoryId: string }) => {
    const router = useRouter()
+
+   const uploadFiles = async (image: File) => {
+      if (!image) {
+         toast.warning('هیچ لوگویی برای آپلود انتخاب نشده است!')
+         return false
+      }
+
+      const imageName = image.name.replace(' ', '-')
+
+      const data = new FormData()
+      data.append('image', image)
+      data.append('folder', 'factories')
+      data.append('imageName', imageName)
+
+      const res = await axios.request({
+         method: 'post',
+         url: '/api/--admin--/image/s3',
+         data,
+      })
+
+      return res.data['imageKey']
+   }
 
    const handleSubmit = async (files: FileList) => {
       try {
          toast.info('در حال ثبت لوگو...')
 
          const image = Object.values(files)[0]
-         const imageHandleRes = await imageUploadHandler(image as File, 'factories')
+         const imageKey = await uploadFiles(image)
 
-         if (!imageHandleRes) return false
+         if (!imageKey) return false
 
-         const payload = { _id: factoryId, logo: imageHandleRes.imageKey }
+         const payload = { _id: factoryId, logo: imageKey }
 
-         const dbRes = await fetch('/api/--admin--/factory/image/db', {
+         const dbRes = await fetch('/api/--admin--/image/db', {
             method: 'POST',
             body: JSON.stringify(payload),
          })

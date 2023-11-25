@@ -4,8 +4,8 @@ import LinksForDesktop from './headerLinksforDesktop'
 
 const Header = () => {
    return (
-      <header className='p-3 max-w-screen-lg mx-auto'>
-         <div className='flex justify-between'>
+      <header className='fixed left-1/2 top-0 z-20 mx-auto w-full max-w-screen-lg -translate-x-1/2 bg-[#f4f5f7] p-3'>
+         <div className='flex items-center justify-between'>
             <div>
                <Link
                   aria-label='صفحه اصلی'
@@ -22,7 +22,7 @@ const Header = () => {
                   />
                </Link>
             </div>
-            
+
             <LinksForDesktop />
 
             <div>

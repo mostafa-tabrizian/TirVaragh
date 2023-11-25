@@ -7,9 +7,9 @@ import { CategoryValidation } from '@/formik/schema/validation'
 import { useMemo, useState } from 'react'
 import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
-import imageUploadHandler from '@/lib/imageUploadHandler'
 import Button from '@mui/material/Button'
 import Image from 'next/image'
+import axios from 'axios'
 
 const CategoryNewInput = () => {
    const router = useRouter()
@@ -20,24 +20,28 @@ const CategoryNewInput = () => {
       return imageToUpload && Object.values(imageToUpload)
    }, [imageToUpload])
 
-   const handleImageSubmit = async () => {
+   const uploadFiles = async () => {
       if (!imageToUpload || !imageToUploadMemo) {
          toast.warning('هیچ لوگویی برای آپلود انتخاب نشده است!')
          return false
       }
 
-      try {
-         const image = imageToUploadMemo[0]
-         const res = await imageUploadHandler(image, 'factories')
-         if (res) {
-            return res
-         }
-         toast.error('در آپلود تصویر خطایی رخ داد.')
-         return false
-      } catch (error) {
-         console.error(error)
-         return false
-      }
+      const image = imageToUploadMemo[0]
+
+      const imageName = image.name.replace(' ', '-')
+
+      const data = new FormData()
+      data.append('image', image)
+      data.append('folder', 'factories')
+      data.append('imageName', imageName)
+
+      const res = await axios.request({
+         method: 'post',
+         url: '/api/--admin--/image/s3',
+         data,
+      })
+
+      return res.data['imageKey']
    }
 
    const handleSubmit = async (
@@ -47,11 +51,11 @@ const CategoryNewInput = () => {
       try {
          toast.info('در حال ثبت اطلاعات کارخانه...')
 
-         const imageRes = await handleImageSubmit()
+         const imageKey = await uploadFiles()
 
-         if (!imageRes) return false
+         if (!imageKey) return false
 
-         const payload = { name: name.trim(), logo: imageRes.imageKey }
+         const payload = { name: name.trim(), logo: imageKey }
 
          const res = await fetch('/api/--admin--/factory', {
             method: 'POST',

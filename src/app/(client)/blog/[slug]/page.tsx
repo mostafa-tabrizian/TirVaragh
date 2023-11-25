@@ -125,7 +125,7 @@ const BlogPage = async ({ params: { slug } }: { params: { slug: string } }) => {
 
          {blog ? (
             <div>
-               <div className='relative z-10 mx-5 mt-10 min-h-screen max-w-screen-md text-center md:pt-32 lg:mx-auto'>
+               <div className='relative z-10 mx-5 min-h-screen max-w-screen-md text-center lg:mx-auto'>
                   <h1 className='yekanBold rtl text-right'>{blog.title}</h1>
                   {blog.thumbnail ? (
                      <div className='relative mb-5 mt-5 aspect-video w-auto lg:w-[768px]'>
