@@ -4,7 +4,7 @@ import LinksForDesktop from './headerLinksforDesktop'
 
 const Header = () => {
    return (
-      <header className='p-3'>
+      <header className='p-3 max-w-screen-lg mx-auto'>
          <div className='flex justify-between'>
             <div>
                <Link
