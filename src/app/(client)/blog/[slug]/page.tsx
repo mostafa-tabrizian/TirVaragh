@@ -15,7 +15,7 @@ export const generateMetadata = async ({ params: { slug } }: { params: { slug: s
 
    if (blog) {
       return {
-         title: `'' | ${blog.title}`,
+         title: `تیرورق | ${blog.title}`,
          description: blog.text.slice(0, 150),
          alternates: {
             canonical: `/blog/${slug}`,
