@@ -149,8 +149,17 @@ const PriceTables = () => {
             </div>
          </div>
 
-         <div className='my-6 px-3 md:mx-auto md:px-0' id='category'>
-            <div className='grid grid-cols-2 gap-x-3 md:grid-cols-4'>
+         <div className='my-6 px-3 md:mx-auto md:mt-24 md:px-0' id='category'>
+            <div>
+               <div className='flex items-center gap-1'>
+                  <span className='w-8 border-b-2 border-red-700'></span>
+                  <span className='text-sm font-bold text-red-700'>تنوع در دسته بندی</span>
+               </div>
+               <div>
+                  <h2 className='yekanExtraBold mt-2 text-4xl'>دسته بندی ها</h2>
+               </div>
+            </div>
+            <div className='grid grid-cols-2 gap-x-3 md:mt-8 md:grid-cols-4 md:gap-10'>
                <button onClick={() => setCategory('655a4dc33996e920800f1521')}>
                   <Image
                      className='rounded-xl object-contain mix-blend-multiply'
@@ -190,7 +199,7 @@ const PriceTables = () => {
             </div>
          </div>
 
-         <div className='mx-4 md:mx-auto' id='price-table'>
+         <div className='mx-4 md:mx-auto md:mt-24' id='price-table'>
             <div>
                <div className='flex items-center gap-1'>
                   <span className='w-8 border-b-2 border-red-700'></span>
@@ -200,7 +209,7 @@ const PriceTables = () => {
                   <h2 className='yekanExtraBold mt-2 text-4xl'>جدول قیمت ورق</h2>
                </div>
             </div>
-            <div className='mt-11 grid grid-cols-3 gap-3'>
+            <div className='mt-11 grid grid-cols-3 gap-3 md:flex md:justify-end md:gap-5'>
                <div className='rounded-xl bg-white'>
                   <FormControl fullWidth>
                      <Select
@@ -349,7 +358,7 @@ const PriceTables = () => {
                                     {sortedProducts?.find(
                                        (product) => product.factory == factory._id,
                                     ) ? (
-                                       <div className='mt-3 rounded-xl bg-white'>
+                                       <div className='mb-6 mt-3 rounded-xl bg-white'>
                                           <table className='w-full border-separate px-2'>
                                              <tr className=''>
                                                 <th className='yekan1 p-2 font-bold'>

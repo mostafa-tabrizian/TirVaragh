@@ -145,9 +145,9 @@ async function Home() {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(corporationJsonLd) }}
          />
 
-         <div className='relative h-48 w-full'>
+         <div className='relative aspect-[16/8] w-full md:rounded-xl'>
             <Image
-               className='object-cover'
+               className='object-cover md:rounded-xl'
                fill
                priority
                src='/hero.jpg'
