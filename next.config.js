@@ -28,7 +28,6 @@ const nextConfig = {
          {
             protocol: 'https',
             hostname: 'tabrizian.storage.iran.liara.space',
-            port: '',
          },
       ],
    },

@@ -442,7 +442,7 @@ const PriceTables = () => {
                                     ) ? (
                                        <div className='mb-6 mt-3 rounded-xl bg-white'>
                                           <table className='w-full border-separate px-2'>
-                                             <tr className=''>
+                                             <tr >
                                                 <th className='yekan1 p-2 font-bold'>
                                                    عنوان{' '}
                                                    <span className='text-xs'>
@@ -486,7 +486,7 @@ const PriceTables = () => {
                                                                   ? 'rgba(255, 232, 232, 0.38)'
                                                                   : 'none',
                                                          }}
-                                                         className=''
+                                                         
                                                       >
                                                          <td className='yekan1 p-2 font-bold'>
                                                             {product.title}
@@ -569,7 +569,7 @@ const PriceTables = () => {
                                                          </td>
                                                          <td
                                                             onClick={() => setChartData(product)}
-                                                            className=''
+                                                            
                                                          >
                                                             <svg
                                                                className='mx-auto h-6 w-6 text-black'

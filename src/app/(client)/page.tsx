@@ -35,7 +35,7 @@ const corporationJsonLd = {
    legalName: 'تیرورق',
    url: 'https://tirvaragh.com',
    logo: '', // https://tirvaragh.com/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100
-   email: '',
+   email: 'info@tirvaragh.com',
    sameAs: ['https://www.instagram.com/sgpsteelco', 'https://t.me/sgpsteel', 'info@sgpsteel.com'],
    contactPoint: [
       {

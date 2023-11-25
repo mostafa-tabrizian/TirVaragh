@@ -48,7 +48,7 @@ const NameEdit = ({
       >
          {({ values, setFieldValue, isSubmitting, errors, touched, submitForm }) => (
             <Form className='rtl col-span-4 w-full items-start'>
-               <div className=''>
+               <div >
                   <div className='ml-2 space-y-1 text-right'>
                      <input
                         disabled={isSubmitting}

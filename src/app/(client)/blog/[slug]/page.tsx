@@ -146,7 +146,7 @@ const BlogPage = async ({ params: { slug } }: { params: { slug: string } }) => {
                      <span>Thumbnail not found!</span>
                   )}
                   <div className='rtl flex justify-between'>
-                     <div className=''>
+                     <div >
                         <h5 className='yekanBold text-base'></h5>
                         <h5 className='yekan1 text-sm text-slate-700'>
                            خواندن در {blog.readTime.toLocaleString('fa')} دقیقه

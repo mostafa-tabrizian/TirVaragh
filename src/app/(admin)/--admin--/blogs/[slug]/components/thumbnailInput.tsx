@@ -65,7 +65,7 @@ const ThumbnailInput = memo(
       }
 
       return (
-         <div className=''>
+         <div >
             {thumbnail && typeof thumbnail == 'string' ? (
                <div>
                   <span className='yekan1 text-base text-slate-700'>تامبنیل</span>

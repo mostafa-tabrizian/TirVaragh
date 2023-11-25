@@ -172,7 +172,7 @@ const BlogsTable = ({ blogs }: { blogs: IBlog[] }) => {
                   </tr>
                ))}
             </thead>
-            <tbody className=''>
+            <tbody >
                {table.getRowModel().rows.map((row) => {
                   return (
                      <tr key={row.id} className='border-b border-slate-300 bg-white'>
