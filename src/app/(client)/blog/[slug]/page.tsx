@@ -40,7 +40,7 @@ const getUserIp = async () => {
    return resData.ip
 }
 
-// export const revalidate = 7 * 24 * 60 * 60
+export const revalidate = 1 * 24 * 60 * 60
 
 const BlogPage = async ({ params: { slug } }: { params: { slug: string } }) => {
    // const remaining = await limiter.removeTokens(1)
@@ -166,11 +166,7 @@ const BlogPage = async ({ params: { slug } }: { params: { slug: string } }) => {
                         blogId={String(blog._id)}
                         comments={JSON.parse(JSON.stringify(blog.comments.reverse()))}
                      />
-                     <Like
-                        userIP={userIP}
-                        blogId={String(blog._id)}
-                        likes={blog.likes}
-                     />
+                     <Like userIP={userIP} blogId={String(blog._id)} likes={blog.likes} />
                   </div>
                </div>
             </div>

@@ -22,6 +22,9 @@ const Header = () => {
                   />
                </Link>
             </div>
+            
+            <LinksForDesktop />
+
             <div>
                <a
                   aria-label='تماس تلفنی'
@@ -47,8 +50,6 @@ const Header = () => {
                </a>
             </div>
          </div>
-
-         {/* <LinksForDesktop /> */}
       </header>
    )
 }

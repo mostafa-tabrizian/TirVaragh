@@ -149,7 +149,7 @@ const PriceTables = () => {
             </div>
          </div>
 
-         <div className='my-6 px-3 md:mx-auto md:px-0'>
+         <div className='my-6 px-3 md:mx-auto md:px-0' id='category'>
             <div className='grid grid-cols-2 gap-x-3 md:grid-cols-4'>
                <button onClick={() => setCategory('655a4dc33996e920800f1521')}>
                   <Image
@@ -190,7 +190,7 @@ const PriceTables = () => {
             </div>
          </div>
 
-         <div className='mx-4 md:mx-auto'>
+         <div className='mx-4 md:mx-auto' id='price-table'>
             <div>
                <div className='flex items-center gap-1'>
                   <span className='w-8 border-b-2 border-red-700'></span>

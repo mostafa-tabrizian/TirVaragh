@@ -52,7 +52,7 @@ const Footer = () => {
                               aria-label='اینستاگرام'
                               id='instagram'
                               rel='noreferrer'
-                              href='https://www.instagram.com/TirVaragh/'
+                              href='https://www.instagram.com/sgpsteelco'
                               target='_blank'
                            >
                               <svg
@@ -76,7 +76,7 @@ const Footer = () => {
                               aria-label='تلگرام'
                               id='telegram'
                               rel='noreferrer'
-                              href='https://t.me/TirVaragh'
+                              href='https://t.me/sgpsteel'
                               target='_blank'
                            >
                               <svg
@@ -148,22 +148,11 @@ const Footer = () => {
                         <br />
                         در{' '}
                         <a
-                           aria-label='ایتا'
-                           id='eitaa'
-                           rel='noreferrer'
-                           className='text-sm font-semibold text-red-600'
-                           href='https://eitaa.com/TirVaragh'
-                           target='_blank'
-                        >
-                           ایتا
-                        </a>
-                        ،{' '}
-                        <a
                            aria-label='اینستاگرام'
                            id='instagram'
                            rel='noreferrer'
                            className='text-sm font-semibold text-red-600'
-                           href='https://www.instagram.com/TirVaragh'
+                           href='https://www.instagram.com/sgpsteelco'
                            target='_blank'
                         >
                            اینستاگرام
@@ -174,7 +163,7 @@ const Footer = () => {
                            id='telegram'
                            rel='noreferrer'
                            className='text-sm font-semibold text-red-600'
-                           href='https://t.me/TirVaragh'
+                           href='https://t.me/sgpsteel'
                            target='_blank'
                         >
                            تلگرام

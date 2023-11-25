@@ -35,32 +35,72 @@ const corporationJsonLd = {
    url: 'https://tirvaragh.com',
    logo: '', // https://tirvaragh.com/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100
    email: '',
-   sameAs: [
-      '', // https://www.instagram.com/TirVaragh
-   ],
+   sameAs: ['https://www.instagram.com/sgpsteelco', 'https://t.me/sgpsteel', 'info@sgpsteel.com'],
    contactPoint: [
       {
          '@type': 'ContactPoint',
-         telephone: '', // +989128530920
-         contactType: '', // customer service
+         telephone: '09124300703',
+         contactType: 'واحد فروش',
+         areaServed: 'IR',
+         availableLanguage: 'Persian',
+      },
+      {
+         '@type': 'ContactPoint',
+         telephone: '09127202381',
+         contactType: 'واحد بازرگانی',
+         areaServed: 'IR',
+         availableLanguage: 'Persian',
+      },
+      {
+         '@type': 'ContactPoint',
+         telephone: '02155445660',
+         contactType: 'واحد دفتر',
+         areaServed: 'IR',
+         availableLanguage: 'Persian',
+      },
+      {
+         '@type': 'ContactPoint',
+         telephone: '02155445868',
+         contactType: 'واحد دفتر',
+         areaServed: 'IR',
+         availableLanguage: 'Persian',
+      },
+      {
+         '@type': 'ContactPoint',
+         telephone: '02155228301',
+         contactType: 'واحد تولید',
+         areaServed: 'IR',
+         availableLanguage: 'Persian',
+      },
+      {
+         '@type': '55228301-021',
+         telephone: '02155228302',
+         contactType: 'واحد تولید',
+         areaServed: 'IR',
+         availableLanguage: 'Persian',
+      },
+      {
+         '@type': 'ContactPoint',
+         telephone: '09124242599',
+         contactType: 'واحد انبار',
          areaServed: 'IR',
          availableLanguage: 'Persian',
       },
    ],
    address: {
       '@type': 'PostalAddress',
-      streetAddress: '', // Qom Province, Qom, Imam Reza Boulevard, Ferdows Residential Commercial Complex, Unit 229, First Floor
-      addressLocality: '', // Qom, Iran
-      postalCode: '', // 000000
+      streetAddress: 'Tehran Province, Tehran, Ahan Makan',
+      addressLocality: 'Tehran, Iran',
+      postalCode: '00000000',
       areaServed: {
          '@context': 'https://schema.org',
          '@type': 'Place',
          geo: {
             '@type': 'GeoCoordinates',
-            latitude: '', // 34.6271489
-            longitude: '', // 50.8490246
+            latitude: '35.6110716',
+            longitude: '51.3870155,16',
          },
-         hasMap: '', // https://maps.app.goo.gl/RuiGssypE4p2WPrY9
+         hasMap: 'https://maps.app.goo.gl/zNAqwgcccGyVqWAx7',
       },
       addressCountry: {
          '@type': 'Country',
@@ -69,8 +109,7 @@ const corporationJsonLd = {
    },
 }
 
-// export const revalidate = 1 * 24 * 60 * 60
-export const revalidate = 0
+export const revalidate = 1 * 24 * 60 * 60
 
 const fetchData = async () => {
    await dbConnect()

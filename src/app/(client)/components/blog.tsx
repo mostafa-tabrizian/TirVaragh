@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const BlogComponent = ({ blogs }: { blogs: IBlog[] }) => {
    return (
-      <div className='mx-4 mt-14 md:mx-auto'>
+      <div className='mx-4 mt-14 md:mx-auto' id='blog'>
          <div>
             <div className='mt-7 flex items-center gap-1'>
                <span className='w-8 border-b-2 border-red-700'></span>
