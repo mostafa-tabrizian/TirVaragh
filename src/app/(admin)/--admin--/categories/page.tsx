@@ -9,6 +9,15 @@ import dbConnect from '@/lib/dbConnect'
 
 export const metadata = {
    title: 'تیرورق | پنل ادمین | دسته بندی ها',
+   robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+         index: false,
+         follow: false,
+      },
+   },
 }
 
 const getCategories = async () => {

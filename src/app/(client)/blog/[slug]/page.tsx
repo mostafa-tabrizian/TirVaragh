@@ -43,24 +43,16 @@ const getUserIp = async () => {
 export const revalidate = 1 * 24 * 60 * 60
 
 const BlogPage = async ({ params: { slug } }: { params: { slug: string } }) => {
-   // const remaining = await limiter.removeTokens(1)
+   const remaining = await limiter.removeTokens(1)
 
-   // if (remaining < 0) {
-   //    return (
-   //       <>
-   //          {langDecider(
-   //             lang,
-   //             <h1 className='mx-10 my-20 max-w-screen-sm text-center md:mx-auto'>
-   //                Sorry, you have reached the request limit. Please wait one minute and try again.
-   //             </h1>,
-   //             <h1 className='yekanBold mx-10 my-20 max-w-screen-sm text-center md:mx-auto'>
-   //                متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس
-   //                دوباره امتحان کنید
-   //             </h1>,
-   //          )}
-   //       </>
-   //    )
-   // }
+   if (remaining < 0) {
+      return (
+         <h1 className='yekanBold mx-10 my-20 max-w-screen-sm text-center md:mx-auto'>
+            متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره
+            امتحان کنید
+         </h1>
+      )
+   }
 
    const blog: IBlog = await fetchBlog(slug)
    const userIP = await getUserIp()
@@ -146,7 +138,7 @@ const BlogPage = async ({ params: { slug } }: { params: { slug: string } }) => {
                      <span>Thumbnail not found!</span>
                   )}
                   <div className='rtl flex justify-between'>
-                     <div >
+                     <div>
                         <h5 className='yekanBold text-base'></h5>
                         <h5 className='yekan1 text-sm text-slate-700'>
                            خواندن در {blog.readTime.toLocaleString('fa')} دقیقه

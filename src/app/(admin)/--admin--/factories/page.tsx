@@ -16,6 +16,15 @@ import ImageInput from './components/imageInput'
 
 export const metadata = {
    title: 'تیرورق | پنل ادمین | کارخانه ها',
+   robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+         index: false,
+         follow: false,
+      },
+   },
 }
 
 const getFactories = async () => {

@@ -5,6 +5,15 @@ import LogoutButton from './components/logoutButton'
 
 export const metadata = {
    title: 'تیرورق | پنل ادمین',
+   robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+         index: false,
+         follow: false,
+      },
+   },
 }
 
 const AdminPanel = async () => {

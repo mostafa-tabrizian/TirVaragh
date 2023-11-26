@@ -1,14 +1,14 @@
-import Image from 'next/image'
-// import limiter from '@/lib/limiter'
+import dbConnect from '@/lib/dbConnect'
+import limiter from '@/lib/limiter'
 import Blog from '@/models/blog'
 import Factory from '@/models/factory'
-
+import Image from 'next/image'
 import Script from 'next/script'
-import PriceTables from './components/priceTables'
 import About from './components/about'
-import BlogComponent from './components/blog'
-import Factories from './components/factories'
-import dbConnect from '@/lib/dbConnect'
+import PriceTables from './components/priceTables'
+import dynamic from 'next/dynamic'
+const BlogComponent = dynamic(() => import('./components/blog'))
+const Factories = dynamic(() => import('./components/factories'))
 
 export const metadata = {
    title: 'تیرورق | قیمت روز ورق کلیه کارخانه ها',
@@ -122,16 +122,16 @@ const fetchData = async () => {
 }
 
 async function Home() {
-   // const remaining = await limiter.removeTokens(2)
+   const remaining = await limiter.removeTokens(2)
 
-   // if (remaining < 0) {
-   //    return (
-   //       <h1 className='mx-10 my-20 max-w-screen-sm text-center md:mx-auto'>
-   //          متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره
-   //          امتحان کنید
-   //       </h1>
-   //    )
-   // }
+   if (remaining < 0) {
+      return (
+         <h1 className='mx-10 my-20 max-w-screen-sm text-center md:mx-auto'>
+            متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره
+            امتحان کنید
+         </h1>
+      )
+   }
 
    const { blogs, factories } = await fetchData()
 
@@ -148,7 +148,7 @@ async function Home() {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(corporationJsonLd) }}
          />
 
-         <div className='relative mx-auto aspect-[16/8] w-[80%] md:rounded-xl'>
+         <div className='relative mx-auto aspect-[16/8] md:w-[80%] md:rounded-xl'>
             <Image
                className='object-cover md:rounded-xl'
                fill
@@ -164,7 +164,7 @@ async function Home() {
 
          {blogs.length ? <BlogComponent blogs={JSON.parse(JSON.stringify(blogs))} /> : ''}
 
-         <Factories factories={JSON.parse(JSON.stringify(factories))} />
+         {factories.length ? <Factories factories={JSON.parse(JSON.stringify(factories))} /> : ''}
       </>
    )
 }

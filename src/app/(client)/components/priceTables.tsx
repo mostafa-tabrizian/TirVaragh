@@ -120,7 +120,11 @@ const PriceTables = () => {
          >
             <div className='relative top-1/2 h-1/2 w-full -translate-y-1/2 bg-slate-100 md:m-auto md:h-[80%] md:w-[60%] md:rounded-xl'>
                <div className='w-full text-end'>
-                  <button className='p-3' onClick={() => setChartData(null)}>
+                  <button
+                     className='p-3'
+                     onClick={() => setChartData(null)}
+                     aria-label='close chart'
+                  >
                      <svg
                         className='h-8 w-8 text-black'
                         fill='none'
@@ -136,7 +140,7 @@ const PriceTables = () => {
                      </svg>
                   </button>
                </div>
-               <span className='block text-center text-base font-semibold'>
+               <span className='block text-center text-sm font-semibold md:text-base'>
                   نمودار قیمت {chartData?.title}
                </span>
                <Chart data={chartData?.price || null} />
@@ -231,14 +235,14 @@ const PriceTables = () => {
                   ) : (
                      <FormControl fullWidth>
                         <Select
-                           labelId='demo-simple-select-label'
-                           id='demo-simple-select'
+                           labelId='مرتب سازی'
+                           id='sort-products'
                            value={sort}
                            displayEmpty
                            onChange={(e) => setSort(e.target.value)}
                         >
                            <MenuItem value=''>
-                              <span className='text-base text-slate-500'>مرتب سازی</span>
+                              <span className='text-sm text-slate-500 md:text-base'>مرتب سازی</span>
                            </MenuItem>
                            <MenuItem value='cheapest'>ارزان ترین</MenuItem>
                            <MenuItem value='mostExpensive'>گران ترین</MenuItem>
@@ -275,14 +279,14 @@ const PriceTables = () => {
                   ) : (
                      <FormControl fullWidth>
                         <Select
-                           labelId='demo-simple-select-label'
-                           id='demo-simple-select'
+                           labelId='دسته بندی محصولات'
+                           id='category'
                            value={category}
                            displayEmpty
                            onChange={(e) => setCategory(e.target.value)}
                         >
                            <MenuItem value=''>
-                              <span className='text-base text-slate-500'>دسته بندی</span>
+                              <span className='text-sm text-slate-500 md:text-base'>دسته بندی</span>
                            </MenuItem>
                            {categories?.map((category, idx) => {
                               return (
@@ -322,14 +326,14 @@ const PriceTables = () => {
                   ) : (
                      <FormControl fullWidth>
                         <Select
-                           labelId='demo-simple-select-label'
-                           id='demo-simple-select'
+                           labelId='کارخانه'
+                           id='product-factories'
                            value={factoryFilter}
                            displayEmpty
                            onChange={(e) => setFactoryFilter(e.target.value)}
                         >
                            <MenuItem value=''>
-                              <span className='text-base text-slate-500'>کارخانه</span>
+                              <span className='text-sm text-slate-500 md:text-base'>کارخانه</span>
                            </MenuItem>
                            {factories?.map((factory, idx) => {
                               return (
@@ -443,17 +447,24 @@ const PriceTables = () => {
                                        <div className='mb-6 mt-3 rounded-xl bg-white'>
                                           <table className='w-full border-separate px-2'>
                                              <tr>
-                                                <th className='yekan1 p-2 font-bold'>
+                                                <th
+                                                   scope='col'
+                                                   className='yekan1 p-2 text-right font-bold'
+                                                >
                                                    عنوان{' '}
                                                    <span className='text-xs'>
                                                       (برای جزئیات بیشتر کلیک کنید)
                                                    </span>
                                                 </th>
-                                                <th className='yekan1 p-2 font-bold'>
+                                                <th scope='col' className='yekan1 p-2 font-bold'>
                                                    قیمت <span className='text-xs'>(تومان)</span>
                                                 </th>
-                                                <th className='yekan1 p-2 font-bold'>نوسان</th>
-                                                <th className='yekan1 p-2 font-bold'>نمودار</th>
+                                                <th scope='col' className='yekan1 p-2 font-bold'>
+                                                   نوسان
+                                                </th>
+                                                <th scope='col' className='yekan1 p-2 font-bold'>
+                                                   نمودار
+                                                </th>
                                              </tr>
 
                                              {sortedProducts?.map((product, idx) => {

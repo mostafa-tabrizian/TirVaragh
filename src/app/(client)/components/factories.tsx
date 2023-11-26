@@ -11,7 +11,7 @@ const Factories = ({ factories }: { factories: IFactory[] }) => {
             </div>
             <div>
                <h2 className='yekanExtraBold mt-2 text-3xl'>کارخانجات ورق</h2>
-               <div className='flex items-center justify-center gap-3 mt-7 flex-wrap'>
+               <div className='mt-7 flex flex-wrap items-center justify-center gap-3'>
                   {factories.map((factory) => {
                      return (
                         <div key={factory._id} className='relative aspect-video h-20'>

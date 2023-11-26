@@ -10,6 +10,15 @@ export const revalidate = 0
 
 export const metadata = {
    title: 'پنل ادمین | جدول وبلاگ',
+   robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+         index: false,
+         follow: false,
+      },
+   },
 }
 
 const getBlogs = async () => {
@@ -25,15 +34,15 @@ const Adminblogs = async () => {
    return (
       <div className='relative mx-6 my-16 max-w-screen-lg space-y-10 md:mx-auto'>
          <>
-         <Breadcrumbs aria-label='breadcrumb'>
-                  <Link className='text-gray-400' href='/'>
-                     تیرورق
-                  </Link>
-                  <Link className='text-gray-400' href='/--admin--'>
-                     ادمین
-                  </Link>
-                  <h5 className='font-semibold'>وبلاگ</h5>
-               </Breadcrumbs>
+            <Breadcrumbs aria-label='breadcrumb'>
+               <Link className='text-gray-400' href='/'>
+                  تیرورق
+               </Link>
+               <Link className='text-gray-400' href='/--admin--'>
+                  ادمین
+               </Link>
+               <h5 className='font-semibold'>وبلاگ</h5>
+            </Breadcrumbs>
 
             <Link href='/--admin--/blogs/new'>
                <button className='fixed bottom-10 right-5 z-10 rounded-full border-2 border-indigo-500 bg-white p-3'>

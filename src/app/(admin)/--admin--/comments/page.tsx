@@ -10,6 +10,15 @@ export const revalidate = 0
 
 export const metadata = {
    title: 'پنل ادمین | کامنت ها',
+   robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+         index: false,
+         follow: false,
+      },
+   },
 }
 
 const getBlogs = async () => {

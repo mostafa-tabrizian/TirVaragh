@@ -72,7 +72,7 @@ const Footer = () => {
                         <li className='block'>
                            <a
                               aria-label='تماس تلفنی'
-                              id='phone_call'
+                              id='phone_call_1'
                               href='tel:+2191692222'
                               className='flex items-center'
                            >
@@ -92,9 +92,9 @@ const Footer = () => {
                         </li>
                      </ul>
                   </div>
-                  <h4 className='yekan1 mb-6 text-center text-sm font-bold text-slate-500'>
+                  <p className='yekan1 mb-6 text-center text-sm font-bold text-slate-500'>
                      تامین کننده ورق کلیه کارخانه ها
-                  </h4>
+                  </p>
                   <div id='about-us' className='space-y-5'>
                      <p className='text-justify text-sm leading-7 text-slate-500 md:text-center'>
                         <strong>آدرس: </strong>بزرگراه آزادگان مجتمع آهن مکان فاز ده مرکزی پلاک 2255{' '}
@@ -115,8 +115,7 @@ const Footer = () => {
 
                      <p className='text-center text-sm leading-7 text-slate-500'>
                         <a
-                           aria-label='اینستاگرام'
-                           id='instagram'
+                           id='instagram_2'
                            rel='noreferrer'
                            className='text-sm font-semibold text-red-600'
                            href='https://www.instagram.com/sgpsteelco'
@@ -126,7 +125,6 @@ const Footer = () => {
                         </a>
                         ،{' '}
                         <a
-                           aria-label='تلگرام'
                            id='telegram'
                            rel='noreferrer'
                            className='text-sm font-semibold text-red-600'
@@ -137,8 +135,7 @@ const Footer = () => {
                         </a>{' '}
                         و یا از طریق شماره های{' '}
                         <a
-                           aria-label='تماس تلفنی'
-                           id='phone_call'
+                           id='phone_call_2'
                            rel='noreferrer'
                            className='text-sm font-semibold tracking-widest text-red-600'
                            href='tel:+2191692222'
@@ -147,8 +144,7 @@ const Footer = () => {
                         </a>
                         ،{' '}
                         <a
-                           aria-label='تماس تلفنی'
-                           id='phone_call'
+                           id='phone_call_3'
                            rel='noreferrer'
                            className='text-sm font-semibold tracking-widest text-red-600'
                            href='tel:+2155445868'
@@ -157,8 +153,7 @@ const Footer = () => {
                         </a>
                         و{' '}
                         <a
-                           aria-label='تماس تلفنی'
-                           id='phone_call'
+                           id='phone_call_4'
                            rel='noreferrer'
                            className='text-sm font-semibold tracking-widest text-red-600'
                            href='tel:+2155445660'
