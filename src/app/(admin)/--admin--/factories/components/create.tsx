@@ -10,6 +10,7 @@ import filesTypeValidation from '@/lib/filesTypeValidation'
 import Button from '@mui/material/Button'
 import Image from 'next/image'
 import axios from 'axios'
+import Switch from '@mui/material/Switch'
 
 const CategoryNewInput = () => {
    const router = useRouter()
@@ -45,7 +46,7 @@ const CategoryNewInput = () => {
    }
 
    const handleSubmit = async (
-      { name }: { name: string },
+      { name, active }: { name: string; active: boolean },
       { resetForm }: { resetForm: () => void },
    ) => {
       try {
@@ -55,7 +56,7 @@ const CategoryNewInput = () => {
 
          if (!imageKey) return false
 
-         const payload = { name: name.trim(), logo: imageKey }
+         const payload = { name: name.trim(), logo: imageKey, active }
 
          const res = await fetch('/api/--admin--/factory', {
             method: 'POST',
@@ -114,6 +115,7 @@ const CategoryNewInput = () => {
          initialValues={{
             name: '',
             logo: '',
+            active: false,
          }}
          validationSchema={CategoryValidation}
          onSubmit={handleSubmit}
@@ -170,6 +172,17 @@ const CategoryNewInput = () => {
                   ) : (
                      ''
                   )}
+               </div>
+
+               <div className='text-center'>
+                  <span className='block text-slate-700 text-xs'>فعال</span>
+                  <Switch
+                     disabled={isSubmitting}
+                     checked={values.active}
+                     name='active'
+                     color='success'
+                     onChange={() => setFieldValue('active', !values.active)}
+                  />
                </div>
 
                <button type='submit'>

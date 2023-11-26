@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import FactoryNewInput from './components/create'
 import DeleteButton from './components/delete'
-import NameEdit from './components/nameEdit'
+import NameActiveEdit from './components/nameActiveEdit'
 
 import Factory from '@/models/factory'
 import Product from '@/models/product'
@@ -63,7 +63,10 @@ const AdminFactories = async () => {
             <div className='rtl'>
                <div className='mb-3 grid grid-cols-6 items-center justify-between rounded-lg bg-white p-5 py-2 text-center'>
                   <p className='col-span-1 flex'>لوگو</p>
-                  <p className='col-span-3 flex'>نام</p>
+                  <div className='col-span-3 grid grid-cols-3'>
+                     <p className='col-span-2 flex'>نام</p>
+                     <p className='col-span-1 flex'>فعال</p>
+                  </div>
                   <p className='col-span-1'>محصولات</p>
                </div>
 
@@ -93,7 +96,8 @@ const AdminFactories = async () => {
                               ) : (
                                  <ImageInput factoryId={String(factory._id)} />
                               )}
-                              <NameEdit params={JSON.parse(JSON.stringify({ ...factory }))} />
+                              <NameActiveEdit params={JSON.parse(JSON.stringify({ ...factory }))} />
+
                               <p>{productsLength}</p>
                               <DeleteButton
                                  params={JSON.parse(

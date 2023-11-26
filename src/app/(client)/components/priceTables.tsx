@@ -114,11 +114,11 @@ const PriceTables = () => {
          <div
             style={{
                opacity: chartData ? '100%' : '0%',
-               zIndex: chartData ? '10' : '-10',
+               zIndex: chartData ? '30' : '-10',
             }}
             className='fixed left-0 top-0 h-full w-full bg-gray-800/60 backdrop-blur-sm transition-opacity duration-300'
          >
-            <div className='relative top-1/2 h-1/2 w-full -translate-y-1/2 bg-slate-100'>
+            <div className='relative top-1/2 h-1/2 w-full -translate-y-1/2 bg-slate-100 md:m-auto md:h-[80%] md:w-[60%] md:rounded-xl'>
                <div className='w-full text-end'>
                   <button className='p-3' onClick={() => setChartData(null)}>
                      <svg
@@ -193,7 +193,7 @@ const PriceTables = () => {
             </div>
          </div>
 
-         <div className='mx-4 md:mx-auto md:mt-24 min-h-[50vh]' id='price-table'>
+         <div className='mx-4 min-h-[50vh] md:mx-auto md:mt-24' id='price-table'>
             <div>
                <div className='flex items-center gap-1'>
                   <span className='w-8 border-b-2 border-red-700'></span>
@@ -442,7 +442,7 @@ const PriceTables = () => {
                                     ) ? (
                                        <div className='mb-6 mt-3 rounded-xl bg-white'>
                                           <table className='w-full border-separate px-2'>
-                                             <tr >
+                                             <tr>
                                                 <th className='yekan1 p-2 font-bold'>
                                                    عنوان{' '}
                                                    <span className='text-xs'>
@@ -486,7 +486,6 @@ const PriceTables = () => {
                                                                   ? 'rgba(255, 232, 232, 0.38)'
                                                                   : 'none',
                                                          }}
-                                                         
                                                       >
                                                          <td className='yekan1 p-2 font-bold'>
                                                             {product.title}
@@ -567,10 +566,7 @@ const PriceTables = () => {
                                                                ''
                                                             )}
                                                          </td>
-                                                         <td
-                                                            onClick={() => setChartData(product)}
-                                                            
-                                                         >
+                                                         <td onClick={() => setChartData(product)}>
                                                             <svg
                                                                className='mx-auto h-6 w-6 text-black'
                                                                width='24'

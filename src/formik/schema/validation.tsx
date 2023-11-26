@@ -1,5 +1,5 @@
 import * as yup from 'yup'
-import * as rule from './rules'
+// import * as rule from './rules'
 
 export const ProductForm = yup.object().shape({
    title: yup.string().required('عنوان محصول را وارد کنید'),

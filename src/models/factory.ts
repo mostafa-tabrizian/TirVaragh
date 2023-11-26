@@ -4,6 +4,7 @@ export interface IFactory {
    _id: string
    name: string
    logo: string
+   active: boolean
    createdAt: Date
    updatedAt: Date
 }
@@ -13,7 +14,11 @@ const FactorySchema = new mongoose.Schema({
       type: String,
       unique: true,
    },
-   logo: String
+   logo: String,
+   active: {
+      type: Boolean,
+      default: false
+   }
 })
 
 FactorySchema.set('timestamps', true)

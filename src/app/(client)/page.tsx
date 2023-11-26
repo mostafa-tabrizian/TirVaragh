@@ -116,7 +116,7 @@ export const revalidate = 1 * 24 * 60 * 60
 const fetchData = async () => {
    await dbConnect()
    const blogs = await Blog.find({ active: true }).sort({ createdAt: -1 })
-   const factories = await Factory.find().sort({ createdAt: -1 })
+   const factories = await Factory.find({ active: true }).sort({ createdAt: -1 })
 
    return { blogs, factories }
 }

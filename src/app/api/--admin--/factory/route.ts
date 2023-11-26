@@ -5,10 +5,10 @@ import Factory from '@/models/factory'
 
 export async function POST(req: Request) {
    try {
-      const { name, logo } = await req.json()
+      const { name, logo, active } = await req.json()
       await dbConnect()
 
-      const factory = await Factory.create({ name, logo })
+      const factory = await Factory.create({ name, logo, active })
 
       return NextResponse.json(factory)
    } catch (error) {
@@ -17,12 +17,11 @@ export async function POST(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-   const { _id, name } = await req.json()
+   const { _id, name, active } = await req.json()
 
    try {
       await dbConnect()
-      const factory = await Factory.findOneAndUpdate({ _id }, { name })
-
+      const factory = await Factory.findOneAndUpdate({ _id }, { name, active })
       return NextResponse.json({ factory })
    } catch (error) {
       return NextResponse.json({ status: 500, message: error })

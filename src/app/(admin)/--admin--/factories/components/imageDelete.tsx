@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
@@ -10,6 +11,8 @@ import Dialog from '@mui/material/Dialog'
 const ImageDelete = ({ imageKey, factoryId }: { imageKey: string; factoryId: string }) => {
    const [loading, setLoading] = useState(false)
    const [confirmation, setConfirmation] = useState(false)
+
+   const router = useRouter()
 
    const handleDelete = async () => {
       setConfirmation(false)
@@ -54,6 +57,7 @@ const ImageDelete = ({ imageKey, factoryId }: { imageKey: string; factoryId: str
          if (!res.ok) throw new Error()
 
          toast.success('تصویر با موفقیت حذف شد.')
+         router.refresh()
       } catch (err) {
          toast.error('در حذف تصویر خطایی رخ داد!')
          console.error(err)
@@ -66,7 +70,7 @@ const ImageDelete = ({ imageKey, factoryId }: { imageKey: string; factoryId: str
             {loading ? (
                <div className='py-2'>
                   <svg
-                     className='h-5 w-5 ml-2 animate-spin text-white'
+                     className='ml-2 h-5 w-5 animate-spin text-white'
                      xmlns='http://www.w3.org/2000/svg'
                      fill='none'
                      viewBox='0 0 24 24'

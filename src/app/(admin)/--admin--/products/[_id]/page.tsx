@@ -16,7 +16,7 @@ const fetchData = async (_id: string) => {
       product = await Product.findOne({ _id })
    }
    const categories = await Category.find()
-   const factories = await Factory.find()
+   const factories = await Factory.find({ active: true })
 
    return { product, categories, factories }
 }
