@@ -509,7 +509,7 @@ const PriceTables = () => {
                                                          </td>
                                                          <td className='yekan1 m-auto p-2 text-center font-bold'>
                                                             {fluctuation && fluctuation > 0 ? (
-                                                               <div className='flex items-center gap-x-1 text-green-600'>
+                                                               <div className='flex items-center justify-center gap-x-1 text-green-600'>
                                                                   {parseInt(
                                                                      // @ts-ignore
                                                                      fluctuation,
@@ -538,7 +538,7 @@ const PriceTables = () => {
                                                             )}
 
                                                             {fluctuation && fluctuation < 0 ? (
-                                                               <div className='flex items-center gap-x-1 text-red-500'>
+                                                               <div className='flex items-center justify-center gap-x-1 text-red-500'>
                                                                   {parseInt(
                                                                      // @ts-ignore
                                                                      fluctuation,
