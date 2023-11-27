@@ -159,6 +159,8 @@ const PriceTables = () => {
             </div>
             <div className='grid grid-cols-2 gap-x-3 md:mt-8 md:grid-cols-4 md:gap-10'>
                <button onClick={() => setCategory('655a4dc33996e920800f1521')}>
+                  <a href="/#price-table">
+
                   <Image
                      className='rounded-xl object-contain mix-blend-multiply'
                      src={'/category/blackSheet.jpg'}
@@ -166,8 +168,11 @@ const PriceTables = () => {
                      width={460}
                      height={260}
                   />
+                  </a>
                </button>
                <button onClick={() => setCategory('655b731798d59018976e66a3')}>
+                  <a href="/#price-table">
+
                   <Image
                      className='rounded-xl object-contain mix-blend-multiply'
                      src={'/category/oiledSheet.jpg'}
@@ -175,8 +180,11 @@ const PriceTables = () => {
                      width={460}
                      height={260}
                   />
+                  </a>
                </button>
                <button onClick={() => setCategory('655c5f85c48315aebd48442e')}>
+                  <a href="/#price-table">
+
                   <Image
                      className='rounded-xl object-contain mix-blend-multiply'
                      src={'/category/galvanizedSheet.jpg'}
@@ -184,8 +192,11 @@ const PriceTables = () => {
                      width={460}
                      height={260}
                   />
+                  </a>
                </button>
                <button onClick={() => setCategory('655c5f94c48315aebd484435')}>
+                  <a href="/#price-table">
+
                   <Image
                      className='rounded-xl object-contain mix-blend-multiply'
                      src={'/category/spiraSheet.jpg'}
@@ -193,6 +204,7 @@ const PriceTables = () => {
                      width={460}
                      height={260}
                   />
+                  </a>
                </button>
             </div>
          </div>
@@ -349,9 +361,9 @@ const PriceTables = () => {
             </div>
 
             {isLoadingProducts || isLoadingFactories ? (
-               <div className='mt-5 w-full rounded-xl bg-white py-5'>
+               <div className='mt-5 w-full rounded-xl bg-white py-32'>
                   <svg
-                     className='mx-auto h-9 w-9 animate-spin text-red-800'
+                     className='mx-auto h-9 w-9 animate-spin text-slate-800'
                      xmlns='http://www.w3.org/2000/svg'
                      fill='none'
                      viewBox='0 0 24 24'
@@ -502,9 +514,15 @@ const PriceTables = () => {
                                                             {product.title}
                                                          </td>
                                                          <td className='yekan1 p-2 text-center font-bold'>
-                                                            {/* @ts-ignore */}
-                                                            {parseInt(price.value).toLocaleString(
-                                                               'fa',
+                                                            {product.inStock ? (
+                                                               // @ts-ignore
+                                                               parseInt(price.value).toLocaleString(
+                                                                  'fa',
+                                                               )
+                                                            ) : (
+                                                               <span className='font-normal text-slate-400 text-base'>
+                                                                  ناموجود
+                                                               </span>
                                                             )}
                                                          </td>
                                                          <td className='yekan1 m-auto p-2 text-center font-bold'>

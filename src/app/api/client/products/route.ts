@@ -10,11 +10,12 @@ export async function GET(req: NextRequest) {
 
     if (category) {
         const products = await Product.find({
-            category
+            category,
+            active: true
         })
         return NextResponse.json(products)
     }
 
-    const products = await Product.find()
+    const products = await Product.find({ active: true })
     return NextResponse.json(products)
 }

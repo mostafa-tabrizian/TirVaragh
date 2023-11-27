@@ -25,7 +25,9 @@ const CategoryNewInput = () => {
          const resData = await res.json()
 
          if (!res.ok) throw new Error()
-         else if (resData.status == 500) {
+         else if (resData.status == 11000) {
+            return toast.warning('نام دسته بندی تکراری می‌باشد')
+         } else if (resData.status == 500) {
             console.error(resData.message)
             return toast.error('خطا در برقراری ارتباط')
          }

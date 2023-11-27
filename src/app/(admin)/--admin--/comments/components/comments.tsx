@@ -81,10 +81,15 @@ const Comments = ({ blogs }: { blogs: IBlog[] }) => {
          {blogs
             .sort((a, b) => new Date(b.modifiedAt).getDate() - new Date(a.modifiedAt).getDate())
             .map((blog) => {
+               
+               // no comment in this blog match the filter
+               if (filter !== null && !blog.comments.some((comment) => comment.approval == filter))
+                  return
+
                return (
                   <>
-                     <p className='yekanBold rtl pt-5 text-center text-lg text-slate-700 underline'>
-                        {blog.title}
+                     <p className='yekanBold rtl pt-5 text-center text-lg text-slate-700'>
+                        {blog.slug} | {blog.title}
                      </p>
                      {blog.comments
                         .sort(

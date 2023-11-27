@@ -4,11 +4,7 @@ import { toast } from 'react-toastify'
 import { Formik, Form } from 'formik'
 import { CategoryValidation } from '@/formik/schema/validation'
 
-const NameEdit = ({
-   params,
-}: {
-   params: { _doc: { _id: string; name: string } }
-}) => {
+const NameEdit = ({ params }: { params: { _doc: { _id: string; name: string } } }) => {
    const name = params._doc.name.charAt(0).toUpperCase() + params._doc.name.slice(1)
 
    const handleSubmit = async ({ name }: { name: string }) => {
@@ -28,7 +24,9 @@ const NameEdit = ({
          const resData = await res.json()
 
          if (!res.ok) throw new Error()
-         else if (resData.status == 500) {
+         else if (resData.status == 11000) {
+            return toast.warning('نام دسته بندی تکراری می‌باشد')
+         } else if (resData.status == 500) {
             console.error(resData.message)
             return toast.error('خطا در برقراری ارتباط')
          }
@@ -48,7 +46,7 @@ const NameEdit = ({
       >
          {({ values, setFieldValue, isSubmitting, errors, touched, submitForm }) => (
             <Form className='rtl col-span-4 w-full items-start'>
-               <div >
+               <div>
                   <div className='ml-2 space-y-1 text-right'>
                      <input
                         disabled={isSubmitting}

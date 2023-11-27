@@ -14,6 +14,8 @@ import Image from 'next/image'
 import ImageDelete from './components/imageDelete'
 import ImageInput from './components/imageInput'
 
+export const revalidate = 0
+
 export const metadata = {
    title: 'تیرورق | پنل ادمین | کارخانه ها',
    robots: {

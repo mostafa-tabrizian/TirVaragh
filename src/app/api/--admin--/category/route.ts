@@ -12,7 +12,12 @@ export async function POST(req: Request) {
 
       return NextResponse.json(factory)
    } catch (error) {
-      return NextResponse.json({ status: 500, message: error })
+      if ((error as { code: number }).code == 11000) {
+         return NextResponse.json({ status: 11000 })
+      } else {
+         console.error('category/POST', error);
+         return NextResponse.json({ status: 500, message: error })
+      }
    }
 }
 
@@ -27,7 +32,12 @@ export async function PATCH(req: Request) {
          category,
       })
    } catch (error) {
-      return NextResponse.json({ status: 500, message: error })
+      if ((error as { code: number }).code == 11000) {
+         return NextResponse.json({ status: 11000 })
+      } else {
+         console.error('category/PATCH', error);
+         return NextResponse.json({ status: 500, message: error })
+      }
    }
 }
 
@@ -40,7 +50,7 @@ export async function DELETE(req: Request) {
 
       return NextResponse.json(category)
    } catch (error) {
-      console.error('Error deleting category:', error)
+      console.error('category/DELETE:', error)
       return NextResponse.json({ status: 500, message: error })
    }
 }

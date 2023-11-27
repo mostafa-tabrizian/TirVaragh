@@ -25,7 +25,7 @@ const BlogsTable = ({ blogs }: { blogs: IBlog[] }) => {
             header: 'آی‌دی',
             cell: (info) => {
                const value = info.getValue() as string
-               return <span className='text-sm text-slate-300 underline'>{value.slice(-4)}</span>
+               return <span className='text-sm text-slate-500 underline'>{value.slice(-4)}</span>
             },
          },
          {

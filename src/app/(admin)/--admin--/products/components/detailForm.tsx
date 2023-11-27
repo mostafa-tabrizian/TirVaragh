@@ -3,6 +3,7 @@
 import { memo } from 'react'
 import { Formik, Form } from 'formik'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 import { IProduct } from '@/models/product'
 
@@ -24,6 +25,8 @@ const DetailForm = memo(
       categories: ICategory[]
       factories: IFactory[]
    }) => {
+      const router = useRouter()
+
       const handleSubmit = async (
          values: {
             active: boolean
@@ -60,7 +63,42 @@ const DetailForm = memo(
             }
 
             toast.success('اطلاعات محصول با موفقیت ثبت گردید.')
-            return resetForm()
+
+            if (addingNewProduct) resetForm()
+            else router.refresh()
+         } catch (err) {
+            toast.error('خطا در برقراری ارتباط. لطفا مجدد تلاش کنید.')
+            return console.error(err)
+         }
+      }
+
+      const handleDelete = async () => {
+         const toast = await import('react-toastify').then((mod) => mod.toast)
+
+         try {
+            toast.info('در حال حذف محصول...')
+
+            const payload = {
+               _id: product._id,
+            }
+
+            const res = await fetch('/api/--admin--/product', {
+               method: 'DELETE',
+               body: JSON.stringify(payload),
+            })
+
+            const resData = await res.json()
+
+            if (!res.ok) throw new Error()
+            else if (resData.status == 500) {
+               console.error(resData.message)
+               return toast.error('خطا در برقراری ارتباط')
+            }
+
+            toast.success('محصول با موفقیت حذف گردید.')
+            fetch('/api/--admin--/revalidate?path=/')
+            router.push('/--admin--/products')
+            router.refresh()
          } catch (err) {
             toast.error('خطا در برقراری ارتباط. لطفا مجدد تلاش کنید.')
             return console.error(err)
@@ -299,7 +337,7 @@ const DetailForm = memo(
                   <button
                      type='submit'
                      disabled={isSubmitting}
-                     className='w-full rounded-lg border-2 border-green-600'
+                     className='w-full rounded-lg border-2 border-green-600 transition-shadow hover:shadow-md hover:shadow-green-600/40'
                   >
                      {isSubmitting ? (
                         <svg
@@ -326,6 +364,42 @@ const DetailForm = memo(
                         'ذخیره'
                      )}
                   </button>
+
+                  {addingNewProduct ? (
+                     ''
+                  ) : (
+                     <button
+                        type='button'
+                        disabled={isSubmitting}
+                        onClick={handleDelete}
+                        className='w-full rounded-lg border-2 border-rose-300 transition-shadow hover:shadow-md hover:shadow-rose-300/40'
+                     >
+                        {isSubmitting ? (
+                           <svg
+                              className='mx-auto h-7 w-7 animate-spin text-green-700'
+                              xmlns='http://www.w3.org/2000/svg'
+                              fill='none'
+                              viewBox='0 0 24 24'
+                           >
+                              <circle
+                                 className='opacity-25'
+                                 cx='12'
+                                 cy='12'
+                                 r='10'
+                                 stroke='currentColor'
+                                 strokeWidth='4'
+                              ></circle>
+                              <path
+                                 className='opacity-75'
+                                 fill='currentColor'
+                                 d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                              ></path>
+                           </svg>
+                        ) : (
+                           'حذف'
+                        )}
+                     </button>
+                  )}
                </Form>
             )}
          </Formik>

@@ -11,6 +11,8 @@ const getProducts = async () => {
    return await Product.find()
 }
 
+export const revalidate = 0
+
 export const metadata = {
    title: 'تیرورق | پنل ادمین | محصولات',
    robots: {

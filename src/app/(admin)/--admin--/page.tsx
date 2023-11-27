@@ -3,6 +3,8 @@ import Link from 'next/link'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import LogoutButton from './components/logoutButton'
 
+export const revalidate = 0
+
 export const metadata = {
    title: 'تیرورق | پنل ادمین',
    robots: {

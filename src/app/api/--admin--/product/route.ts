@@ -119,3 +119,17 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ status: 500, message: error })
    }
 }
+
+export async function DELETE(req: Request) {
+   try {
+      const { _id } = await req.json()
+
+      await dbConnect()
+      const product = await Product.findOneAndDelete({ _id })
+
+      return NextResponse.json(product)
+   } catch (error) {
+      console.error('Error deleting category:', error)
+      return NextResponse.json({ status: 500, message: error })
+   }
+}

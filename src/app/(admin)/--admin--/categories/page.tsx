@@ -7,6 +7,8 @@ import Product from '@/models/product'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import dbConnect from '@/lib/dbConnect'
 
+export const revalidate = 0
+
 export const metadata = {
    title: 'تیرورق | پنل ادمین | دسته بندی ها',
    robots: {
