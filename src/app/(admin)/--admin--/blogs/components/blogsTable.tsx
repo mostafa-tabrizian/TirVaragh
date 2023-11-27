@@ -25,7 +25,11 @@ const BlogsTable = ({ blogs }: { blogs: IBlog[] }) => {
             header: 'آی‌دی',
             cell: (info) => {
                const value = info.getValue() as string
-               return <span className='text-sm text-slate-500 underline'>{value.slice(-4)}</span>
+               return (
+                  <Link href={`/--admin--/blogs/${value}`}>
+                     <span className='text-sm text-slate-500 underline'>{value.slice(-4)}</span>
+                  </Link>
+               )
             },
          },
          {
@@ -102,11 +106,7 @@ const BlogsTable = ({ blogs }: { blogs: IBlog[] }) => {
             header: 'اسلاگ',
             cell: (info) => {
                const value = info.getValue() as string
-               return (
-                  <Link href={`/--admin--/blogs/${value}`}>
-                     <span className='text-sm text-slate-500'>{value}</span>
-                  </Link>
-               )
+               return <span className='text-sm text-slate-500'>{value}</span>
             },
          },
          {
@@ -172,7 +172,7 @@ const BlogsTable = ({ blogs }: { blogs: IBlog[] }) => {
                   </tr>
                ))}
             </thead>
-            <tbody >
+            <tbody>
                {table.getRowModel().rows.map((row) => {
                   return (
                      <tr key={row.id} className='border-b border-slate-300 bg-white'>

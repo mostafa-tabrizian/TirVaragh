@@ -24,9 +24,14 @@ const SlugInput = memo(
                type='text'
                placeholder='slug-for-this-blog'
             />
+            <div className='rounded-lg border-2 border-yellow-400 p-2 text-right'>
+               <span className='text-xs text-yellow-800'>
+                  ⚠️ اسلاگ پس از ثبت قابل تغییر نمی‌باشد
+               </span>
+            </div>
             {slug.length ? (
-               <span className='yekan1 text-sm text-slate-500'>
-                  پیش نمایش در لینک: <br /> {encodeURI(slug.trim().replaceAll(' ', '-'))}/
+               <span className='yekan1 text-xs text-slate-500'>
+                  پیش نمایش اسلاگ در لینک: <br /> {encodeURI(slug.trim().replaceAll(' ', '-'))}/
                </span>
             ) : (
                ''

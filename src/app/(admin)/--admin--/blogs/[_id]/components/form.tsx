@@ -13,11 +13,11 @@ import ThumbnailInput from './thumbnailInput'
 import TitleInput from './titleInput'
 
 const Form = ({
-   data: { authorId, slugQuery, blogData },
+   data: { authorId, _idQuery, blogData },
 }: {
-   data: { authorId: string; slugQuery: string; blogData: IBlog }
+   data: { authorId: string; _idQuery: string; blogData: IBlog }
 }) => {
-   const newBlog = slugQuery == 'new'
+   const newBlog = _idQuery == 'new'
    const blog = blogData
 
    const [loading, setLoading] = useState(false)
@@ -25,7 +25,7 @@ const Form = ({
    const [thumbnail, setThumbnail] = useState<string | File | null>(newBlog ? null : blog.thumbnail)
    const [active, setActive] = useState(newBlog ? false : blog.active)
    const [title, setTitle] = useState(newBlog ? '' : blog.title)
-   const [slug, setSlug] = useState(newBlog ? '' : slugQuery)
+   const [slug, setSlug] = useState(newBlog ? '' : blog.slug)
    const [thumbnailPreview, setThumbnailPreview] = useState<FileList | null>(null)
    const [readTime, setReadTime] = useState(newBlog ? 0 : blog.readTime)
 

@@ -1,13 +1,10 @@
 'use client'
 
+import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
+import Dialog from '@mui/material/Dialog'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useRouter } from 'next/navigation'
-
-import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
-
-import dynamic from 'next/dynamic'
-import Dialog from '@mui/material/Dialog'
 
 const ImageDelete = ({
    setThumbnail,
