@@ -159,51 +159,47 @@ const PriceTables = () => {
             </div>
             <div className='grid grid-cols-2 gap-x-3 md:mt-8 md:grid-cols-4 md:gap-10'>
                <button onClick={() => setCategory('655a4dc33996e920800f1521')}>
-                  <a href="/#price-table">
-
-                  <Image
-                     className='rounded-xl object-contain mix-blend-multiply'
-                     src={'/category/blackSheet.jpg'}
-                     alt='ورق سیاه'
-                     width={460}
-                     height={260}
-                  />
+                  <a href='/#price-table'>
+                     <Image
+                        className='rounded-xl object-contain mix-blend-multiply'
+                        src={'/category/blackSheet.jpg'}
+                        alt='ورق سیاه'
+                        width={460}
+                        height={260}
+                     />
                   </a>
                </button>
                <button onClick={() => setCategory('655b731798d59018976e66a3')}>
-                  <a href="/#price-table">
-
-                  <Image
-                     className='rounded-xl object-contain mix-blend-multiply'
-                     src={'/category/oiledSheet.jpg'}
-                     alt='ورق روغنی'
-                     width={460}
-                     height={260}
-                  />
+                  <a href='/#price-table'>
+                     <Image
+                        className='rounded-xl object-contain mix-blend-multiply'
+                        src={'/category/oiledSheet.jpg'}
+                        alt='ورق روغنی'
+                        width={460}
+                        height={260}
+                     />
                   </a>
                </button>
                <button onClick={() => setCategory('655c5f85c48315aebd48442e')}>
-                  <a href="/#price-table">
-
-                  <Image
-                     className='rounded-xl object-contain mix-blend-multiply'
-                     src={'/category/galvanizedSheet.jpg'}
-                     alt='ورق گالوانیزه'
-                     width={460}
-                     height={260}
-                  />
+                  <a href='/#price-table'>
+                     <Image
+                        className='rounded-xl object-contain mix-blend-multiply'
+                        src={'/category/galvanizedSheet.jpg'}
+                        alt='ورق گالوانیزه'
+                        width={460}
+                        height={260}
+                     />
                   </a>
                </button>
                <button onClick={() => setCategory('655c5f94c48315aebd484435')}>
-                  <a href="/#price-table">
-
-                  <Image
-                     className='rounded-xl object-contain mix-blend-multiply'
-                     src={'/category/spiraSheet.jpg'}
-                     alt='ورق اسپیره'
-                     width={460}
-                     height={260}
-                  />
+                  <a href='/#price-table'>
+                     <Image
+                        className='rounded-xl object-contain mix-blend-multiply'
+                        src={'/category/spiraSheet.jpg'}
+                        alt='ورق اسپیره'
+                        width={460}
+                        height={260}
+                     />
                   </a>
                </button>
             </div>
@@ -464,9 +460,21 @@ const PriceTables = () => {
                                                    className='yekan1 p-2 text-right font-bold'
                                                 >
                                                    عنوان{' '}
-                                                   <span className='text-xs'>
+                                                   <span className='text-xs md:hidden'>
                                                       (برای جزئیات بیشتر کلیک کنید)
                                                    </span>
+                                                </th>
+                                                <th
+                                                   scope='col'
+                                                   className='yekan1 hidden p-2 font-bold md:table-cell'
+                                                >
+                                                   ضخامت <span className='text-xs'>(میلی‌متر)</span>
+                                                </th>
+                                                <th
+                                                   scope='col'
+                                                   className='yekan1 hidden p-2 font-bold md:table-cell'
+                                                >
+                                                   ابعاد <span className='text-xs'>(میلی‌متر)</span>
                                                 </th>
                                                 <th scope='col' className='yekan1 p-2 font-bold'>
                                                    قیمت <span className='text-xs'>(تومان)</span>
@@ -513,6 +521,26 @@ const PriceTables = () => {
                                                          <td className='yekan1 p-2 font-bold'>
                                                             {product.title}
                                                          </td>
+
+                                                         <td className='yekan1 hidden p-2 text-center font-bold md:table-cell'>
+                                                            {parseInt(
+                                                               // @ts-ignore
+                                                               product.thickness,
+                                                            ).toLocaleString('fa')}
+                                                         </td>
+
+                                                         <td className='yekan1 hidden p-2 text-center font-bold md:table-cell'>
+                                                            {parseInt(
+                                                               // @ts-ignore
+                                                               product.length,
+                                                            ).toLocaleString('fa')}
+                                                            x
+                                                            {parseInt(
+                                                               // @ts-ignore
+                                                               product.width,
+                                                            ).toLocaleString('fa')}
+                                                         </td>
+
                                                          <td className='yekan1 p-2 text-center font-bold'>
                                                             {product.inStock ? (
                                                                // @ts-ignore
@@ -520,11 +548,12 @@ const PriceTables = () => {
                                                                   'fa',
                                                                )
                                                             ) : (
-                                                               <span className='font-normal text-slate-400 text-base'>
+                                                               <span className='text-base font-normal text-slate-400'>
                                                                   ناموجود
                                                                </span>
                                                             )}
                                                          </td>
+
                                                          <td className='yekan1 m-auto p-2 text-center font-bold'>
                                                             {fluctuation && fluctuation > 0 ? (
                                                                <div className='flex items-center justify-center gap-x-1 text-green-600'>
@@ -623,7 +652,7 @@ const PriceTables = () => {
                                                          </td>
                                                       </tr>
                                                       {productDetail == product._id ? (
-                                                         <div className='relative right-2 table-cell border-r-2 pr-4'>
+                                                         <div className='relative right-2 table-cell border-r-2 pr-4 md:hidden'>
                                                             <p className='text-sm font-normal text-slate-500'>
                                                                ضخامت:{' '}
                                                                <span className='font-bold text-slate-500'>
