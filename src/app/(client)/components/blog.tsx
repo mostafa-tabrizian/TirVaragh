@@ -18,7 +18,7 @@ const BlogComponent = ({ blogs }: { blogs: IBlog[] }) => {
          <div className='mt-5 hidden grid-cols-2 gap-3 md:mt-12 md:grid'>
             <Link href={`/blog/${blogs[0].slug}`} key={blogs[0]._id}>
                <div className='relative h-full w-full'>
-                  <div className='relative aspect-video h-full w-full object-cover'>
+                  <div className=' pointer-events-none relative aspect-video h-full w-full object-cover'>
                      <Image
                         className='rounded-bl-xl rounded-tr-xl'
                         fill
@@ -26,14 +26,15 @@ const BlogComponent = ({ blogs }: { blogs: IBlog[] }) => {
                         alt={blogs[0].title}
                      />
                   </div>
-                  <div className=' absolute bottom-0 left-0 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent px-3'>
-                     <span className='rounded-md bg-red-600 px-2 py-0.5 text-xs text-white'>
+                  <div className=' pointer-events-none  absolute bottom-7 left-0 z-10 w-full rounded-bl-xl px-3'>
+                     <span className='rounded-md bg-red-600 px-2 py-0.5 text-sm font-normal text-white'>
                         {blogs[0].readTime} دقیقه مطالعه
                      </span>
-                     <h3 className='mt-1 pb-4 text-base font-medium text-white'>
+                     <h3 className='mt-3 pb-4 text-2xl font-semibold text-white'>
                         {blogs[0].title}
                      </h3>
                   </div>
+                  <div className='absolute bottom-0 left-0 h-1/2 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent transition-all ease-in-out hover:h-full'></div>
                </div>
             </Link>
 
@@ -50,14 +51,15 @@ const BlogComponent = ({ blogs }: { blogs: IBlog[] }) => {
                                  alt={blog.title}
                               />
                            </div>
-                           <div className=' absolute bottom-0 left-0 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent px-3'>
-                              <span className='rounded-md bg-red-600 px-2 py-0.5 text-xs text-white'>
+                           <div className='z-10 pointer-events-none absolute bottom-0 left-0 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent px-3'>
+                              <span className='rounded-md bg-red-600 px-2 py-0.5 text-xs font-normal text-white'>
                                  {blog.readTime} دقیقه مطالعه
                               </span>
-                              <h3 className='mt-1 pb-4 text-base font-medium text-white'>
+                              <h3 className='mt-2 pb-4 text-base font-medium text-white'>
                                  {blog.title}
                               </h3>
                            </div>
+                           <div className='absolute bottom-0 left-0 h-1/2 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent transition-all ease-in-out hover:h-full'></div>
                         </div>
                      </Link>
                   )
@@ -79,10 +81,10 @@ const BlogComponent = ({ blogs }: { blogs: IBlog[] }) => {
                            />
                         </div>
                         <div className=' absolute bottom-0 left-0 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent px-3'>
-                           <span className='rounded-md bg-red-600 px-2 py-0.5 text-xs text-white'>
+                           <span className='rounded-md bg-red-600 px-2 py-0.5 text-xs font-normal text-white'>
                               {blog.readTime} دقیقه مطالعه
                            </span>
-                           <h3 className='mt-1 pb-4 text-base font-medium text-white'>
+                           <h3 className='mt-2 pb-4 text-base font-medium text-white'>
                               {blog.title}
                            </h3>
                         </div>
