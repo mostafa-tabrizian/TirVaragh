@@ -7,6 +7,7 @@ export async function POST(request: Request) {
     const {
         active,
         title,
+        slug,
         thumbnail,
         readTime,
         authorId,
@@ -14,6 +15,7 @@ export async function POST(request: Request) {
     }: {
         active: boolean,
         title: string,
+        slug: string,
         thumbnail: string,
         readTime: number,
         authorId: string,
@@ -25,6 +27,7 @@ export async function POST(request: Request) {
         const blog = await Blog.create({
             active,
             title,
+            slug,
             thumbnail,
             readTime,
             authorId,

@@ -1,61 +1,65 @@
 .ql-toolbar {
-    border-radius: 15px !important;
-    margin-bottom: 0.3rem !important;
-    background: white !important;
- }
- 
- .ql-container {
-    border-radius: 15px !important;
- }
- 
- .ql-picker-label {
-    direction: ltr !important;
- }
- 
- .ql-editor {
-    &.ql-blank::before {
-       color: #345467 !important;
-       font-size: 1rem !important;
-       right: 10px !important;
-       left: auto !important;
-    }
- 
-    direction: rtl !important;
-    text-align: right !important;
-    font-weight: 300 !important;
-    background: white !important;
-    border-radius: 15px !important;
- 
-    p,
-    strong,
-    em,
-    li,
-    a {
-       font-family: IRANYekanRegular;
-    }
- 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-       font-family: IRANYekanExtraBold;
-    }
- 
-    code {
-       padding: 0.4rem;
-       background-color: rgb(24 28 60) !important;
-       border-radius: 7px;
-    }
- 
-    a {
-       text-decoration: wavy underline rgb(115, 132, 255) !important;
-       text-underline-offset: 2px;
-       transition: all 0.1s ease-in-out;
- 
-       &:hover {
-          color: rgb(115, 132, 255) !important;
-       }
-    }
- }
+   border-radius: 15px !important;
+   margin-bottom: 0.3rem !important;
+   background: white !important;
+}
+
+.ql-container {
+   border-radius: 15px !important;
+}
+
+.ql-picker-label {
+   direction: ltr !important;
+}
+
+.ql-editor {
+   &.ql-blank::before {
+      color: #345467 !important;
+      font-size: 1rem !important;
+      right: 10px !important;
+      left: auto !important;
+   }
+
+   li:not(.ql-direction-rtl)::before {
+      margin: 0 !important;
+      font-family: IRANYekanRegular;
+   }
+
+   direction: rtl !important;
+   text-align: right !important;
+   font-weight: 300 !important;
+   background: white !important;
+   border-radius: 15px !important;
+
+   p,
+   strong,
+   em,
+   a {
+      font-family: IRANYekanRegular;
+   }
+
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6 {
+      font-family: IRANYekanExtraBold;
+   }
+
+   code {
+      padding: 0.4rem;
+      background-color: rgb(24 28 60) !important;
+      border-radius: 7px;
+   }
+
+   a {
+      text-decoration: wavy underline rgb(115, 132, 255) !important;
+      text-underline-offset: 2px;
+      transition: all 0.1s ease-in-out;
+
+      &:hover {
+         color: rgb(115, 132, 255) !important;
+      }
+   }
+}

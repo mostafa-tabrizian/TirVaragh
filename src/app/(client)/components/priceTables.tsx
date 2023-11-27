@@ -85,7 +85,7 @@ const PriceTables = () => {
                   (a, b) => a.price[a.price.length - 1].value - b.price[b.price.length - 1].value,
                )
             break
-         case 'mostVolatile':
+         case 'mostPositiveSwing':
             sorted =
                products &&
                [...products].sort((a, b) => {
@@ -93,7 +93,7 @@ const PriceTables = () => {
                   return fluctuationB - fluctuationA
                })
             break
-         case 'leastVolatile':
+         case 'mostNegativeSwing':
             sorted =
                products &&
                [...products].sort((a, b) => {
@@ -254,8 +254,8 @@ const PriceTables = () => {
                            </MenuItem>
                            <MenuItem value='cheapest'>ارزان ترین</MenuItem>
                            <MenuItem value='mostExpensive'>گران ترین</MenuItem>
-                           <MenuItem value='mostVolatile'>پر نوسان ترین</MenuItem>
-                           <MenuItem value='leastVolatile'>کم نوسان ترین</MenuItem>
+                           <MenuItem value='mostPositiveSwing'>مثبت ترین نوسان</MenuItem>
+                           <MenuItem value='mostNegativeSwing'>منفی ترین نوسان</MenuItem>
                         </Select>
                      </FormControl>
                   )}
