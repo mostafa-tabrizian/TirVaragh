@@ -292,7 +292,7 @@ const Form = ({
    }
 
    return (
-      <div className='grid grid-cols-4 gap-5'>
+      <div className='md:grid grid-cols-4 gap-5'>
          <div className='col-span-3'>{quillEditor}</div>
 
          <div className='space-y-5'>

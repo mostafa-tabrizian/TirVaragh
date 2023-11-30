@@ -7,8 +7,8 @@ const BlogComponent = ({ blogs }: { blogs: IBlog[] }) => {
       <div className='mx-4 mt-14 md:mx-auto md:mt-36' id='blog'>
          <div>
             <div className='mt-7 flex items-center gap-1'>
-               <span className='w-8 border-b-2 border-red-700'></span>
-               <span className='text-sm font-bold text-red-700'>دانش و آگاهی</span>
+               <span className='w-8 border-b-2 border-orange-600'></span>
+               <span className='text-sm font-bold text-orange-600'>دانش و آگاهی</span>
             </div>
             <div>
                <h2 className='yekanExtraBold mt-2 text-3xl'>وبلاگ تیرورق</h2>
@@ -27,7 +27,7 @@ const BlogComponent = ({ blogs }: { blogs: IBlog[] }) => {
                      />
                   </div>
                   <div className=' pointer-events-none  absolute bottom-7 left-0 z-10 w-full rounded-bl-xl px-3'>
-                     <span className='rounded-md bg-red-600 px-2 py-0.5 text-sm font-normal text-white'>
+                     <span className='rounded-md bg-orange-600 px-2 py-0.5 text-sm font-normal text-white'>
                         {blogs[0].readTime} دقیقه مطالعه
                      </span>
                      <h3 className='mt-3 pb-4 text-2xl font-semibold text-white'>
@@ -52,7 +52,7 @@ const BlogComponent = ({ blogs }: { blogs: IBlog[] }) => {
                               />
                            </div>
                            <div className='z-10 pointer-events-none absolute bottom-0 left-0 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent px-3'>
-                              <span className='rounded-md bg-red-600 px-2 py-0.5 text-xs font-normal text-white'>
+                              <span className='rounded-md bg-orange-600 px-2 py-0.5 text-xs font-normal text-white'>
                                  {blog.readTime} دقیقه مطالعه
                               </span>
                               <h3 className='mt-2 pb-4 text-base font-medium text-white'>
@@ -81,7 +81,7 @@ const BlogComponent = ({ blogs }: { blogs: IBlog[] }) => {
                            />
                         </div>
                         <div className=' absolute bottom-0 left-0 w-full rounded-bl-xl bg-gradient-to-t from-black to-transparent px-3'>
-                           <span className='rounded-md bg-red-600 px-2 py-0.5 text-xs font-normal text-white'>
+                           <span className='rounded-md bg-orange-600 px-2 py-0.5 text-xs font-normal text-white'>
                               {blog.readTime} دقیقه مطالعه
                            </span>
                            <h3 className='mt-2 pb-4 text-base font-medium text-white'>

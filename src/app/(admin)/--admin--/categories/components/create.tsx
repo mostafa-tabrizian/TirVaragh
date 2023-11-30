@@ -50,27 +50,25 @@ const CategoryNewInput = () => {
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched }) => (
-            <Form className='rtl flex w-full items-start justify-center space-x-3 space-x-reverse'>
-               <div>
-                  <div className='mr-3 space-y-1 text-right'>
-                     <input
-                        placeholder='نام'
-                        name='name'
-                        onChange={(e) => setFieldValue('name', e.target.value)}
-                        value={values.name}
-                        className='rtl w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
-                        type='text'
-                     />
+            <Form className='rtl flex w-full items-start'>
+               <div className='w-full space-y-1 text-right'>
+                  <input
+                     placeholder='نام محصول را وارد کنید...'
+                     name='name'
+                     onChange={(e) => setFieldValue('name', e.target.value)}
+                     value={values.name}
+                     className='rtl w-full rounded-lg border-2 border-slate-100 bg-slate-50 p-2 text-sm font-normal'
+                     type='text'
+                  />
 
-                     {errors.name && touched.name ? (
-                        <p className='text-right text-sm text-red-500'>{errors.name}</p>
-                     ) : (
-                        ''
-                     )}
-                  </div>
+                  {errors.name && touched.name ? (
+                     <p className='text-right text-sm text-red-500'>{errors.name}</p>
+                  ) : (
+                     ''
+                  )}
                </div>
 
-               <button type='submit'>
+               <button type='submit' className='w-48 md:w-36'>
                   {isSubmitting ? (
                      <svg
                         className='h-7 w-7 animate-spin text-slate-700'
@@ -93,22 +91,9 @@ const CategoryNewInput = () => {
                         ></path>
                      </svg>
                   ) : (
-                     <svg
-                        className='h-8 w-8 text-slate-500'
-                        width='24'
-                        height='24'
-                        viewBox='0 0 24 24'
-                        strokeWidth='2'
-                        stroke='currentColor'
-                        fill='none'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                     >
-                        {' '}
-                        <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                        <line x1='12' y1='5' x2='12' y2='19' />{' '}
-                        <line x1='5' y1='12' x2='19' y2='12' />
-                     </svg>
+                     <span className='rounded-lg border-2 border-slate-100 bg-slate-50 px-4 py-2'>
+                        ثبت محصول
+                     </span>
                   )}
                </button>
             </Form>

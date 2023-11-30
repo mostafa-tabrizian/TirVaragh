@@ -150,8 +150,8 @@ const PriceTables = () => {
          <div className='my-6 px-3 md:mx-auto md:mt-24 md:px-0' id='category'>
             <div>
                <div className='flex items-center gap-1'>
-                  <span className='w-8 border-b-2 border-red-700'></span>
-                  <span className='text-sm font-bold text-red-700'>تنوع در دسته بندی</span>
+                  <span className='w-8 border-b-2 border-orange-600'></span>
+                  <span className='text-sm font-bold text-orange-600'>تنوع در دسته بندی</span>
                </div>
                <div>
                   <h2 className='yekanExtraBold mt-2 text-4xl'>دسته بندی ها</h2>
@@ -208,8 +208,8 @@ const PriceTables = () => {
          <div className='mx-4 min-h-[50vh] md:mx-auto md:mt-24' id='price-table'>
             <div>
                <div className='flex items-center gap-1'>
-                  <span className='w-8 border-b-2 border-red-700'></span>
-                  <span className='text-sm font-bold text-red-700'>به روز و رقابتی</span>
+                  <span className='w-8 border-b-2 border-orange-600'></span>
+                  <span className='text-sm font-bold text-orange-600'>به روز و رقابتی</span>
                </div>
                <div>
                   <h2 className='yekanExtraBold mt-2 text-4xl'>جدول قیمت ورق</h2>
@@ -402,7 +402,7 @@ const PriceTables = () => {
                                           className='object-cover'
                                        />
                                        <div>
-                                          <h3 className='text-red-900'>
+                                          <h3 className='text-orange-950'>
                                              قیمت{' '}
                                              {categories?.find((cat) => cat._id == category)
                                                 ?.name || 'ورق های'}{' '}
@@ -429,10 +429,10 @@ const PriceTables = () => {
                                                    strokeLinejoin='round'
                                                 />
                                              </svg>
-                                             <span className='text-slate-500'>
+                                             <span className='font-normal text-slate-400'>
                                                 آخرین بروزرسانی :
                                              </span>
-                                             <span className='text-red-700'>
+                                             <span className='font-normal text-slate-400'>
                                                 {new Date(factory.updatedAt)
                                                    .toLocaleDateString('fa', {
                                                       year: 'numeric',
@@ -514,7 +514,7 @@ const PriceTables = () => {
                                                          style={{
                                                             background:
                                                                idx % 2 == 0
-                                                                  ? 'rgba(255, 232, 232, 0.38)'
+                                                                  ? 'rgba(255, 238, 218, 0.38)'
                                                                   : 'none',
                                                          }}
                                                       >

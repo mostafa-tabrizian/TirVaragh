@@ -11,7 +11,7 @@ const BlogNotFound = () => {
                      ۴۰۴
                   </span>
                </h2>
-               <span className='absolute -top-[14rem] right-0 -z-10 h-[40rem] w-[40rem] bg-gradient-radial from-red-400 via-transparent to-transparent'></span>
+               <span className='absolute -top-[14rem] right-0 -z-10 h-[40rem] w-[40rem] bg-gradient-radial from-orange-300 via-transparent to-transparent'></span>
 
                <p className='yekanBold text-[1.4rem] font-semibold md:text-[2rem]'>
                   ! بلاگ مورد نظر پیدا نشد

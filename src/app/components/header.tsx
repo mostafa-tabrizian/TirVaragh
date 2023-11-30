@@ -4,21 +4,20 @@ import LinksForDesktop from './headerLinksforDesktop'
 
 const Header = () => {
    return (
-      <header className='fixed left-1/2 top-0 z-20 mx-auto w-full max-w-screen-lg -translate-x-1/2 bg-[#f4f5f7] p-3'>
+      <header className='fixed left-1/2 top-0 z-20 mx-auto w-full max-w-screen-xl -translate-x-1/2 bg-[#f4f5f7] p-3'>
          <div className='flex items-center justify-between'>
             <div>
                <Link
                   aria-label='صفحه اصلی'
                   href='/'
-                  className='flex gap-3 md:col-span-1 md:justify-center'
+                  className='relative flex aspect-video h-20 gap-3 md:col-span-1 md:justify-center'
                >
                   <Image
                      className='object-contain'
-                     src='/logo.jpg'
                      alt='لوگو تیرورق'
-                     width={80}
-                     height={80}
-                     loading='lazy'
+                     priority
+                     src='/logo-color.svg'
+                     fill
                   />
                </Link>
             </div>
@@ -29,12 +28,12 @@ const Header = () => {
                <a
                   id='call-to-action'
                   href='tel:+2191692222'
-                  className='z-10 flex items-center gap-3 rounded-xl bg-red-600 px-2 py-1 shadow-lg shadow-red-300'
+                  className='z-10 flex items-center gap-3 rounded-xl bg-orange-600 px-2 py-1 shadow-lg shadow-orange-300'
                   title='تماس تلفنی با پشتیبانی'
                >
-                  <span className='text-lg text-white'>۰۲۱-۹۱۶۹۲۲۲۲</span>
+                  <span className='text-lg font-normal text-white'>۰۲۱-۹۱۶۹۲۲۲۲</span>
                   <svg
-                     className='h-6 w-6 text-red-600'
+                     className='h-6 w-6 text-orange-600'
                      fill='white'
                      viewBox='0 0 24 24'
                      stroke='currentColor'

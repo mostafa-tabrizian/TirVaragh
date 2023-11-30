@@ -153,7 +153,7 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
    })
 
    return (
-      <div className='relative overflow-x-auto'>
+      <div className='relative overflow-x-auto bg-white'>
          <table className='w-full table-auto text-left text-sm text-slate-500'>
             <thead className='bg-slate-50 text-xs uppercase text-slate-300'>
                {table.getHeaderGroups().map((headerGroup) => (
@@ -190,7 +190,7 @@ const ProductsTable = ({ products }: { products: IProduct[] }) => {
                   </tr>
                ))}
             </thead>
-            <tbody >
+            <tbody>
                {table.getRowModel().rows.map((row) => {
                   return (
                      <tr key={row.id} className='border-b border-slate-300 bg-white'>

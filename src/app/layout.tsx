@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                theme='light'
             />
 
-            <main className='rtl mx-auto overflow-hidden'>{children}</main>
+            <main className='rtl mx-auto overflow-x-hidden'>{children}</main>
          </body>
       </html>
    )

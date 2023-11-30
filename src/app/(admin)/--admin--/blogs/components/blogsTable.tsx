@@ -44,7 +44,7 @@ const BlogsTable = ({ blogs }: { blogs: IBlog[] }) => {
                   >
                      {value ? (
                         <Image
-                           className='rounded-md object-cover'
+                           className='mx-auto rounded-md object-cover'
                            src={`https://tabrizian.storage.iran.liara.space/tir-varagh/blogs/thumbnail/${value}`}
                            alt={String(value)}
                            height={50}
@@ -66,7 +66,7 @@ const BlogsTable = ({ blogs }: { blogs: IBlog[] }) => {
                   <>
                      {value ? (
                         <svg
-                           className='h-5 w-5 text-green-700'
+                           className='mx-auto h-5 w-5 text-green-700'
                            width='24'
                            height='24'
                            viewBox='0 0 24 24'
@@ -82,7 +82,7 @@ const BlogsTable = ({ blogs }: { blogs: IBlog[] }) => {
                         </svg>
                      ) : (
                         <svg
-                           className='h-5 w-5 text-rose-700'
+                           className='mx-auto h-5 w-5 text-rose-700'
                            width='24'
                            height='24'
                            viewBox='0 0 24 24'
@@ -139,8 +139,8 @@ const BlogsTable = ({ blogs }: { blogs: IBlog[] }) => {
    })
 
    return (
-      <div className='relative overflow-x-auto'>
-         <table className='w-full table-auto text-left text-sm text-slate-500'>
+      <div className='relative overflow-x-auto bg-white'>
+         <table className='w-full table-auto text-center text-sm text-slate-500'>
             <thead className='bg-slate-50 text-xs uppercase text-slate-300'>
                {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>

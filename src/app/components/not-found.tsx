@@ -11,7 +11,7 @@ export default function NotFound() {
     h-screen
     bg-gradient-to-r
     from-indigo-600
-    to-red-400
+    to-orange-300
   '
       >
          <div className='px-40 py-20 bg-white rounded-md shadow-xl'>

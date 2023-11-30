@@ -12,11 +12,11 @@ const LogoutButton = () => {
    }
 
    return (
-      <div className='flex items-center rounded-xl bg-white transition-all hover:cursor-pointer hover:border-rose-600 hover:shadow-lg hover:shadow-rose-100'>
+      <div className='flex items-center shadow shadow-orange-500/10 transition-all hover:cursor-pointer hover:shadow-lg hover:shadow-orange-100'>
          {loading ? (
             <div className='mx-auto flex py-3'>
                <svg
-                  className='h-7 w-7 animate-spin text-red-700'
+                  className='h-7 w-7 animate-spin text-orange-600'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
                   viewBox='0 0 24 24'
@@ -44,7 +44,7 @@ const LogoutButton = () => {
                      width='24'
                      height='24'
                      viewBox='0 0 24 24'
-                     strokeWidth='2'
+                     strokeWidth='1'
                      stroke='currentColor'
                      fill='none'
                      strokeLinecap='round'
@@ -55,7 +55,7 @@ const LogoutButton = () => {
                      <path d='M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2' />{' '}
                      <path d='M7 12h14l-3 -3m0 6l3 -3' />
                   </svg>
-                  <span className='text-base'>خروج</span>
+                  <span className='text-base font-normal'>خروج</span>
                </div>
             </button>
          )}

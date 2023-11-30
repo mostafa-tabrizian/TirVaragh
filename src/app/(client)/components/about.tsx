@@ -20,8 +20,8 @@ const About = () => {
          <div>
             <div>
                <div className='mt-7 flex items-center gap-1 md:mt-0'>
-                  <span className='w-8 border-b-2 border-red-700'></span>
-                  <span className='text-sm font-bold text-red-700'>خرید سریع و مطمئن</span>
+                  <span className='w-8 border-b-2 border-orange-600'></span>
+                  <span className='text-sm font-bold text-orange-600'>خرید سریع و مطمئن</span>
                </div>
                <div>
                   <h2 className='yekanExtraBold mt-2 text-3xl'>

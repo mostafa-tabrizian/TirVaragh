@@ -43,7 +43,7 @@ const DeleteButton = ({
                {loading ? (
                   <div className='flex justify-end my-1'>
                      <svg
-                        className='h-5 w-5 animate-spin text-red-700'
+                        className='h-5 w-5 animate-spin text-orange-600'
                         xmlns='http://www.w3.org/2000/svg'
                         fill='none'
                         viewBox='0 0 24 24'

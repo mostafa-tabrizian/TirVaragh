@@ -54,7 +54,7 @@ const NameEdit = ({ params }: { params: { _doc: { _id: string; name: string } } 
                         name='name'
                         onChange={(e) => setFieldValue('name', e.target.value)}
                         value={values.name}
-                        className='w-full bg-transparent text-sm'
+                        className='w-full bg-transparent text-sm outline-none'
                         type='text'
                         onKeyDown={(e) => {
                            if (e.key == 'Enter') submitForm()

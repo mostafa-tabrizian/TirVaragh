@@ -6,7 +6,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <>
          <Header />
 
-         <main className='mx-auto mb-24 mt-32 max-w-screen-lg overflow-hidden'>{children}</main>
+         <main className='mx-auto mb-24 mt-32 max-w-screen-lg overflow-x-hidden'>{children}</main>
 
          <Footer />
       </>

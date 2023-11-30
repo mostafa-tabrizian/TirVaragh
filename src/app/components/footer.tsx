@@ -7,14 +7,17 @@ const Footer = () => {
          <div className='grid-row-2 container mx-auto grid max-w-screen-lg grid-cols-5 gap-10'>
             <div className='col-span-5 flex flex-col justify-start'>
                <div className='text-center'>
-                  <Link aria-label='صفحه اصلی' href='/' className='flex justify-center'>
+                  <Link
+                     aria-label='صفحه اصلی'
+                     href='/'
+                     className='relative mb-10 flex aspect-video h-32 w-full justify-center gap-3 md:col-span-1'
+                  >
                      <Image
-                        className='object-contain mix-blend-darken'
-                        src='/logo.jpg'
+                        className='object-contain'
                         alt='لوگو تیرورق'
-                        width={150}
-                        height={150}
-                        quality={100}
+                        priority
+                        src='/logo-color.svg'
+                        fill
                      />
                   </Link>
 

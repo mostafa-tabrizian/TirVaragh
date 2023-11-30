@@ -1,13 +1,9 @@
-import Link from 'next/link'
-
 import FactoryNewInput from './components/create'
 import DeleteButton from './components/delete'
 import NameActiveEdit from './components/nameActiveEdit'
 
 import Factory from '@/models/factory'
 import Product from '@/models/product'
-
-import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 import dbConnect from '@/lib/dbConnect'
 import Image from 'next/image'
@@ -57,78 +53,66 @@ const AdminFactories = async () => {
    const factoriesProductCount = await getFactoryProductsCount()
 
    return (
-      <div className='mx-6 my-16 max-w-screen-sm space-y-10 md:mx-auto'>
-         <>
-            <Breadcrumbs aria-label='breadcrumb'>
-               <Link className='text-gray-400' href='/'>
-                  تیرورق
-               </Link>
-               <Link className='text-gray-400' href='/--admin--'>
-                  ادمین
-               </Link>
-               <h5 className='font-semibold'>کارخانه ها</h5>
-            </Breadcrumbs>
+      <>
+         <FactoryNewInput />
 
-            <FactoryNewInput />
-
-            <div className='rtl'>
-               <div className='mb-3 grid grid-cols-6 items-center justify-between rounded-lg bg-white p-5 py-2 text-center'>
-                  <p className='col-span-1 flex'>لوگو</p>
-                  <div className='col-span-3 grid grid-cols-3'>
-                     <p className='col-span-2 flex'>نام</p>
-                     <p className='col-span-1 flex'>فعال</p>
-                  </div>
-                  <p className='col-span-1'>محصولات</p>
+         <div className='rtl mt-6'>
+            <div className='mb-3 grid grid-cols-6 items-center justify-between rounded-lg p-5 py-2 text-center'>
+               <p className='col-span-1 flex'>لوگو</p>
+               <div className='col-span-3 grid grid-cols-3'>
+                  <p className='col-span-2 flex'>نام</p>
+                  <p className='col-span-1 flex'>فعال</p>
                </div>
-
-               <div className='space-y-3'>
-                  {factories.length ? (
-                     factories.map((factory) => {
-                        const productsLength = factoriesProductCount[factory._id] | 0
-                        return (
-                           <div
-                              key={factory._id}
-                              className='grid grid-cols-6 items-center justify-between rounded-lg bg-white p-2 text-center'
-                           >
-                              {factory.logo ? (
-                                 <div className='relative'>
-                                    <Image
-                                       src={`https://tabrizian.storage.iran.liara.space/tir-varagh/factories/${factory.logo}`}
-                                       alt={factory.name}
-                                       width={49}
-                                       height={49}
-                                       className='object-cover'
-                                    />
-                                    <ImageDelete
-                                       imageKey={factory.logo}
-                                       factoryId={String(factory._id)}
-                                    />
-                                 </div>
-                              ) : (
-                                 <ImageInput factoryId={String(factory._id)} />
-                              )}
-                              <NameActiveEdit params={JSON.parse(JSON.stringify({ ...factory }))} />
-
-                              <p>{productsLength}</p>
-                              <DeleteButton
-                                 params={JSON.parse(
-                                    JSON.stringify({
-                                       _id: factory._id,
-                                       imageKey: factory.logo,
-                                       ableToDelete: productsLength ? false : true,
-                                    }),
-                                 )}
-                              />
-                           </div>
-                        )
-                     })
-                  ) : (
-                     <h3 className='text-center'>هیچ کارخانه ثبت نشده است</h3>
-                  )}
-               </div>
+               <p className='col-span-1'>محصولات</p>
             </div>
-         </>
-      </div>
+
+            <div className='space-y-3'>
+               {factories.length ? (
+                  factories.map((factory) => {
+                     const productsLength = factoriesProductCount[factory._id] | 0
+                     return (
+                        <div
+                           key={factory._id}
+                           className='grid grid-cols-6 items-center justify-between rounded-lg bg-slate-50 p-2 text-center'
+                        >
+                           {factory.logo ? (
+                              <div className='relative'>
+                                 <Image
+                                    src={`https://tabrizian.storage.iran.liara.space/tir-varagh/factories/${factory.logo}`}
+                                    alt={factory.name}
+                                    width={49}
+                                    height={49}
+                                    className='object-cover'
+                                 />
+                                 <ImageDelete
+                                    imageKey={factory.logo}
+                                    factoryId={String(factory._id)}
+                                 />
+                              </div>
+                           ) : (
+                              <ImageInput factoryId={String(factory._id)} />
+                           )}
+                           <NameActiveEdit params={JSON.parse(JSON.stringify({ ...factory }))} />
+
+                           <p>{productsLength}</p>
+                           <DeleteButton
+                              params={JSON.parse(
+                                 JSON.stringify({
+                                    _id: factory._id,
+                                    imageKey: factory.logo,
+                                    ableToDelete: productsLength ? false : true,
+                                 }),
+                              )}
+                           />
+                        </div>
+                     )
+                  })
+               ) : (
+                  <h3 className='text-center'>هیچ کارخانه ثبت نشده است</h3>
+               )}
+            </div>
+         </div>
+      </>
    )
 }
 

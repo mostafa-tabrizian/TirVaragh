@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import dbConnect from '@/lib/dbConnect'
-import Breadcrumbs from '@mui/material/Breadcrumbs'
 import Product from '@/models/product'
 import DetailProduct from '../components/detailForm'
 import Category from '@/models/category'
@@ -35,49 +34,32 @@ const ProductPage = async ({ params: { _id } }: { params: { _id: string } }) => 
          <div className='relative mx-6 my-16'>
             <div className='mx-6 my-16 max-w-screen-xl space-y-10 md:mx-auto'>
                {product || addingNewProduct ? (
-                  <>
-                     <Breadcrumbs aria-label='breadcrumb'>
-                        <Link className='text-gray-400' href='/'>
-                           تیرورق
-                        </Link>
-                        <Link className='text-gray-400' href='/--admin--'>
-                           ادمین
-                        </Link>
-                        <Link className='text-gray-400' href='/--admin--/products'>
-                           محصولات
-                        </Link>
-                        <h5 className='font-semibold'>
-                           {addingNewProduct ? 'افزودن محصول جدید' : String(product?._id)}
-                        </h5>
-                     </Breadcrumbs>
+                  <div className='mx-auto max-w-xl'>
+                     <Link href='/--admin--/products/new'>
+                        <button className='fixed bottom-10 right-5 z-10 rounded-full border-2 border-red-500 bg-white p-3'>
+                           <svg
+                              className='h-6 w-6 text-red-500'
+                              fill='none'
+                              viewBox='0 0 24 24'
+                              stroke='currentColor'
+                           >
+                              <path
+                                 strokeLinecap='round'
+                                 strokeLinejoin='round'
+                                 strokeWidth='2'
+                                 d='M12 4v16m8-8H4'
+                              />
+                           </svg>
+                        </button>
+                     </Link>
 
-                     <div className='mx-auto max-w-xl'>
-                        <Link href='/--admin--/products/new'>
-                           <button className='fixed bottom-10 right-5 z-10 rounded-full border-2 border-red-500 bg-white p-3'>
-                              <svg
-                                 className='h-6 w-6 text-red-500'
-                                 fill='none'
-                                 viewBox='0 0 24 24'
-                                 stroke='currentColor'
-                              >
-                                 <path
-                                    strokeLinecap='round'
-                                    strokeLinejoin='round'
-                                    strokeWidth='2'
-                                    d='M12 4v16m8-8H4'
-                                 />
-                              </svg>
-                           </button>
-                        </Link>
-
-                        <DetailProduct
-                           addingNewProduct={addingNewProduct}
-                           product={addingNewProduct ? null : JSON.parse(JSON.stringify(product))}
-                           categories={JSON.parse(JSON.stringify(categories))}
-                           factories={JSON.parse(JSON.stringify(factories))}
-                        />
-                     </div>
-                  </>
+                     <DetailProduct
+                        addingNewProduct={addingNewProduct}
+                        product={addingNewProduct ? null : JSON.parse(JSON.stringify(product))}
+                        categories={JSON.parse(JSON.stringify(categories))}
+                        factories={JSON.parse(JSON.stringify(factories))}
+                     />
+                  </div>
                ) : (
                   <h1>آیتم پیدا نشد!</h1>
                )}

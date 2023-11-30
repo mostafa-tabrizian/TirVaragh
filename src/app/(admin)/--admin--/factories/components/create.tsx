@@ -121,7 +121,7 @@ const CategoryNewInput = () => {
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched }) => (
-            <Form className='rtl flex w-full items-center justify-center gap-3'>
+            <Form className='rtl grid w-full grid-cols-4 items-start justify-center md:grid-cols-6'>
                {imageToUploadMemo?.length ? (
                   <div>
                      {imageToUploadMemo.map((imageData: File) => {
@@ -141,7 +141,7 @@ const CategoryNewInput = () => {
                   <div
                      onDrop={dropHandlerImage}
                      onDragOver={dragOverHandler}
-                     className='h-10 w-24 rounded-lg border-2 border-slate-200 bg-slate-100 text-sm'
+                     className='h-10 w-full rounded-lg border-2 border-slate-100 bg-slate-50 text-sm'
                   >
                      <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
                         <span className='text-slate-700'>آپلود لوگو +</span>
@@ -157,13 +157,13 @@ const CategoryNewInput = () => {
                   </div>
                )}
 
-               <div className='mr-3 space-y-1 text-right'>
+               <div className='mr-3 w-full space-y-1 text-right md:col-span-3'>
                   <input
-                     placeholder='نام'
+                     placeholder='نام کارخانه...'
                      name='name'
                      onChange={(e) => setFieldValue('name', e.target.value)}
                      value={values.name}
-                     className='rtl w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm placeholder:font-normal'
+                     className='rtl w-full rounded-lg border-2 border-slate-100 bg-slate-50 p-2 text-sm placeholder:font-normal'
                      type='text'
                   />
 
@@ -174,8 +174,7 @@ const CategoryNewInput = () => {
                   )}
                </div>
 
-               <div className='text-center'>
-                  <span className='block text-slate-700 text-xs'>فعال</span>
+               <div className='flex w-full justify-center text-center'>
                   <Switch
                      disabled={isSubmitting}
                      checked={values.active}
@@ -183,9 +182,10 @@ const CategoryNewInput = () => {
                      color='success'
                      onChange={() => setFieldValue('active', !values.active)}
                   />
+                  <span className='flex items-center text-xs text-slate-700'>فعال</span>
                </div>
 
-               <button type='submit'>
+               <button type='submit' className='w-full p-0'>
                   {isSubmitting ? (
                      <svg
                         className='h-7 w-7 animate-spin text-slate-700'
@@ -208,22 +208,9 @@ const CategoryNewInput = () => {
                         ></path>
                      </svg>
                   ) : (
-                     <svg
-                        className='h-8 w-8 text-slate-500'
-                        width='24'
-                        height='24'
-                        viewBox='0 0 24 24'
-                        strokeWidth='2'
-                        stroke='currentColor'
-                        fill='none'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                     >
-                        {' '}
-                        <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                        <line x1='12' y1='5' x2='12' y2='19' />{' '}
-                        <line x1='5' y1='12' x2='19' y2='12' />
-                     </svg>
+                     <span className='flex w-full items-center justify-center rounded-lg border-2 border-slate-100 bg-slate-50 px-4 py-2'>
+                        ثبت
+                     </span>
                   )}
                </button>
             </Form>
