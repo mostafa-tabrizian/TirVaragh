@@ -35,7 +35,7 @@ const corporationJsonLd = {
    alternateName: ['تیرورق', 'TirVaragh'],
    legalName: 'تیرورق',
    url: 'https://tirvaragh.com',
-   logo: '', // https://tirvaragh.com/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100
+   logo: 'https://tirvaragh.com/logo-color.svg',
    email: 'info@tirvaragh.com',
    sameAs: ['https://www.instagram.com/sgpsteelco', 'https://t.me/sgpsteel', 'info@sgpsteel.com'],
    contactPoint: [
@@ -150,10 +150,10 @@ async function Home() {
 
          <div className='relative mx-auto aspect-[16/8] md:w-[80%] md:rounded-xl'>
             <Image
-               className='object-cover md:rounded-xl'
+               className='object-cover shadow-lg md:rounded-xl'
                fill
                priority
-               src='/hero.jpg'
+               src='/hero2.jpg'
                alt='قیمت لحظه ای ورق تمام کارخانه ها'
             />
          </div>

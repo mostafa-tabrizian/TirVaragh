@@ -169,9 +169,14 @@ const Footer = () => {
                </div>
             </div>
             <div className='col-span-5'>
-               <p className='text-center text-xs text-slate-700'>
+               <p className='mb-3 text-center text-xs text-slate-700'>
                   © تمامی حقوق برای شرکت صنعت ورق الغدیر پارس محفوظ است
                </p>
+               <a href='https://mostafatabrizian.ir/fa'>
+                  <p className='text-center text-xs text-slate-700'>
+                     طراحی و توسعه : <span className='text-xs text-indigo-600'>تبریزیان</span>
+                  </p>
+               </a>
             </div>
          </div>
       </footer>
