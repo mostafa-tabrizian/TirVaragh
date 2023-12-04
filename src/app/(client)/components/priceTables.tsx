@@ -184,7 +184,7 @@ const PriceTables = () => {
                   <a href='/#price-table'>
                      <Image
                         className='rounded-xl object-contain mix-blend-multiply'
-                        src={'/category/galvanizedSheet.jpg'}
+                        src={'/category/galvanizedSheet2-1.jpg'}
                         alt='ورق گالوانیزه'
                         width={460}
                         height={260}
