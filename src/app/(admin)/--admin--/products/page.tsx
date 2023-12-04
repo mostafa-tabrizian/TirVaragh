@@ -13,7 +13,7 @@ const getProducts = async () => {
 export const revalidate = 0
 
 export const metadata = {
-   title: 'تیرورق | پنل ادمین | محصولات',
+   title: 'پارس شیت | پنل ادمین | محصولات',
    robots: {
       index: false,
       follow: false,

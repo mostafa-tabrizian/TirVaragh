@@ -13,7 +13,7 @@ import ImageInput from './components/imageInput'
 export const revalidate = 0
 
 export const metadata = {
-   title: 'تیرورق | پنل ادمین | کارخانه ها',
+   title: 'پارس شیت | پنل ادمین | کارخانه ها',
    robots: {
       index: false,
       follow: false,

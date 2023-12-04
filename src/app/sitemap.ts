@@ -1,7 +1,7 @@
 import dbConnect from '@/lib/dbConnect'
 import Blog from '@/models/blog'
 
-const URL = 'https://tirvaragh.com'
+const URL = 'https://parssheet.com'
 
 async function getAllPages() {
    await dbConnect()

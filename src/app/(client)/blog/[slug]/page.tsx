@@ -15,7 +15,7 @@ export const generateMetadata = async ({ params: { slug } }: { params: { slug: s
 
    if (blog) {
       return {
-         title: `تیرورق | ${blog.title}`,
+         title: `پارس شیت | ${blog.title}`,
          description: blog.text.slice(0, 150),
          alternates: {
             canonical: `/blog/${slug}`,
@@ -64,7 +64,7 @@ const BlogPage = async ({ params: { slug } }: { params: { slug: string } }) => {
          '@context': 'http://schema.org',
          '@type': 'BlogPosting',
          image: `https://tabrizian.storage.iran.liara.space/tir-varagh/blogs/thumbnail/${blog.thumbnail}`,
-         url: `https://tirvaragh.com/blog/${blog.slug}`,
+         url: `https://parssheet.com/blog/${blog.slug}`,
          headline: blog.title,
          dateCreated: blog.createdAt,
          datePublished: blog.createdAt,
@@ -83,7 +83,7 @@ const BlogPage = async ({ params: { slug } }: { params: { slug: string } }) => {
                name: 'صفحه اصلی',
                item: {
                   '@type': 'Corporation',
-                  '@id': 'https://tirvaragh.com/#blogs',
+                  '@id': 'https://parssheet.com/#blogs',
                },
             },
             {

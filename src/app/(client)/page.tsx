@@ -11,32 +11,32 @@ const BlogComponent = dynamic(() => import('./components/blog'))
 const Factories = dynamic(() => import('./components/factories'))
 
 export const metadata = {
-   title: 'تیرورق | قیمت روز ورق کلیه کارخانه ها',
+   title: 'پارس شیت | قیمت روز ورق کلیه کارخانه ها',
    description:
       'شرکت “صنعت‌ورق الغدیرپارس” که فعالیت خود را از ابتدای سال ۹۷ آغاز نموده قادر است به صورت تخصصی اقدام به فرآوری انواع ورق‌های نرم، روغنی و فول‌هارد نماید، این شرکت بعد از فرآیند تخصصی نورد مجدد آنها را بر اساس سفارش مشتری برش داده و به صورت شیت در اختیار مصرف‌کنندگان قرار می‌دهد. این شرکت درواقع فرآوری ضایعات شرکت‌های انواع تولیدکننده رول‌های سیاه و ورق‌های سرد می‌باشد به‌گونه‌ای که آنها را دریافت و سپس به انواع شیت تبدیل و آنگاه بر اساس ضخامت با عنوان ورق درجه دو و سه در اختیار مصرف‌کنندگان قرار می‌دهد. این کار در کشور حدود ۱۰ سال قدمت دارد و قبل از آن آنها را به صورت ضایعات مستعمل ذوب می‌نمودند، این نوع ورق‌ها هم فول‌هارد و هم روغنی دارد که ورق روغنی جهت استفاده در تولید اقلامی مانند اگزوز (منبع و لوله اگزوز)، درب ضد سرقت، قفسه‌سازی و… کاربرد فراوان دارد.',
    alternates: {
-      canonical: 'https://tirvaragh.com',
+      canonical: 'https://parssheet.com',
    },
 }
 
 const jsonLd = {
    '@context': 'https://schema.org',
    '@type': 'WebSite',
-   id: 'https://tirvaragh.com/#webSite',
-   name: 'تیرورق',
-   url: 'https://tirvaragh.com',
+   id: 'https://parssheet.com/#webSite',
+   name: 'پارس شیت',
+   url: 'https://parssheet.com',
 }
 
 const corporationJsonLd = {
    '@context': 'https://schema.org',
    '@type': 'Corporation',
-   id: 'https://tirvaragh.com/#corporation',
-   name: 'تیرورق',
-   alternateName: ['تیرورق', 'TirVaragh'],
-   legalName: 'تیرورق',
-   url: 'https://tirvaragh.com',
-   logo: 'https://tirvaragh.com/logo-color.svg',
-   email: 'info@tirvaragh.com',
+   id: 'https://parssheet.com/#corporation',
+   name: 'پارس شیت',
+   alternateName: ['پارس شیت', 'parssheet'],
+   legalName: 'پارس شیت',
+   url: 'https://parssheet.com',
+   logo: 'https://parssheet.com/logo-color.svg',
+   email: 'info@parssheet.com',
    sameAs: ['https://www.instagram.com/sgpsteelco', 'https://t.me/sgpsteel', 'info@sgpsteel.com'],
    contactPoint: [
       {

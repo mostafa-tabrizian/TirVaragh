@@ -14,7 +14,7 @@ const Footer = () => {
                   >
                      <Image
                         className='object-contain'
-                        alt='لوگو تیرورق'
+                        alt='لوگو پارس شیت'
                         priority
                         src='/logo-color.svg'
                         fill

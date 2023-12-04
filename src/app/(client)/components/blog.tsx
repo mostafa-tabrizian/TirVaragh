@@ -11,7 +11,7 @@ const BlogComponent = ({ blogs }: { blogs: IBlog[] }) => {
                <span className='text-sm font-bold text-orange-600'>دانش و آگاهی</span>
             </div>
             <div>
-               <h2 className='yekanExtraBold mt-2 text-3xl'>وبلاگ تیرورق</h2>
+               <h2 className='yekanExtraBold mt-2 text-3xl'>وبلاگ پارس شیت</h2>
             </div>
          </div>
 

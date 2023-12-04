@@ -13,7 +13,7 @@ const About = () => {
                className='rounded-2xl object-cover'
                fill
                src='/aboutHero.jpg'
-               alt='درباره شرکت تیرورق'
+               alt='درباره شرکت پارس شیت'
             />
          </div>
 
@@ -25,7 +25,7 @@ const About = () => {
                </div>
                <div>
                   <h2 className='yekanExtraBold mt-2 text-3xl'>
-                     تیرورق، تخصصی ترین مجموعه در حوزه تامین و توزیع ورق کشور
+                     پارس شیت، تخصصی ترین مجموعه در حوزه تامین و توزیع ورق کشور
                   </h2>
                </div>
             </div>
