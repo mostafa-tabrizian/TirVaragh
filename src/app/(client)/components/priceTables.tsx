@@ -169,11 +169,11 @@ const PriceTables = () => {
                      />
                   </a>
                </button>
-               <button onClick={() => setCategory('655b731798d59018976e66a3')}>
-                  <a href='/#price-table'>
+               <button disabled onClick={() => setCategory('655b731798d59018976e66a3')}>
+                  <a href='/#'>
                      <Image
                         className='rounded-xl object-contain mix-blend-multiply'
-                        src={'/category/oiledSheet.jpg'}
+                        src={'/category/oiledSheetComingSoon.jpg'}
                         alt='ورق روغنی'
                         width={460}
                         height={260}
