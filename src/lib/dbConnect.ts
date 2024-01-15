@@ -15,6 +15,7 @@ if (!cached) {
 }
 
 async function dbConnect() {
+
    if (cached.conn) {
       return cached.conn
    }
@@ -22,14 +23,15 @@ async function dbConnect() {
    if (!cached.promise) {
       const opts = {
          useNewUrlParser: true,
-         useUnifiedTopology: true,
+         useUnifiedTopology: true
       }
 
       // @ts-ignore
-      cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+      cached.promise = await mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
          return mongoose
       })
    }
+
 
    cached.conn = await cached.promise
 

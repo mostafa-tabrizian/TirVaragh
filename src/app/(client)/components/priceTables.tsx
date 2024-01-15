@@ -16,6 +16,9 @@ const PriceTables = () => {
    const [category, setCategory] = useState('')
    const [factoryFilter, setFactoryFilter] = useState('')
    const [sort, setSort] = useState('')
+   const [chartData, setChartData] = useState<IProduct | null>(null)
+   const [sortedProducts, setSortedProducts] = useState<IProduct[] | []>([])
+   const [productDetail, setProductDetail] = useState('')
 
    // @ts-ignore
    const fetcher = (...args) => fetch(...args).then((res) => res.json())
@@ -27,8 +30,6 @@ const PriceTables = () => {
       data: IProduct[]
       isLoading: boolean
    } = useSWR(`/api/client/products?category=${category}`, fetcher)
-
-   const [chartData, setChartData] = useState<IProduct | null>(null)
 
    const {
       data: categories,
@@ -45,9 +46,6 @@ const PriceTables = () => {
       data: IFactory[]
       isLoading: boolean
    } = useSWR('/api/client/factories', fetcher)
-
-   const [sortedProducts, setSortedProducts] = useState<IProduct[] | []>([])
-   const [productDetail, setProductDetail] = useState('')
 
    const fluctuationCalc = (
       a: { price: [{ value: number }] },
@@ -298,7 +296,7 @@ const PriceTables = () => {
                            </MenuItem>
                            {categories?.map((category, idx) => {
                               return (
-                                 <MenuItem key={idx} value={category._id}>
+                                 <MenuItem key={category._id + idx} value={category._id}>
                                     {category.name}
                                  </MenuItem>
                               )
@@ -345,7 +343,7 @@ const PriceTables = () => {
                            </MenuItem>
                            {factories?.map((factory, idx) => {
                               return (
-                                 <MenuItem key={idx} value={factory._id}>
+                                 <MenuItem key={factory.name + idx} value={factory._id}>
                                     {factory.name}
                                  </MenuItem>
                               )
@@ -391,7 +389,7 @@ const PriceTables = () => {
 
                         return (
                            <>
-                              <div key={idx} className='mt-3'>
+                              <div key={factory._id + idx} className='mt-3'>
                                  <div>
                                     <div className='flex items-center gap-10 rounded-xl bg-white px-2 py-4'>
                                        <Image
@@ -454,38 +452,42 @@ const PriceTables = () => {
                                     ) ? (
                                        <div className='mb-6 mt-3 rounded-xl bg-white'>
                                           <table className='w-full border-separate px-2'>
-                                             <tr>
-                                                <th
-                                                   scope='col'
-                                                   className='yekan1 p-2 text-right font-bold'
-                                                >
-                                                   عنوان{' '}
-                                                   <span className='text-xs md:hidden'>
-                                                      (برای جزئیات بیشتر کلیک کنید)
-                                                   </span>
-                                                </th>
-                                                <th
-                                                   scope='col'
-                                                   className='yekan1 hidden p-2 font-bold md:table-cell'
-                                                >
-                                                   ضخامت <span className='text-xs'>(میلی‌متر)</span>
-                                                </th>
-                                                <th
-                                                   scope='col'
-                                                   className='yekan1 hidden p-2 font-bold md:table-cell'
-                                                >
-                                                   ابعاد <span className='text-xs'>(میلی‌متر)</span>
-                                                </th>
-                                                <th scope='col' className='yekan1 p-2 font-bold'>
-                                                   قیمت <span className='text-xs'>(تومان)</span>
-                                                </th>
-                                                <th scope='col' className='yekan1 p-2 font-bold'>
-                                                   نوسان
-                                                </th>
-                                                <th scope='col' className='yekan1 p-2 font-bold'>
-                                                   نمودار
-                                                </th>
-                                             </tr>
+                                             <thead>
+                                                <tr>
+                                                   <th
+                                                      scope='col'
+                                                      className='yekan1 p-2 text-right font-bold'
+                                                   >
+                                                      عنوان{' '}
+                                                      <span className='text-xs md:hidden'>
+                                                         (برای جزئیات بیشتر کلیک کنید)
+                                                      </span>
+                                                   </th>
+                                                   <th
+                                                      scope='col'
+                                                      className='yekan1 hidden p-2 font-bold md:table-cell'
+                                                   >
+                                                      ضخامت{' '}
+                                                      <span className='text-xs'>(میلی‌متر)</span>
+                                                   </th>
+                                                   <th
+                                                      scope='col'
+                                                      className='yekan1 hidden p-2 font-bold md:table-cell'
+                                                   >
+                                                      ابعاد{' '}
+                                                      <span className='text-xs'>(میلی‌متر)</span>
+                                                   </th>
+                                                   <th scope='col' className='yekan1 p-2 font-bold'>
+                                                      قیمت <span className='text-xs'>(تومان)</span>
+                                                   </th>
+                                                   <th scope='col' className='yekan1 p-2 font-bold'>
+                                                      نوسان
+                                                   </th>
+                                                   <th scope='col' className='yekan1 p-2 font-bold'>
+                                                      نمودار
+                                                   </th>
+                                                </tr>
+                                             </thead>
 
                                              {sortedProducts?.map((product, idx) => {
                                                 if (product.factory !== factory._id) return
@@ -501,16 +503,17 @@ const PriceTables = () => {
                                                 }
 
                                                 return (
-                                                   <div
-                                                      key={idx}
-                                                      onClick={() =>
-                                                         setProductDetail((prev) =>
-                                                            prev == product._id ? '' : product._id,
-                                                         )
-                                                      }
-                                                      className='table-row-group align-middle'
-                                                   >
-                                                      <tr
+                                                   <>
+                                                      <tbody
+                                                         key={product._id + idx}
+                                                         onClick={() =>
+                                                            setProductDetail((prev) =>
+                                                               prev == product._id
+                                                                  ? ''
+                                                                  : product._id,
+                                                            )
+                                                         }
+                                                         className='table-row-group align-middle'
                                                          style={{
                                                             background:
                                                                idx % 2 == 0
@@ -518,139 +521,143 @@ const PriceTables = () => {
                                                                   : 'none',
                                                          }}
                                                       >
-                                                         <td className='yekan1 p-2 font-bold'>
-                                                            {product.title}
-                                                         </td>
+                                                         <tr>
+                                                            <td className='yekan1 p-2 font-bold'>
+                                                               {product.title}
+                                                            </td>
 
-                                                         <td className='yekan1 hidden p-2 text-center font-bold md:table-cell'>
-                                                            {parseInt(
-                                                               // @ts-ignore
-                                                               product.thickness,
-                                                            ).toLocaleString('fa')}
-                                                         </td>
+                                                            <td className='yekan1 hidden p-2 text-center font-bold md:table-cell'>
+                                                               {parseInt(
+                                                                  // @ts-ignore
+                                                                  product.thickness,
+                                                               ).toLocaleString('fa')}
+                                                            </td>
 
-                                                         <td className='yekan1 hidden p-2 text-center font-bold md:table-cell'>
-                                                            {parseInt(
-                                                               // @ts-ignore
-                                                               product.length,
-                                                            ).toLocaleString('fa')}
-                                                            x
-                                                            {parseInt(
-                                                               // @ts-ignore
-                                                               product.width,
-                                                            ).toLocaleString('fa')}
-                                                         </td>
+                                                            <td className='yekan1 hidden p-2 text-center font-bold md:table-cell'>
+                                                               {parseInt(
+                                                                  // @ts-ignore
+                                                                  product.length,
+                                                               ).toLocaleString('fa')}
+                                                               x
+                                                               {parseInt(
+                                                                  // @ts-ignore
+                                                                  product.width,
+                                                               ).toLocaleString('fa')}
+                                                            </td>
 
-                                                         <td className='yekan1 p-2 text-center font-bold'>
-                                                            {product.inStock ? (
-                                                               // @ts-ignore
-                                                               parseInt(price.value).toLocaleString(
-                                                                  'fa',
-                                                               )
-                                                            ) : (
-                                                               <span className='text-base font-normal text-slate-400'>
-                                                                  ناموجود
-                                                               </span>
-                                                            )}
-                                                         </td>
-
-                                                         <td className='yekan1 m-auto p-2 text-center font-bold'>
-                                                            {fluctuation && fluctuation > 0 ? (
-                                                               <div className='flex items-center justify-center gap-x-1 text-green-600'>
-                                                                  {parseInt(
+                                                            <td className='yekan1 p-2 text-center font-bold'>
+                                                               {product.inStock ? (
+                                                                  parseInt(
                                                                      // @ts-ignore
-                                                                     fluctuation,
-                                                                  ).toLocaleString('fa')}
-                                                                  <svg
-                                                                     className='h-6 w-6'
-                                                                     width='24'
-                                                                     height='24'
-                                                                     viewBox='0 0 24 24'
-                                                                     strokeWidth='2'
-                                                                     stroke='currentColor'
-                                                                     fill='none'
-                                                                     strokeLinecap='round'
-                                                                     strokeLinejoin='round'
-                                                                  >
-                                                                     {' '}
-                                                                     <path
-                                                                        stroke='none'
-                                                                        d='M0 0h24v24H0z'
-                                                                     />{' '}
-                                                                     <path d='M18 15l-6-6l-6 6h12' />
-                                                                  </svg>
-                                                               </div>
-                                                            ) : (
-                                                               ''
-                                                            )}
+                                                                     price.value,
+                                                                  ).toLocaleString('fa')
+                                                               ) : (
+                                                                  <span className='text-base font-normal text-slate-400'>
+                                                                     ناموجود
+                                                                  </span>
+                                                               )}
+                                                            </td>
 
-                                                            {fluctuation && fluctuation < 0 ? (
-                                                               <div className='flex items-center justify-center gap-x-1 text-red-500'>
-                                                                  {parseInt(
-                                                                     // @ts-ignore
-                                                                     fluctuation,
-                                                                  ).toLocaleString('fa')}
-                                                                  <svg
-                                                                     className='h-6 w-6'
-                                                                     width='24'
-                                                                     height='24'
-                                                                     viewBox='0 0 24 24'
-                                                                     strokeWidth='2'
-                                                                     stroke='currentColor'
-                                                                     fill='none'
-                                                                     strokeLinecap='round'
-                                                                     strokeLinejoin='round'
-                                                                  >
-                                                                     {' '}
-                                                                     <path
-                                                                        stroke='none'
-                                                                        d='M0 0h24v24H0z'
-                                                                     />{' '}
-                                                                     <path
-                                                                        d='M18 15l-6-6l-6 6h12'
-                                                                        transform='rotate(180 12 12)'
-                                                                     />
-                                                                  </svg>
-                                                               </div>
-                                                            ) : (
-                                                               ''
-                                                            )}
+                                                            <td className='yekan1 m-auto p-2 text-center font-bold'>
+                                                               {fluctuation && fluctuation > 0 ? (
+                                                                  <div className='flex items-center justify-center gap-x-1 text-green-600'>
+                                                                     {parseInt(
+                                                                        // @ts-ignore
+                                                                        fluctuation,
+                                                                     ).toLocaleString('fa')}
+                                                                     <svg
+                                                                        className='h-6 w-6'
+                                                                        width='24'
+                                                                        height='24'
+                                                                        viewBox='0 0 24 24'
+                                                                        strokeWidth='2'
+                                                                        stroke='currentColor'
+                                                                        fill='none'
+                                                                        strokeLinecap='round'
+                                                                        strokeLinejoin='round'
+                                                                     >
+                                                                        {' '}
+                                                                        <path
+                                                                           stroke='none'
+                                                                           d='M0 0h24v24H0z'
+                                                                        />{' '}
+                                                                        <path d='M18 15l-6-6l-6 6h12' />
+                                                                     </svg>
+                                                                  </div>
+                                                               ) : (
+                                                                  ''
+                                                               )}
 
-                                                            {!fluctuation ? (
-                                                               <span className='h-5 w-6 text-slate-600'>
-                                                                  ---
-                                                               </span>
-                                                            ) : (
-                                                               ''
-                                                            )}
-                                                         </td>
-                                                         <td onClick={() => setChartData(product)}>
-                                                            <svg
-                                                               className='mx-auto h-6 w-6 text-black'
-                                                               width='24'
-                                                               height='24'
-                                                               viewBox='0 0 24 24'
-                                                               strokeWidth='2'
-                                                               stroke='currentColor'
-                                                               fill='none'
-                                                               strokeLinecap='round'
-                                                               strokeLinejoin='round'
+                                                               {fluctuation && fluctuation < 0 ? (
+                                                                  <div className='flex items-center justify-center gap-x-1 text-red-500'>
+                                                                     {parseInt(
+                                                                        // @ts-ignore
+                                                                        fluctuation,
+                                                                     ).toLocaleString('fa')}
+                                                                     <svg
+                                                                        className='h-6 w-6'
+                                                                        width='24'
+                                                                        height='24'
+                                                                        viewBox='0 0 24 24'
+                                                                        strokeWidth='2'
+                                                                        stroke='currentColor'
+                                                                        fill='none'
+                                                                        strokeLinecap='round'
+                                                                        strokeLinejoin='round'
+                                                                     >
+                                                                        {' '}
+                                                                        <path
+                                                                           stroke='none'
+                                                                           d='M0 0h24v24H0z'
+                                                                        />{' '}
+                                                                        <path
+                                                                           d='M18 15l-6-6l-6 6h12'
+                                                                           transform='rotate(180 12 12)'
+                                                                        />
+                                                                     </svg>
+                                                                  </div>
+                                                               ) : (
+                                                                  ''
+                                                               )}
+
+                                                               {!fluctuation ? (
+                                                                  <span className='h-5 w-6 text-slate-600'>
+                                                                     ---
+                                                                  </span>
+                                                               ) : (
+                                                                  ''
+                                                               )}
+                                                            </td>
+                                                            <td
+                                                               onClick={() => setChartData(product)}
                                                             >
-                                                               {' '}
-                                                               <path
-                                                                  stroke='none'
-                                                                  d='M0 0h24v24H0z'
-                                                               />{' '}
-                                                               <line
-                                                                  x1='4'
-                                                                  y1='19'
-                                                                  x2='20'
-                                                                  y2='19'
-                                                               />{' '}
-                                                               <polyline points='4 15 8 9 12 11 16 6 20 10' />
-                                                            </svg>
-                                                         </td>
-                                                      </tr>
+                                                               <svg
+                                                                  className='mx-auto h-6 w-6 text-black'
+                                                                  width='24'
+                                                                  height='24'
+                                                                  viewBox='0 0 24 24'
+                                                                  strokeWidth='2'
+                                                                  stroke='currentColor'
+                                                                  fill='none'
+                                                                  strokeLinecap='round'
+                                                                  strokeLinejoin='round'
+                                                               >
+                                                                  {' '}
+                                                                  <path
+                                                                     stroke='none'
+                                                                     d='M0 0h24v24H0z'
+                                                                  />{' '}
+                                                                  <line
+                                                                     x1='4'
+                                                                     y1='19'
+                                                                     x2='20'
+                                                                     y2='19'
+                                                                  />{' '}
+                                                                  <polyline points='4 15 8 9 12 11 16 6 20 10' />
+                                                               </svg>
+                                                            </td>
+                                                         </tr>
+                                                      </tbody>
                                                       {productDetail == product._id ? (
                                                          <div className='relative right-2 table-cell border-r-2 pr-4 md:hidden'>
                                                             <p className='text-sm font-normal text-slate-500'>
@@ -675,7 +682,7 @@ const PriceTables = () => {
                                                       ) : (
                                                          ''
                                                       )}
-                                                   </div>
+                                                   </>
                                                 )
                                              })}
                                           </table>

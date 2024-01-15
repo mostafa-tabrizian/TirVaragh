@@ -1,10 +1,13 @@
 import dbConnect from '@/lib/dbConnect'
 import Category from '@/models/category'
 
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+    req.nextUrl.searchParams.get('')
+
     await dbConnect()
-    const factories = await Category.find()
-    return NextResponse.json(factories)
+    const categories = await Category.find().lean()
+
+    return NextResponse.json(categories)
 }

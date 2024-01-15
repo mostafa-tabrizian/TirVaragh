@@ -6,9 +6,9 @@ export const ProductForm = yup.object().shape({
    category: yup.string().required('دسته بندی محصول را وارد کنید'),
    factory: yup.string().required('کارخانه محصول را وارد کنید'),
    price: yup.number().min(1, 'قیمت محصول را وارد کنید').required('قیمت محصول را وارد کنید'),
-   length: yup.number().min(1, 'طول محصول را وارد کنید').required('طول محصول را وارد کنید'),
-   width: yup.number().min(1, 'عرض محصول را وارد کنید').required('عرض محصول را وارد کنید'),
-   thickness: yup.number().min(1, 'ضخامت محصول را وارد کنید').required('ضخامت محصول را وارد کنید'),
+   length: yup.number().min(0.1, 'مقدار طول صحیح نمی‌باشد').required('طول محصول را وارد کنید'),
+   width: yup.number().min(0.1, 'مقدار عرض صحیح نمی‌باشد').required('عرض محصول را وارد کنید'),
+   thickness: yup.number().min(0.1, 'مقدار ضخامت صحیح نمی‌باشد').required('ضخامت محصول را وارد کنید'),
 })
 
 export const CategoryValidation = yup.object().shape({
