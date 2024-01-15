@@ -527,22 +527,26 @@ const PriceTables = () => {
                                                             </td>
 
                                                             <td className='yekan1 hidden p-2 text-center font-bold md:table-cell'>
-                                                               {parseInt(
+                                                               {parseFloat(
                                                                   // @ts-ignore
                                                                   product.thickness,
                                                                ).toLocaleString('fa')}
                                                             </td>
 
-                                                            <td className='yekan1 hidden p-2 text-center font-bold md:table-cell'>
-                                                               {parseInt(
-                                                                  // @ts-ignore
-                                                                  product.length,
-                                                               ).toLocaleString('fa')}
-                                                               x
-                                                               {parseInt(
-                                                                  // @ts-ignore
-                                                                  product.width,
-                                                               ).toLocaleString('fa')}
+                                                            <td className='yekan1 hidden justify-center gap-1 p-2 text-center font-bold md:flex'>
+                                                               <span>
+                                                                  {parseFloat(
+                                                                     // @ts-ignore
+                                                                     product.length,
+                                                                  ).toLocaleString('fa')}
+                                                               </span>
+                                                               <span>x</span>
+                                                               <span>
+                                                                  {parseFloat(
+                                                                     // @ts-ignore
+                                                                     product.width,
+                                                                  ).toLocaleString('fa')}
+                                                               </span>
                                                             </td>
 
                                                             <td className='yekan1 p-2 text-center font-bold'>
