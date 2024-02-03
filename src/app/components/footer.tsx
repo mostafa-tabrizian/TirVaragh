@@ -141,27 +141,18 @@ const Footer = () => {
                            id='phone_call_2'
                            rel='noreferrer'
                            className='text-sm font-semibold tracking-widest text-red-600'
-                           href='tel:+2191692222'
+                           href='tel:+2155228300'
                         >
-                           02191692222{' '}
+                           ۰۲۱-۵۵۲۲۸۳۰۰{' '}
                         </a>
                         ،{' '}
                         <a
                            id='phone_call_3'
                            rel='noreferrer'
                            className='text-sm font-semibold tracking-widest text-red-600'
-                           href='tel:+2155445868'
+                           href='tel:+9356188787'
                         >
-                           02155445868{' '}
-                        </a>
-                        و{' '}
-                        <a
-                           id='phone_call_4'
-                           rel='noreferrer'
-                           className='text-sm font-semibold tracking-widest text-red-600'
-                           href='tel:+2155445660'
-                        >
-                           02155445868{' '}
+                           ۰۹۳۵۶۱۸۸۷۸۷{' '}
                         </a>
                         با ما در ارتباط باشید
                      </p>
