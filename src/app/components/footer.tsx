@@ -163,10 +163,11 @@ const Footer = () => {
                <p className='mb-3 text-center text-xs text-slate-700'>
                   © تمامی حقوق برای شرکت صنعت ورق الغدیر پارس محفوظ است
                </p>
-               <a href='https://mostafatabrizian.ir/fa'>
-                  <p className='text-center text-xs text-slate-700'>
-                     طراحی و توسعه : <span className='text-xs text-indigo-600'>تبریزیان</span>
-                  </p>
+               <a
+                  href='https://lunaris.ir'
+                  className='mx-auto block text-center text-xs font-normal text-purple-400'
+               >
+                  طراحی و توسعه شده با 💜 توسط تیم لوناریس
                </a>
             </div>
          </div>
